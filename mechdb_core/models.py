@@ -34,9 +34,9 @@ class Container(models.Model):
     def __str__(self):
         return str(self.pk)+" "+self.title
 
-    #def search_dependent(self):
-    #    containers = Container.objects.filter(owner=request.user, in_container_id=self.pk).order_by('in_container_id')
-    #    return str(self.pk)+" "+self.title
+#    def search_dependent(self):
+#        containers = Container.objects.filter(owner=request.user, in_container_id=self.pk).order_by('in_container_id')
+#        return str(self.pk)+" "+self.title
 
 class Equipment_sizename(models.Model):
     owner = models.ForeignKey('auth.User', on_delete=models.CASCADE)
