@@ -29,6 +29,7 @@ class Container(models.Model):
     created_date = models.DateTimeField(default=timezone.now, blank=False, null=False)
     title = models.CharField(max_length=200, blank=False, null=False)
     descripton = models.TextField(blank=True, null=True)
+    is_repair_organization = models.BooleanField(default=False, blank=False, null=False)
     in_container_id = models.IntegerField(blank=True, null=True)
     def __str__(self):
         return str(self.pk)+" "+self.title
