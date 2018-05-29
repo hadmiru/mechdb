@@ -6,4 +6,5 @@ urlpatterns = [
     url('map/', views.containers_map, name='containes_map'),
     url(r'^place/(?P<pk>\d+)/$', views.container_detail, name='container_detail'),
     url(r'^place/new/$', views.container_new, name='container_new'),
+    url(r'^place/(?P<pk>\d+)/edit/$', views.container_edit, name='container_edit'),
 ]

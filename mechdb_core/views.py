@@ -85,3 +85,17 @@ def container_new(request):
     else:
         form = ContainerForm()
     return render(request, 'mechdb_core/container_edit.html', {'form': form})
+
+def container_edit(request, pk):
+    container = get_object_or_404(Container, pk=pk)
+    if request.method == "POST":
+        form = ContainerForm(request.POST, instance=container)
+        if form.is_valid():
+            container = form.save(commit=False)
+            container.owner = request.user
+            container.created_date = timezone.now()
+            container.save()
+            return redirect('container_detail', pk=container.pk)
+    else:
+        form = ContainerForm(instance=container)
+    return render(request, 'mechdb_core/container_edit.html', {'form': form})
