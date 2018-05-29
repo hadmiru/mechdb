@@ -6,13 +6,22 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
     <link href="https://fonts.googleapis.com/css?family=Lobster&subset=latin,cyrillic" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Bowlby+One+SC" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/mechdb_core.css' %}">
 
     <TITLE>MechDB.info - сервис учёта проведения ремонтов динамического оборудования</TITLE>
   </HEAD>
   <BODY>
       <div class="page-header">
+          <a href="{% url 'container_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
           <center><h1><a href="/">MechDB.info</a></h1></center>
+
+          <center>
+            <a href="/map">Карта</a><br>
+            <a href="{% url 'container_new' %}">Новый конт</a>
+          </center>
+
+
       </div>
       <div class="content container">
           <div class="row">

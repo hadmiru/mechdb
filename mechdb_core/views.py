@@ -2,6 +2,8 @@ from django.shortcuts import render, get_object_or_404
 from .models import Container
 from django.utils import timezone
 from django.utils.html import escape
+from .forms import ContainerForm
+from django.shortcuts import redirect
 
 # Create your views here.
 def index_page(request):
@@ -70,3 +72,16 @@ def containers_map_keybook(request):
     containers_output=search_dependent(0)
 
     return render(request, 'mechdb_core/containers_map.html', {'containers': containers_output})
+
+def container_new(request):
+    if request.method == "POST":
+        form = ContainerForm(request.POST)
+        if form.is_valid():
+            container = form.save(commit=False)
+            container.owner = request.user
+            container.created_date = timezone.now()
+            container.save()
+            return redirect('container_detail', pk=container.pk)
+    else:
+        form = ContainerForm()
+    return render(request, 'mechdb_core/container_edit.html', {'form': form})

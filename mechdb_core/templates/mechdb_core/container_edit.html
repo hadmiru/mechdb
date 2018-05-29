@@ -1,0 +1,12 @@
+{% extends 'mechdb_core/base.html' %}
+
+{% block content %}
+      <p>Это - заготовок страницы с добавлением и редактированием контейнера</p>
+
+      <h1>Создание контейнера</h1>
+      <form method="POST" class="post-form">{% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit" class="save btn btn-default">Сохранить</button>
+      </form>
+
+{% endblock %}
