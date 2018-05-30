@@ -12,7 +12,7 @@ class Manufacturer(models.Model):
     owner = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     created_date = models.DateTimeField(default=timezone.now, blank=False, null=False)
     title = models.CharField(max_length=200, blank=False, null=False)
-    descripton = models.TextField(blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
     def __str__(self):
         return self.title
 
@@ -20,7 +20,7 @@ class Supply_provider(models.Model):
     owner = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     created_date = models.DateTimeField(default=timezone.now, blank=False, null=False)
     title = models.CharField(max_length=200, blank=False, null=False)
-    descripton = models.TextField(blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
     def __str__(self):
         return self.title
 
@@ -28,15 +28,11 @@ class Container(models.Model):
     owner = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     created_date = models.DateTimeField(default=timezone.now, blank=False, null=False)
     title = models.CharField(max_length=200, blank=False, null=False)
-    descripton = models.TextField(blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
     is_repair_organization = models.BooleanField(default=False, blank=False, null=False)
-    in_container_id = models.IntegerField(blank=True, null=True)
+    in_container_id = models.IntegerField(blank=False, null=False, default=0)
     def __str__(self):
-        return str(self.pk)+" "+self.title
-
-#    def search_dependent(self):
-#        containers = Container.objects.filter(owner=request.user, in_container_id=self.pk).order_by('in_container_id')
-#        return str(self.pk)+" "+self.title
+        return str(self.pk)+" "+str(self.owner)+" "+self.title
 
 class Equipment_sizename(models.Model):
     owner = models.ForeignKey('auth.User', on_delete=models.CASCADE)
