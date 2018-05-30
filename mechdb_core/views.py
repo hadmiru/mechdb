@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Container, Equipment
+from .models import Container, Equipment, Equipment_sizename
 from django.utils import timezone
 from django.utils.html import escape
 from .forms import ContainerForm
@@ -56,5 +56,12 @@ def equipment_list(request):
 def equipment_detail(request, pk):
     equipment = get_object_or_404(Equipment, pk=pk)
     place=get_container_place(equipment.in_container.pk)
-    сontext = {'equipment':equipment,'place':place}
     return render(request, 'mechdb_core/equipment_detail.html', {'equipment':equipment,'place':place})
+
+def sizename_list(request):
+    sizenames = Equipment_sizename.objects.filter(owner=request.user).order_by('title')
+    return render(request, 'mechdb_core/sizename_list.html', {'sizenames':sizenames})
+
+def sizename_detail(request, pk):
+    sizename = get_object_or_404(Equipment_sizename, pk=pk)
+    return render(request, 'mechdb_core/sizename_detail.html', {'sizename':sizename})

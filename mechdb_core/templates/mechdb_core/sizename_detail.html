@@ -1,0 +1,13 @@
+{% extends 'mechdb_core/base.html' %}
+
+{% block content %}
+
+      <p>Заготовка для карточки модели оборудования</p>
+      <ul>
+        <li>Владелец: {{sizename.owner}}</li>
+        <li>Время создания: {{sizename.created_date}}</li>
+        <li>Модель: {{sizename.title}}</li>
+        <li>Производитель: {{sizename.manufacturer}}</li>
+        <li>Поставщик: {{sizename.supply_provider}}</li>
+      </ul>
+{% endblock %}
