@@ -1,7 +1,6 @@
 {% extends 'mechdb_core/base.html' %}
 
 {% block content %}
-      <p>Это - заготовок страницы с карточкой оборудования</p>
       <a class="btn btn-default" href="{% url 'container_edit' pk=container.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
       <p>Контейнер: <b>{{container.title}}</b></p>
       <ul>

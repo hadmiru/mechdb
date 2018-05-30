@@ -51,8 +51,7 @@ class Equipment(models.Model):
     registration_number = models.CharField(max_length=50, blank=True, null=True)
     in_container = models.ForeignKey(Container, on_delete=models.SET_NULL, blank=True, null=True)
     def __str__(self):
-        return_str = self.sizename.title+" s/n "+self.serial_number
-        return return_str
+        return str(self.pk)+" "+str(self.owner)+" "+str(self.sizename)+" s/n "+str(self.serial_number)
 
 class Spare_part(models.Model):
     owner = models.ForeignKey('auth.User', on_delete=models.CASCADE)

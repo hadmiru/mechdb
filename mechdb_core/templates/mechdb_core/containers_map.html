@@ -1,6 +1,7 @@
 {% extends 'mechdb_core/base.html' %}
 
 {% block content %}
+  <p><h3><center><a href="{% url 'container_new' %}">Создать новый контейнер</a></center></h3></p>
   {% for i in containers %}
   {{ i|safe }}
   {% endfor %}
