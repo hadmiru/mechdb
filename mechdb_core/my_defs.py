@@ -2,7 +2,7 @@ from .models import Container, Equipment
 from django.shortcuts import get_object_or_404
 from django.utils.html import escape
 
-def tree_parse(input_pk, tree_format, user, tree_level=-1):
+def tree_parse(input_pk, tree_format, user, need_zero_level=True, tree_level=-1):
     # функция парсинга древа контейнеров в заданном формате
     # формат "li" - выводит в виде html - списка
     # формат "choice" - кортеж для ChoiceField формы
@@ -12,7 +12,7 @@ def tree_parse(input_pk, tree_format, user, tree_level=-1):
     def_output=[]
     tree_level+=1
 
-    if tree_format=='choice' and input_pk==0:
+    if tree_format in ('choice','choice_objects') and need_zero_level and input_pk==0:
         def_output.append((0,"--- верхний уровень ---"))
     if containers:
         # если найдены вложенные контейнеры - составляем их список
@@ -27,10 +27,14 @@ def tree_parse(input_pk, tree_format, user, tree_level=-1):
 
             if tree_format=='li':
                 def_output.append('<a href="/place/'+str(y.pk)+'">'+escape(y.title)+'</a>')
-            elif tree_format=='choice':
+            elif tree_format=='choice' or tree_format=='choice_objects':
                 def_output.append((str(y.pk),tree_level*'⠀⠀'+escape(y.title)))
 
-            def_output.extend(tree_parse(y.pk, tree_format, user, tree_level))
+            if tree_format=='choice_objects':
+                def_output.extend(tree_parse(y, tree_format, user, False, tree_level))
+            else:
+                def_output.extend(tree_parse(y.pk, tree_format, user, False, tree_level))
+
 
             if tree_format=='li':
                 def_output.append('</LI>')

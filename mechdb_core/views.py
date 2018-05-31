@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from .models import Container, Equipment, Equipment_sizename
 from django.utils import timezone
 from django.utils.html import escape
-from .forms import ContainerForm, SizenameForm
+from .forms import ContainerForm, EquipmentForm, SizenameForm
 from django.shortcuts import redirect
 from .my_defs import tree_parse, get_container_place
 
@@ -56,6 +56,20 @@ def equipment_detail(request, pk):
     equipment = get_object_or_404(Equipment, pk=pk)
     place=get_container_place(equipment.in_container.pk)
     return render(request, 'mechdb_core/equipment_detail.html', {'equipment':equipment,'place':place})
+
+def equipment_new(request):
+    if request.method == "POST":
+        form = EquipmentForm(request.POST ,user=request.user)
+        if form.is_valid():
+            equipment = form.save(commit=False)
+            equipment.owner = request.user
+            equipment.created_date = timezone.now()
+            equipment.in_container = get_object_or_404(Container, pk=request.POST['in_container'])
+            equipment.save()
+            return redirect('equipment_detail', pk=equipment.pk)
+    else:
+        form = EquipmentForm(user=request.user)
+    return render(request, 'mechdb_core/equipment_edit.html', {'form': form})
 
 def sizename_list(request):
     sizenames = Equipment_sizename.objects.filter(owner=request.user).order_by('title')
