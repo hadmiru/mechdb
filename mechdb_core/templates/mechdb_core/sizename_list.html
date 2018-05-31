@@ -1,6 +1,7 @@
 {% extends 'mechdb_core/base.html' %}
 
 {% block content %}
+  <p><h3><center><a href="{% url 'sizename_new' %}">Создать новую модель оборудования</a></center></h3></p>
   <ul>
     {% for i in sizenames %}
       <li>

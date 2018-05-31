@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from .models import Container, Equipment, Equipment_sizename
 from django.utils import timezone
 from django.utils.html import escape
-from .forms import ContainerForm
+from .forms import ContainerForm, SizenameForm
 from django.shortcuts import redirect
 from .my_defs import tree_parse, get_container_place
 
@@ -69,3 +69,30 @@ def sizename_detail(request, pk):
     for slave in slave_equipments:
         slaves_list.append((slave.pk, slave.serial_number,get_container_place(slave.in_container.pk)))
     return render(request, 'mechdb_core/sizename_detail.html', {'sizename':sizename, 'slaves_list':slaves_list})
+
+def sizename_new(request):
+    if request.method == "POST":
+        form = SizenameForm(request.POST)
+        if form.is_valid():
+            sizename = form.save(commit=False)
+            sizename.owner = request.user
+            sizename.created_date = timezone.now()
+            sizename.save()
+            return redirect('sizename_detail', pk=sizename.pk)
+    else:
+        form = SizenameForm()
+    return render(request, 'mechdb_core/sizename_edit.html', {'form': form})
+
+def sizename_edit(request, pk):
+    sizename = get_object_or_404(Equipment_sizename, pk=pk)
+    if request.method == "POST":
+        form = SizenameForm(request.POST, instance=sizename)
+        if form.is_valid():
+            sizename = form.save(commit=False)
+            sizename.owner = request.user
+            sizename.created_date = timezone.now()
+            sizename.save()
+            return redirect('sizename_detail', pk=sizename.pk)
+    else:
+        form = SizenameForm(instance=sizename)
+    return render(request, 'mechdb_core/sizename_edit.html', {'form': form})

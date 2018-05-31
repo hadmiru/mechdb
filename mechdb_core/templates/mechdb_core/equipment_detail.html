@@ -2,11 +2,12 @@
 
 {% block content %}
       <p>
+        <b>{{equipment.sizename.title}} № {{equipment.serial_number}}</b><br><br>
+        Месторасположение:<br>
         {% for i in place %}
+          {% if not forloop.first %} &lt; {% endif %}
           <a href="{% url 'container_detail' pk=i.0 %}">{{ i.1 }}</a>
-            &lt;
         {% endfor %}
-        <b>{{equipment.sizename.title}} № {{equipment.serial_number}}</b>
       </p>
 
       <ul>

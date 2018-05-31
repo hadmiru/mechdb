@@ -3,6 +3,7 @@
 {% block content %}
 
       <p>Заготовка для карточки модели оборудования</p>
+      <a class="btn btn-default" href="{% url 'sizename_edit' pk=sizename.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
       <ul>
         <li>Владелец: {{sizename.owner}}</li>
         <li>Время создания: {{sizename.created_date}}</li>
@@ -11,17 +12,22 @@
         <li>Поставщик: {{sizename.supply_provider}}</li>
       </ul>
 
-      <p><b>Зарегистрированное борудование данной модели:</b></p>
-      <ul>
-      {% for i in slaves_list %}
-        <li>
-          <a href="{% url 'equipment_detail' pk=i.0 %}"{{ i.1 }}>{{sizename.title}} зав. № {{i.1}}</a><br>
-          Расположение:
-            {% for y in i.2 %}
-              <a href="{% url 'container_detail' pk=y.0 %}">{{ y.1 }}</a> |
-            {% endfor %}
-        <br><br>
-        </li>
-      {% endfor %}
-      </ul>
+      <p><b>Зарегистрированное оборудование данной модели:</b></p>
+      {% if slaves_list %}
+          <ul>
+          {% for i in slaves_list %}
+            <li>
+              <a href="{% url 'equipment_detail' pk=i.0 %}"{{ i.1 }}>{{sizename.title}} зав. № {{i.1}}</a><br>
+              Расположение:
+                {% for y in i.2 %}
+                  {% if not forloop.first %} &lt; {% endif %}
+                  <a href="{% url 'container_detail' pk=y.0 %}">{{ y.1 }}</a>
+                {% endfor %}
+            <br><br>
+            </li>
+          {% endfor %}
+          </ul>
+      {% else %}
+          <p>Отсутствует</p>
+      {% endif %}
 {% endblock %}

@@ -1,5 +1,5 @@
 from django import forms
-from .models import Container
+from .models import Container, Equipment_sizename
 from .my_defs import tree_parse
 
 class ContainerForm(forms.ModelForm):
@@ -13,3 +13,8 @@ class ContainerForm(forms.ModelForm):
     class Meta:
         model = Container
         fields = ('title', 'description', 'in_container_id')
+
+class SizenameForm(forms.ModelForm):
+    class Meta:
+        model = Equipment_sizename
+        fields = ('title', 'manufacturer', 'supply_provider')
