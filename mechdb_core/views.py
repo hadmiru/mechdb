@@ -64,4 +64,8 @@ def sizename_list(request):
 
 def sizename_detail(request, pk):
     sizename = get_object_or_404(Equipment_sizename, pk=pk)
-    return render(request, 'mechdb_core/sizename_detail.html', {'sizename':sizename})
+    slave_equipments = Equipment.objects.filter(owner=request.user, sizename=sizename).order_by('serial_number')
+    slaves_list=[]
+    for slave in slave_equipments:
+        slaves_list.append((slave.pk, slave.serial_number,get_container_place(slave.in_container.pk)))
+    return render(request, 'mechdb_core/sizename_detail.html', {'sizename':sizename, 'slaves_list':slaves_list})

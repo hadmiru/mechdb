@@ -10,4 +10,18 @@
         <li>Производитель: {{sizename.manufacturer}}</li>
         <li>Поставщик: {{sizename.supply_provider}}</li>
       </ul>
+
+      <p><b>Зарегистрированное борудование данной модели:</b></p>
+      <ul>
+      {% for i in slaves_list %}
+        <li>
+          <a href="{% url 'equipment_detail' pk=i.0 %}"{{ i.1 }}>{{sizename.title}} зав. № {{i.1}}</a><br>
+          Расположение:
+            {% for y in i.2 %}
+              <a href="{% url 'container_detail' pk=y.0 %}">{{ y.1 }}</a> |
+            {% endfor %}
+        <br><br>
+        </li>
+      {% endfor %}
+      </ul>
 {% endblock %}
