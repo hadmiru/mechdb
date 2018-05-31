@@ -8,22 +8,6 @@ class Action_type(models.Model):
     def __str__(self):
         return self.title
 
-class Manufacturer(models.Model):
-    owner = models.ForeignKey('auth.User', on_delete=models.CASCADE)
-    created_date = models.DateTimeField(default=timezone.now, blank=False, null=False)
-    title = models.CharField(max_length=200, blank=False, null=False)
-    description = models.TextField(blank=True, null=True)
-    def __str__(self):
-        return self.title
-
-class Supply_provider(models.Model):
-    owner = models.ForeignKey('auth.User', on_delete=models.CASCADE)
-    created_date = models.DateTimeField(default=timezone.now, blank=False, null=False)
-    title = models.CharField(max_length=200, blank=False, null=False)
-    description = models.TextField(blank=True, null=True)
-    def __str__(self):
-        return self.title
-
 class Container(models.Model):
     owner = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     created_date = models.DateTimeField(default=timezone.now, blank=False, null=False)
@@ -37,9 +21,9 @@ class Container(models.Model):
 class Equipment_sizename(models.Model):
     owner = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     created_date = models.DateTimeField(default=timezone.now, blank=False, null=False)
-    title = models.CharField(max_length=200, blank=False, null=False, default='Enter product name...')
-    manufacturer = models.ForeignKey(Manufacturer, on_delete=models.SET_NULL, blank=True, null=True)
-    supply_provider = models.ForeignKey(Supply_provider, on_delete=models.SET_NULL, blank=True, null=True)
+    title = models.CharField(max_length=200, blank=False, null=False)
+    manufacturer = models.CharField(max_length=100, blank=False, null=False, default='н/д')
+    supply_provider = models.CharField(max_length=100, blank=False, null=False, default='н/д')
     def __str__(self):
         return self.title
 
@@ -61,8 +45,8 @@ class Spare_part(models.Model):
     unit_name = models.CharField(max_length=10, blank=False, null=False)
     in_container = models.ForeignKey(Container, on_delete=models.SET_NULL, blank=True, null=True)
     used_in_equipment = models.ManyToManyField(Equipment_sizename)
-    manufacturer = models.ForeignKey(Manufacturer, on_delete=models.SET_NULL, blank=True, null=True)
-    supply_provider = models.ForeignKey(Supply_provider, on_delete=models.SET_NULL, blank=True, null=True)
+    manufacturer = models.CharField(max_length=100, blank=False, null=False, default='н/д')
+    manufacturer = models.CharField(max_length=100, blank=False, null=False, default='н/д')
     def __str__(self):
         return self.title
 
