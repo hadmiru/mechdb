@@ -42,7 +42,6 @@ def container_edit(request, pk):
         if form.is_valid():
             container = form.save(commit=False)
             container.owner = request.user
-            container.created_date = timezone.now()
             container.save()
             return redirect('container_detail', pk=container.pk)
     else:
@@ -90,7 +89,6 @@ def sizename_edit(request, pk):
         if form.is_valid():
             sizename = form.save(commit=False)
             sizename.owner = request.user
-            sizename.created_date = timezone.now()
             sizename.save()
             return redirect('sizename_detail', pk=sizename.pk)
     else:
