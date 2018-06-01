@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from .models import Container, Equipment, Equipment_sizename, Action
 from django.utils import timezone
 from django.utils.html import escape
+from django.forms.models import model_to_dict
 from .forms import ContainerForm, EquipmentForm, SizenameForm, ActionForm
 from django.shortcuts import redirect
 from .my_defs import tree_parse, get_container_place
@@ -137,9 +138,15 @@ def action_new(request):
     if request.method == "POST":
         form = ActionForm(request.POST)
         if form.is_valid():
-            action = form.save(commit=False)
+            action = Action()
             action.owner = request.user
             action.created_date = timezone.now()
+            action.type = form.cleaned_data['type']
+            action.action_start_date = form.cleaned_data['action_start_date']
+            action.action_end_date = form.cleaned_data['action_end_date']
+            action.scheduled = form.cleaned_data['scheduled']
+            action.description = form.cleaned_data['description']
+            action.used_in_equipment = form.cleaned_data['used_in_equipment']
             action.save()
             return redirect('action_detail', pk=action.pk)
     else:
@@ -148,13 +155,20 @@ def action_new(request):
 
 def action_edit(request, pk):
     action = get_object_or_404(Action, pk=pk)
+    instance=model_to_dict(action)
     if request.method == "POST":
-        form = ActionForm(request.POST, instance=action)
+        form = ActionForm(request.POST, initial=instance)
         if form.is_valid():
-            action = form.save(commit=False)
             action.owner = request.user
+            action.created_date = timezone.now()
+            action.type = form.cleaned_data['type']
+            action.action_start_date = form.cleaned_data['action_start_date']
+            action.action_end_date = form.cleaned_data['action_end_date']
+            action.scheduled = form.cleaned_data['scheduled']
+            action.description = form.cleaned_data['description']
+            action.used_in_equipment = form.cleaned_data['used_in_equipment']
             action.save()
             return redirect('action_detail', pk=action.pk)
     else:
-        form = ActionForm(instance=action)
+        form = ActionForm(initial=instance)
     return render(request, 'mechdb_core/action_edit.html', {'form': form})

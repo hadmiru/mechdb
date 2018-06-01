@@ -1,6 +1,7 @@
 from django import forms
-from .models import Container, Equipment, Equipment_sizename, Action
+from .models import Container, Equipment, Equipment_sizename, Action, Action_type
 from .my_defs import tree_parse
+from django.utils import timezone
 
 class In_container_choicefield(forms.ChoiceField):
     # Класс для проверки на зацикленность поля in_container_id объектов Container
@@ -65,7 +66,15 @@ class SizenameForm(forms.ModelForm):
         model = Equipment_sizename
         fields = ('title', 'manufacturer', 'supply_provider')
 
-class ActionForm(forms.ModelForm):
-    class Meta:
-        model = Action
-        fields = ('type', 'description', 'action_start_date', 'action_end_date', 'scheduled', 'used_in_equipment')
+class ActionForm(forms.Form):
+    type = forms.ModelChoiceField(queryset=Action_type.objects.all(), empty_label=None, required=True)
+    description = forms.CharField(max_length=2000, required=False, widget=forms.Textarea)
+    action_start_date = forms.DateTimeField(initial=timezone.now(), required=True)
+    action_end_date = forms.DateTimeField(required=False)
+    scheduled = forms.BooleanField(required=False)
+    # не забыть дабавить ограничение на только текущего юзверя
+    used_in_equipment = forms.ModelChoiceField(queryset=Equipment.objects.all(), empty_label=None, required=True)
+
+#    class Meta:
+#        model = Action
+#        fields = ('type', 'description', 'action_start_date', 'action_end_date', 'scheduled', 'used_in_equipment')

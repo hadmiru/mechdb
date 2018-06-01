@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from datetime import datetime, date, time
 
 # Create your models here.
 
@@ -35,7 +36,7 @@ class Equipment(models.Model):
     registration_number = models.CharField(max_length=50, blank=True, null=True)
     in_container = models.ForeignKey(Container, on_delete=models.SET_NULL, blank=True, null=True)
     def __str__(self):
-        return str(self.pk)+" "+str(self.owner)+" "+str(self.sizename)+" s/n "+str(self.serial_number)
+        return str(self.sizename.title)+" № "+str(self.serial_number)+'  ['+self.in_container.title+']'
 
 class Spare_part(models.Model):
     owner = models.ForeignKey('auth.User', on_delete=models.CASCADE)
@@ -60,7 +61,7 @@ class Action(models.Model):
     description = models.TextField(blank=True, null=True)
     used_in_equipment = models.ForeignKey(Equipment, on_delete=models.CASCADE, blank=False, null=False)
     def __str__(self):
-        return str(self.action_start_date)+' '+self.type.title
+        return self.action_start_date.strftime("%d.%m.%Y %H:%M")+' '+self.type.title+' ['+ str(self.used_in_equipment)+']'
 
 
 class Movement_action(models.Model):
