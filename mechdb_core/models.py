@@ -34,7 +34,7 @@ class Equipment(models.Model):
     sizename = models.ForeignKey(Equipment_sizename, on_delete=models.CASCADE, blank=False, null=False)
     serial_number = models.CharField(max_length=50, blank=True, null=True)
     registration_number = models.CharField(max_length=50, blank=True, null=True)
-    in_container = models.ForeignKey(Container, on_delete=models.SET_NULL, blank=True, null=True)
+    in_container = models.ForeignKey(Container, on_delete=models.CASCADE, blank=False, null=False)
     def __str__(self):
         return str(self.sizename.title)+" № "+str(self.serial_number)+'  ['+self.in_container.title+']'
 

@@ -136,7 +136,7 @@ def action_detail(request, pk):
 
 def action_new(request):
     if request.method == "POST":
-        form = ActionForm(request.POST)
+        form = ActionForm(request.POST, user=request.user)
         if form.is_valid():
             action = Action()
             action.owner = request.user
@@ -150,14 +150,14 @@ def action_new(request):
             action.save()
             return redirect('action_detail', pk=action.pk)
     else:
-        form = ActionForm()
+        form = ActionForm(user=request.user)
     return render(request, 'mechdb_core/action_edit.html', {'form': form})
 
 def action_edit(request, pk):
     action = get_object_or_404(Action, pk=pk)
     instance=model_to_dict(action)
     if request.method == "POST":
-        form = ActionForm(request.POST, initial=instance)
+        form = ActionForm(request.POST, initial=instance, user=request.user)
         if form.is_valid():
             action.owner = request.user
             action.created_date = timezone.now()
@@ -170,5 +170,5 @@ def action_edit(request, pk):
             action.save()
             return redirect('action_detail', pk=action.pk)
     else:
-        form = ActionForm(initial=instance)
+        form = ActionForm(initial=instance, user=request.user)
     return render(request, 'mechdb_core/action_edit.html', {'form': form})
