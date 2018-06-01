@@ -64,11 +64,27 @@ def equipment_new(request):
             equipment = form.save(commit=False)
             equipment.owner = request.user
             equipment.created_date = timezone.now()
-            equipment.in_container = get_object_or_404(Container, pk=request.POST['in_container'])
+            equipment.in_container = get_object_or_404(Container, pk=request.POST['in_container_id'])
             equipment.save()
             return redirect('equipment_detail', pk=equipment.pk)
     else:
         form = EquipmentForm(user=request.user)
+    return render(request, 'mechdb_core/equipment_edit.html', {'form': form})
+
+def equipment_edit(request, pk):
+    equipment = get_object_or_404(Equipment, pk=pk)
+    if request.method == "POST":
+        print(equipment)
+        form = EquipmentForm(request.POST ,user=request.user, instance=equipment)
+        if form.is_valid():
+            equipment = form.save(commit=False)
+            equipment.owner = request.user
+            equipment.in_container = get_object_or_404(Container, pk=request.POST['in_container_id'])
+            equipment.save()
+            return redirect('equipment_detail', pk=equipment.pk)
+    else:
+        print(equipment)
+        form = EquipmentForm(user=request.user, instance=equipment)
     return render(request, 'mechdb_core/equipment_edit.html', {'form': form})
 
 def sizename_list(request):

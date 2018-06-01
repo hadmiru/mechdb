@@ -16,11 +16,16 @@ class ContainerForm(forms.ModelForm):
 
 class EquipmentForm(forms.ModelForm):
 
-    in_container = forms.ChoiceField()
+    in_container_id = forms.ChoiceField()
     def __init__(self, *args, **kwargs):
         user=kwargs.pop('user',None)
         super(EquipmentForm, self).__init__(*args, **kwargs)
-        self.fields['in_container'].choices=tree_parse(0, 'choice', user, False)
+        self.fields['in_container_id'].choices=tree_parse(0, 'choice', user, False)
+        #Проверяем наличие instance. Если есть - вытягиваем значение по умолчанию для поля in_container_id
+        instance = getattr(self, 'instance', None)
+        if instance.pk:
+            self.fields['in_container_id'].initial=instance.in_container.pk
+
 
     class Meta:
         model = Equipment
