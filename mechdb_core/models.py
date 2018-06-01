@@ -59,7 +59,8 @@ class Action(models.Model):
     description = models.TextField(blank=True, null=True)
     used_in_equipment = models.ManyToManyField(Equipment)
     def __str__(self):
-        return str(self.action_start_date)
+        return str(self.action_start_date)+' '+self.type.title
+
 
 class Movement_action(models.Model):
     owner = models.ForeignKey('auth.User', on_delete=models.CASCADE)

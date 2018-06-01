@@ -18,4 +18,6 @@ urlpatterns = [
     url(r'^model/(?P<pk>\d+)/$', views.sizename_detail, name='sizename_detail'),
     url(r'^model/new/$', views.sizename_new, name='sizename_new'),
     url(r'^model/(?P<pk>\d+)/edit/$', views.sizename_edit, name='sizename_edit'),
+    # === action ===
+    url(r'^action/all/$', views.action_list, name='action_list'),
 ]

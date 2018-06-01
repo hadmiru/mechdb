@@ -22,8 +22,7 @@ class In_container_choicefield(forms.ChoiceField):
         while recycle_flag == True:
             recycle_flag = False
             if checked_pk in saved_list:
-                print('ОБНАРУЖЕН ЦИКЛ') #ПОДУМАЙ БЛЯТЬ ТУТ ЧТО-то не так с алгоритмом ты должен проверять не только то что даёт тебе юзер но и пк самого конта
-                raise forms.ValidationError("Нельзя положить контейнер сам в себя")
+                raise forms.ValidationError("Ошибка: Нельзя положить контейнер сам в себя")
             saved_list.append(checked_pk)
             checked_container = Container.objects.get(pk=checked_pk)
             if checked_container.in_container_id:
@@ -32,7 +31,6 @@ class In_container_choicefield(forms.ChoiceField):
 
 class ContainerForm(forms.ModelForm):
 
-    #in_container_id = forms.ChoiceField()
     in_container_id = In_container_choicefield()
     def __init__(self, *args, **kwargs):
         # Вытягиваем переменную user, которую передаёт нам представление. Формируем список для ChoiceField для конкретного юзера, подставляем choices в поле

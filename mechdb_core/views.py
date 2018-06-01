@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Container, Equipment, Equipment_sizename
+from .models import Container, Equipment, Equipment_sizename, Action
 from django.utils import timezone
 from django.utils.html import escape
 from .forms import ContainerForm, EquipmentForm, SizenameForm
@@ -124,3 +124,7 @@ def sizename_edit(request, pk):
     else:
         form = SizenameForm(instance=sizename)
     return render(request, 'mechdb_core/sizename_edit.html', {'form': form})
+
+def action_list(request):
+    actions = Action.objects.filter(owner=request.user).order_by('-action_start_date')
+    return render(request, 'mechdb_core/action_list.html', {'actions':actions})

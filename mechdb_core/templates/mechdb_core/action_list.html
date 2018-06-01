@@ -1,0 +1,12 @@
+{% extends 'mechdb_core/base.html' %}
+
+{% block content %}
+  <p><b>Последние воздействия:</b></p>
+  <ul>
+    {% for i in actions %}
+      <li>
+      <a href="url '<!-- equipment_detail' pk=i.pk -->"{{ i.pk }}>{{i}}</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}
