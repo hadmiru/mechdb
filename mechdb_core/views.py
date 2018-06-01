@@ -145,3 +145,16 @@ def action_new(request):
     else:
         form = ActionForm()
     return render(request, 'mechdb_core/action_edit.html', {'form': form})
+
+def action_edit(request, pk):
+    action = get_object_or_404(Action, pk=pk)
+    if request.method == "POST":
+        form = ActionForm(request.POST, instance=action)
+        if form.is_valid():
+            action = form.save(commit=False)
+            action.owner = request.user
+            action.save()
+            return redirect('action_detail', pk=action.pk)
+    else:
+        form = ActionForm(instance=action)
+    return render(request, 'mechdb_core/action_edit.html', {'form': form})
