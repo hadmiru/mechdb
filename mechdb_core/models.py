@@ -52,12 +52,13 @@ class Spare_part(models.Model):
 
 class Action(models.Model):
     owner = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+    created_date = models.DateTimeField(default=timezone.now, blank=False, null=False)
     type = models.ForeignKey(Action_type, on_delete=models.PROTECT, blank=False, null=False)
     action_start_date = models.DateTimeField(default=timezone.now, blank=False, null=False)
     action_end_date = models.DateTimeField(default=timezone.now, blank=True, null=True)
     scheduled = models.BooleanField(default=False, blank=False, null=False)
     description = models.TextField(blank=True, null=True)
-    used_in_equipment = models.ManyToManyField(Equipment)
+    used_in_equipment = models.ForeignKey(Equipment, on_delete=models.CASCADE, blank=False, null=False)
     def __str__(self):
         return str(self.action_start_date)+' '+self.type.title
 

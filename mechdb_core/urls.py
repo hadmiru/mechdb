@@ -20,4 +20,5 @@ urlpatterns = [
     url(r'^model/(?P<pk>\d+)/edit/$', views.sizename_edit, name='sizename_edit'),
     # === action ===
     url(r'^action/all/$', views.action_list, name='action_list'),
+    url(r'^action/(?P<pk>\d+)/$', views.action_detail, name='action_detail'),
 ]

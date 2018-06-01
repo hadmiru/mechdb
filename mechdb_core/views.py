@@ -128,3 +128,7 @@ def sizename_edit(request, pk):
 def action_list(request):
     actions = Action.objects.filter(owner=request.user).order_by('-action_start_date')
     return render(request, 'mechdb_core/action_list.html', {'actions':actions})
+
+def action_detail(request, pk):
+    action = get_object_or_404(Action, pk=pk)
+    return render(request, 'mechdb_core/action_detail.html', {'action':action})

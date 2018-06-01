@@ -15,14 +15,14 @@ class In_container_choicefield(forms.ChoiceField):
         super(In_container_choicefield, self).validate(value)
 
         saved_list=[]
-        saved_list.append(self.container_pk)
         recycle_flag=True
         checked_pk=value
 
         while recycle_flag == True:
             recycle_flag = False
             if checked_pk in saved_list:
-                raise forms.ValidationError("Ошибка: Нельзя положить контейнер сам в себя")
+                print('ОБНАРУЖЕН ЦИКЛ') #ПОДУМАЙ БЛЯТЬ ТУТ ЧТО-то не так с алгоритмом ты должен проверять не только то что даёт тебе юзер но и пк самого конта
+                raise forms.ValidationError("Нельзя положить контейнер сам в себя")
             saved_list.append(checked_pk)
             checked_container = Container.objects.get(pk=checked_pk)
             if checked_container.in_container_id:
@@ -31,17 +31,13 @@ class In_container_choicefield(forms.ChoiceField):
 
 class ContainerForm(forms.ModelForm):
 
+    #in_container_id = forms.ChoiceField()
     in_container_id = In_container_choicefield()
+
     def __init__(self, *args, **kwargs):
-        # Вытягиваем переменную user, которую передаёт нам представление. Формируем список для ChoiceField для конкретного юзера, подставляем choices в поле
         user=kwargs.pop('user',None)
         super(ContainerForm, self).__init__(*args, **kwargs)
         self.fields['in_container_id'].choices=tree_parse(0, 'choice', user)
-
-        # проверяем наличие instance. если есть - передаём pk конта к объекту поля In_container_choicefield с целью проверки
-        instance = getattr(self, 'instance', None)
-        if instance.pk:
-            self.fields['in_container_id'].container_pk = instance.pk
 
     class Meta:
         model = Container
