@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from .models import Container, Equipment, Equipment_sizename, Action
 from django.utils import timezone
 from django.utils.html import escape
-from .forms import ContainerForm, EquipmentForm, SizenameForm
+from .forms import ContainerForm, EquipmentForm, SizenameForm, ActionForm
 from django.shortcuts import redirect
 from .my_defs import tree_parse, get_container_place
 
@@ -132,3 +132,16 @@ def action_list(request):
 def action_detail(request, pk):
     action = get_object_or_404(Action, pk=pk)
     return render(request, 'mechdb_core/action_detail.html', {'action':action})
+
+def action_new(request):
+    if request.method == "POST":
+        form = ActionForm(request.POST)
+        if form.is_valid():
+            action = form.save(commit=False)
+            action.owner = request.user
+            action.created_date = timezone.now()
+            action.save()
+            return redirect('action_detail', pk=action.pk)
+    else:
+        form = ActionForm()
+    return render(request, 'mechdb_core/action_edit.html', {'form': form})

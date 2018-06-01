@@ -1,5 +1,5 @@
 from django import forms
-from .models import Container, Equipment, Equipment_sizename
+from .models import Container, Equipment, Equipment_sizename, Action
 from .my_defs import tree_parse
 
 class In_container_choicefield(forms.ChoiceField):
@@ -64,3 +64,8 @@ class SizenameForm(forms.ModelForm):
     class Meta:
         model = Equipment_sizename
         fields = ('title', 'manufacturer', 'supply_provider')
+
+class ActionForm(forms.ModelForm):
+    class Meta:
+        model = Action
+        fields = ('type', 'description', 'action_start_date', 'action_end_date', 'scheduled', 'used_in_equipment')

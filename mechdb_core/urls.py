@@ -21,4 +21,5 @@ urlpatterns = [
     # === action ===
     url(r'^action/all/$', views.action_list, name='action_list'),
     url(r'^action/(?P<pk>\d+)/$', views.action_detail, name='action_detail'),
+    url(r'^action/new/$', views.action_new, name='action_new'),
 ]
