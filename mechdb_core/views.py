@@ -62,9 +62,12 @@ def equipment_new(request):
     if request.method == "POST":
         form = EquipmentForm(request.POST ,user=request.user)
         if form.is_valid():
-            equipment = form.save(commit=False)
+            equipment = Equipment()
             equipment.owner = request.user
             equipment.created_date = timezone.now()
+            equipment.sizename = form.cleaned_data['sizename']
+            equipment.serial_number = form.cleaned_data['serial_number']
+            equipment.registration_number = form.cleaned_data['registration_number']
             equipment.in_container = get_object_or_404(Container, pk=request.POST['in_container_id'])
             equipment.save()
             return redirect('equipment_detail', pk=equipment.pk)

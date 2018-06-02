@@ -22,7 +22,6 @@ class In_container_choicefield(forms.ChoiceField):
         while recycle_flag == True:
             recycle_flag = False
             if checked_pk in saved_list:
-                print('ОБНАРУЖЕН ЦИКЛ') #ПОДУМАЙ БЛЯТЬ ТУТ ЧТО-то не так с алгоритмом ты должен проверять не только то что даёт тебе юзер но и пк самого конта
                 raise forms.ValidationError("Нельзя положить контейнер сам в себя")
             saved_list.append(checked_pk)
             checked_container = Container.objects.get(pk=checked_pk)
@@ -44,22 +43,18 @@ class ContainerForm(forms.ModelForm):
         model = Container
         fields = ('title', 'description', 'in_container_id')
 
-class EquipmentForm(forms.ModelForm):
+class EquipmentForm(forms.Form):
 
-    in_container_id = forms.ChoiceField()
+    sizename = forms.ModelChoiceField(queryset=Equipment_sizename.objects.filter(owner=0), empty_label=None, required=True)
+    serial_number = forms.CharField(max_length=50, required=False)
+    registration_number = forms.CharField(max_length=50, required=False)
+    in_container_id = forms.ChoiceField(required=True)
+
     def __init__(self, *args, **kwargs):
         user=kwargs.pop('user',None)
         super(EquipmentForm, self).__init__(*args, **kwargs)
         self.fields['in_container_id'].choices=tree_parse(0, 'choice', user, False)
-        #Проверяем наличие instance. Если есть - вытягиваем значение по умолчанию для поля in_container_id
-        instance = getattr(self, 'instance', None)
-        if instance.pk:
-            self.fields['in_container_id'].initial=instance.in_container.pk
-
-
-    class Meta:
-        model = Equipment
-        fields = ('sizename', 'serial_number', 'registration_number')
+        self.fields['sizename'].queryset=Equipment_sizename.objects.filter(owner=user).order_by('title')
 
 class SizenameForm(forms.ModelForm):
     class Meta:
