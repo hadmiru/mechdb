@@ -6,6 +6,12 @@ from datetime import datetime, date, time
 
 class Action_type(models.Model):
     title = models.CharField(max_length=20, blank=False, null=False)
+    used_in_actions = models.BooleanField(default=True, blank=False, null=False)
+    used_in_movement_actions = models.BooleanField(default=True, blank=False, null=False)
+    used_in_equipments = models.BooleanField(default=True, blank=False, null=False)
+    used_in_spare_parts = models.BooleanField(default=True, blank=False, null=False)
+    only_repair_containers = models.BooleanField(default=False, blank=False, null=False)
+
     def __str__(self):
         return self.title
 
@@ -37,6 +43,8 @@ class Equipment(models.Model):
     in_container = models.ForeignKey(Container, on_delete=models.CASCADE, blank=False, null=False)
     def __str__(self):
         return str(self.sizename.title)+" № "+str(self.serial_number)+'  ['+self.in_container.title+']'
+    def in_container_on_date(self,date):
+        print('Тут будет функция поиска расположения на определённую дату')
 
 class Spare_part(models.Model):
     owner = models.ForeignKey('auth.User', on_delete=models.CASCADE)
@@ -47,7 +55,7 @@ class Spare_part(models.Model):
     in_container = models.ForeignKey(Container, on_delete=models.SET_NULL, blank=True, null=True)
     used_in_equipment = models.ManyToManyField(Equipment_sizename)
     manufacturer = models.CharField(max_length=100, blank=False, null=False, default='н/д')
-    manufacturer = models.CharField(max_length=100, blank=False, null=False, default='н/д')
+    suply_provider = models.CharField(max_length=100, blank=False, null=False, default='н/д')
     def __str__(self):
         return self.title
 
