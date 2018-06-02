@@ -31,8 +31,7 @@ class In_container_choicefield(forms.ChoiceField):
 
 class ContainerForm(forms.ModelForm):
 
-    #in_container_id = forms.ChoiceField()
-    in_container_id = In_container_choicefield()
+    in_container_id = In_container_choicefield(label='Расположение')
 
     def __init__(self, *args, **kwargs):
         user=kwargs.pop('user',None)
@@ -41,14 +40,18 @@ class ContainerForm(forms.ModelForm):
 
     class Meta:
         model = Container
+        labels = {
+            "title": "Название",
+            "description": "Описание"
+        }
         fields = ('title', 'description', 'in_container_id')
 
 class EquipmentForm(forms.Form):
 
-    sizename = forms.ModelChoiceField(queryset=Equipment_sizename.objects.filter(owner=0), empty_label=None, required=True)
-    serial_number = forms.CharField(max_length=50, required=False)
-    registration_number = forms.CharField(max_length=50, required=False)
-    in_container_id = forms.ChoiceField(required=True)
+    sizename = forms.ModelChoiceField(queryset=Equipment_sizename.objects.filter(owner=0), empty_label=None, required=True, label='Модель')
+    serial_number = forms.CharField(max_length=50, required=False, label='Заводской номер')
+    registration_number = forms.CharField(max_length=50, required=False, label='Регистрационный номер')
+    in_container_id = forms.ChoiceField(required=True, label='Расположение')
 
     def __init__(self, *args, **kwargs):
         user=kwargs.pop('user',None)
@@ -63,12 +66,13 @@ class SizenameForm(forms.ModelForm):
 
 class ActionForm(forms.Form):
 
-    type = forms.ModelChoiceField(queryset=Action_type.objects.all(), empty_label=None, required=True)
-    description = forms.CharField(max_length=2000, required=False, widget=forms.Textarea)
-    action_start_date = forms.DateTimeField(initial=timezone.now(), required=True)
-    action_end_date = forms.DateTimeField(required=False)
-    scheduled = forms.BooleanField(required=False)
-    used_in_equipment = forms.ModelChoiceField(queryset=Equipment.objects.filter(owner=0), empty_label=None, required=True)
+    type = forms.ModelChoiceField(queryset=Action_type.objects.all(), empty_label=None, required=True, label='Тип воздействия')
+    used_in_equipment = forms.ModelChoiceField(queryset=Equipment.objects.filter(owner=0), empty_label=None, required=True, label='Оборудование')
+    description = forms.CharField(max_length=2000, required=False, widget=forms.Textarea, label='Описание')
+    action_start_date = forms.DateTimeField(initial=timezone.now(), required=True, label='Начало')
+    action_end_date = forms.DateTimeField(required=False, label='Окончание')
+    scheduled = forms.BooleanField(required=False, label='Плановое?')
+
 
     def __init__(self, *args, **kwargs):
         user=kwargs.pop('user',None)
