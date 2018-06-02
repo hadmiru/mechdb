@@ -77,18 +77,22 @@ def equipment_new(request):
 
 def equipment_edit(request, pk):
     equipment = get_object_or_404(Equipment, pk=pk)
+    instance = model_to_dict(equipment)
+    instance['in_container_id']=instance['in_container']
+
     if request.method == "POST":
-        print(equipment)
-        form = EquipmentForm(request.POST ,user=request.user, instance=equipment)
+        form = EquipmentForm(request.POST ,user=request.user, initial=instance)
         if form.is_valid():
-            equipment = form.save(commit=False)
             equipment.owner = request.user
+            equipment.sizename = form.cleaned_data['sizename']
+            equipment.serial_number = form.cleaned_data['serial_number']
+            equipment.registration_number = form.cleaned_data['registration_number']
             equipment.in_container = get_object_or_404(Container, pk=request.POST['in_container_id'])
             equipment.save()
             return redirect('equipment_detail', pk=equipment.pk)
     else:
         print(equipment)
-        form = EquipmentForm(user=request.user, instance=equipment)
+        form = EquipmentForm(user=request.user, initial=instance)
     return render(request, 'mechdb_core/equipment_edit.html', {'form': form})
 
 def sizename_list(request):
