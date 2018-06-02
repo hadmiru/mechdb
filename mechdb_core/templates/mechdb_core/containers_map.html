@@ -2,7 +2,9 @@
 
 {% block content %}
   <p><h3><center><a href="{% url 'container_new' %}">Создать новый контейнер</a></center></h3></p>
+  <div class="formsdiv">
   {% for i in containers %}
   {{ i|safe }}
   {% endfor %}
+  </div>
 {% endblock %}

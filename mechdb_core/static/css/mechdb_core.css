@@ -11,12 +11,12 @@
 }
 
 .content {
-    margin:0 auto;
-    width:50%
+    margin:20 auto;
+    width:70%
 }
 
-.row, .col-md-8 {
-    margin:0 auto;
+.row {
+    margin:20px auto;
     width:100%
 }
 
@@ -38,7 +38,17 @@ h1, h2, h3, h4 {
 
 .top-menu, .top-menu:hover, .top-menu:visited {
     color: #ffffff;
-    float: right;
     font-size: 26pt;
-    margin-right: 20px;
+    margin:0 auto;
+    width:380px;
+}
+
+.formsdiv {
+    margin:20px auto;
+    width: 80%;
+}
+
+.col-md-8 {
+  margin:0 auto;
+  width: 100%;
 }

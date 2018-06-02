@@ -1,12 +1,12 @@
 {% extends 'mechdb_core/base.html' %}
 
 {% block content %}
-      <p>Это - заготовок страницы с добавлением и редактированием воздействия</p>
-
-      <h1>Добавление воздействия</h1>
+      <center><h1>Добавление воздействия</h1></center>
+      <div class="formsdiv">
       <form method="POST" class="post-form">{% csrf_token %}
           {{ form.as_p }}
           <button type="submit" class="save btn btn-default">Сохранить</button>
       </form>
+      </div>
 
 {% endblock %}
