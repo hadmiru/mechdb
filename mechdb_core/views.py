@@ -31,10 +31,17 @@ def container_new(request):
     if request.method == "POST":
         form = ContainerForm(request.POST, user=request.user)
         if form.is_valid():
-            container = form.save(commit=False)
+            print('form valid')
+            container = Container()
             container.owner = request.user
             container.created_date = timezone.now()
-            container.in_container = get_object_or_404(Container, pk=form.cleaned_data['in_container'])
+            container.title = form.cleaned_data['title']
+            container.description = form.cleaned_data['description']
+            container.is_repair_organization = form.cleaned_data['is_repair_organization']
+            if form.cleaned_data['in_container_id']:
+                # если кладём не в нулевой конт - заполняем поле, если в нулевой - автоматом ставится Null
+                parrent_container = Container.objects.get(pk=form.cleaned_data['in_container_id'])
+                container.in_container = parrent_container
             container.save()
             return redirect('container_detail', pk=container.pk)
     else:

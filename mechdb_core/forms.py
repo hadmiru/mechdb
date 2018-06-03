@@ -19,14 +19,17 @@ class In_container_choicefield(forms.ChoiceField):
         checked_pk=value
 
         while recycle_flag == True:
+
             recycle_flag = False
             if checked_pk in saved_list:
                 raise forms.ValidationError("Нельзя положить контейнер сам в себя")
             saved_list.append(checked_pk)
-            checked_container = Container.objects.get(pk=checked_pk)
-            if checked_container.in_container:
-                recycle_flag = True
-                checked_pk = checked_container.in_container.pk
+            print(checked_pk)
+            if checked_pk>0:
+                checked_container = Container.objects.get(pk=checked_pk)
+                if checked_container.in_container:
+                    recycle_flag = True
+                    checked_pk = checked_container.in_container.pk
 
 class ContainerForm(forms.Form):
 

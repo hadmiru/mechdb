@@ -21,7 +21,7 @@ class Container(models.Model):
     title = models.CharField(max_length=200, blank=False, null=False)
     description = models.TextField(max_length=2000, blank=True, null=True)
     is_repair_organization = models.BooleanField(default=False, blank=False, null=False)
-    in_container = models.ForeignKey('self', on_delete=models.SET_NULL, blank=False, null=True)
+    in_container = models.ForeignKey('self', on_delete=models.SET_NULL, blank=True, null=True)
     def __str__(self):
         return str(self.pk)+" "+str(self.owner)+" "+self.title
 
