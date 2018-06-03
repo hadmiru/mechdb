@@ -34,6 +34,7 @@ def container_new(request):
             container = form.save(commit=False)
             container.owner = request.user
             container.created_date = timezone.now()
+            container.in_container = get_object_or_404(Container, pk=form.cleaned_data['in_container'])
             container.save()
             return redirect('container_detail', pk=container.pk)
     else:

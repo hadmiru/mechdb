@@ -12,7 +12,6 @@ class In_container_choicefield(forms.ChoiceField):
         return int(value)
 
     def validate(self, value):
-        # Use the parent's handling of required fields, etc.
         super(In_container_choicefield, self).validate(value)
 
         saved_list=[]
@@ -25,26 +24,21 @@ class In_container_choicefield(forms.ChoiceField):
                 raise forms.ValidationError("Нельзя положить контейнер сам в себя")
             saved_list.append(checked_pk)
             checked_container = Container.objects.get(pk=checked_pk)
-            if checked_container.in_container_id:
+            if checked_container.in_container:
                 recycle_flag = True
-                checked_pk = checked_container.in_container_id
+                checked_pk = checked_container.in_container.pk
 
-class ContainerForm(forms.ModelForm):
+class ContainerForm(forms.Form):
 
+    title = forms.CharField(max_length=200, required=True, label='Название')
+    description = forms.CharField(max_length=2000, required=False, widget=forms.Textarea, label='Описание')
+    is_repair_organization = forms.BooleanField(required=False, label='Ремонтная организация?')
     in_container_id = In_container_choicefield(label='Расположение')
 
     def __init__(self, *args, **kwargs):
         user=kwargs.pop('user',None)
         super(ContainerForm, self).__init__(*args, **kwargs)
         self.fields['in_container_id'].choices=tree_parse(0, 'choice', user)
-
-    class Meta:
-        model = Container
-        labels = {
-            "title": "Название",
-            "description": "Описание"
-        }
-        fields = ('title', 'description', 'in_container_id')
 
 class EquipmentForm(forms.Form):
 
