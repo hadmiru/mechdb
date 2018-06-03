@@ -1,9 +1,9 @@
 {% extends 'mechdb_core/base.html' %}
 
 {% block content %}
+      <h2>{{sizename.title}}</h2>
 
-      <p>Заготовка для карточки модели оборудования</p>
-      <a class="btn btn-default" href="{% url 'sizename_edit' pk=sizename.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+      <a href="{% url 'sizename_edit' pk=sizename.pk %}">редактировать</a><br><br>
       <ul>
         <li>Владелец: {{sizename.owner}}</li>
         <li>Время создания: {{sizename.created_date}}</li>

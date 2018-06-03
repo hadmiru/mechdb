@@ -1,8 +1,8 @@
 {% extends 'mechdb_core/base.html' %}
 
 {% block content %}
-      <a class="btn btn-default" href="{% url 'action_edit' pk=action.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
-      <p>Воздействие: <b>{{action}}</b><br>
+      <p>Воздействие: <b>{{action}}</b>
+      <a href="{% url 'action_edit' pk=action.pk %}">ред.</a><br>
       Оборудование: {{action.used_in_equipment}}
       </p>
       <ul>

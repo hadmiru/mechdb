@@ -1,8 +1,7 @@
 {% extends 'mechdb_core/base.html' %}
 
 {% block content %}
-      <a class="btn btn-default" href="{% url 'container_edit' pk=container.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
-      <h2>Контейнер: {{container.title}}</h2>
+      <h2>Контейнер: {{container.title}}</h2><a href="{% url 'container_edit' pk=container.pk %}">редактировать</a><br><br>
       <ul>
         <li>Создатель контейнера: {{container.owner}}</li>
         <li>Время создания контейнера: {{container.created_date}}</li>

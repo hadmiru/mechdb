@@ -2,8 +2,8 @@
 
 {% block content %}
       <p>
-        <a class="btn btn-default" href="{% url 'equipment_edit' pk=equipment.pk %}"><span class="glyphicon glyphicon-pencil"></span></a><br>
-        <b>{{equipment.sizename.title}} № {{equipment.serial_number}}</b><br><br>
+        <b>{{equipment.sizename.title}} № {{equipment.serial_number}}</b><br>
+        <a href="{% url 'equipment_edit' pk=equipment.pk %}">редактировать</a><br><br>
         Месторасположение:<br>
         {% for i in place %}
           {% if not forloop.first %} &lt; {% endif %}
