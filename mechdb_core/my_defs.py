@@ -65,7 +65,11 @@ def get_container_place(input_pk):
         recycle_flag=False
         if input_pk:
             recycle_flag=True
-            parrent_container=get_object_or_404(Container, pk=input_pk)
+            parrent_container=Container.objects.get(pk=input_pk)
+            print(parrent_container)
             def_output.append((parrent_container.pk,parrent_container.title))
-            input_pk=parrent_container.in_container.pk
+
+            if parrent_container.in_container:
+                input_pk=parrent_container.in_container.pk
+            else: input_pk=0
     return def_output[::-1]

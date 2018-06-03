@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from datetime import datetime, date, time
 
+
 # Create your models here.
 
 class Action_type(models.Model):
@@ -19,7 +20,7 @@ class Container(models.Model):
     owner = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     created_date = models.DateTimeField(default=timezone.now, blank=False, null=False)
     title = models.CharField(max_length=200, blank=False, null=False)
-    description = models.TextField(max_length=2000, blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
     is_repair_organization = models.BooleanField(default=False, blank=False, null=False)
     in_container = models.ForeignKey('self', on_delete=models.SET_NULL, blank=True, null=True)
     def __str__(self):
@@ -50,7 +51,6 @@ class Spare_part(models.Model):
     owner = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     created_date = models.DateTimeField(default=timezone.now, blank=False, null=False)
     title = models.CharField(max_length=200, blank=False, null=False)
-    quantity = models.FloatField(default=0, blank=False, null=False)
     unit_name = models.CharField(max_length=10, blank=False, null=False)
     in_container = models.ForeignKey(Container, on_delete=models.SET_NULL, blank=True, null=True)
     used_in_equipment = models.ManyToManyField(Equipment_sizename)
@@ -64,21 +64,28 @@ class Action(models.Model):
     created_date = models.DateTimeField(default=timezone.now, blank=False, null=False)
     type = models.ForeignKey(Action_type, on_delete=models.PROTECT, blank=False, null=False)
     action_start_date = models.DateTimeField(default=timezone.now, blank=False, null=False)
-    action_end_date = models.DateTimeField(default=timezone.now, blank=True, null=True)
-    scheduled = models.BooleanField(default=False, blank=False, null=False)
+    action_end_date = models.DateTimeField(default=timezone.now, blank=False, null=False)
+    scheduled = models.BooleanField(default=False)
     description = models.TextField(blank=True, null=True)
-    used_in_equipment = models.ForeignKey(Equipment, on_delete=models.CASCADE, blank=False, null=False)
+    used_in_equipment = models.ForeignKey(Equipment, on_delete=models.CASCADE, blank=True, null=True)
+    used_in_action = models.ForeignKey('self', on_delete=models.CASCADE, blank=True, null=True)
+    used_in_spare_part = models.ForeignKey(Spare_part, on_delete=models.CASCADE, blank=True, null=True)
+    quantity_delta = models.FloatField(default=None, blank=True, null=True)
+    new_container = models.ForeignKey(Container, on_delete=models.PROTECT, blank=True, null=True)
+
     def __str__(self):
         return self.action_start_date.strftime("%d.%m.%Y %H:%M")+' '+self.type.title+' ['+ str(self.used_in_equipment)+']'
 
 
-class Movement_action(models.Model):
-    owner = models.ForeignKey('auth.User', on_delete=models.CASCADE)
-    action_date = models.DateTimeField(default=timezone.now, blank=False, null=False)
-    description = models.TextField(blank=True, null=True)
-    used_spare_part = models.ForeignKey(Spare_part, on_delete=models.CASCADE, blank=False, null=False)
-    quantity = models.FloatField(default=0, blank=False, null=False)
-    used_in_action = models.ForeignKey(Action, on_delete=models.SET_NULL, blank=True, null=True)
-    new_container = models.ForeignKey(Container, on_delete=models.SET_NULL, blank=True, null=True)
-    def __str__(self):
-        return str(self.action_date)
+#class Movement_action(models.Model):
+#    owner = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+#    action_date = models.DateTimeField(default=timezone.now, blank=False, null=False)
+#    description = models.TextField(blank=True, null=True)
+#    type = models.ForeignKey(Action_type, on_delete=models.PROTECT, blank=True, null=True)
+#    used_in_action = models.ForeignKey(Action, on_delete=models.SET_NULL, blank=True, null=True)
+#    used_in_equipment = models.ForeignKey(Equipment, on_delete=models.CASCADE, blank=True, null=True)
+#    used_in_spare_part = models.ForeignKey(Spare_part, on_delete=models.CASCADE, blank=True, null=True)
+#    quantity_delta = models.FloatField(default=0, blank=True, null=True)
+#    new_container = models.ForeignKey(Container, on_delete=models.SET_NULL, blank=True, null=True)
+#    def __str__(self):
+#        return str(self.action_date)

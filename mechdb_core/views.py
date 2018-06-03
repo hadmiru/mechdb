@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Container, Equipment, Equipment_sizename, Action
+from .models import Container, Equipment, Equipment_sizename, Action, Action_type
 from django.utils import timezone
 from django.utils.html import escape
 from django.forms.models import model_to_dict
@@ -94,6 +94,18 @@ def equipment_new(request):
             equipment.registration_number = form.cleaned_data['registration_number']
             equipment.in_container = get_object_or_404(Container, pk=request.POST['in_container_id'])
             equipment.save()
+
+            # создаём action "перемещение"
+            action = Action()
+            action.owner = request.user
+            action.created_date = timezone.now()
+            action.action_start_date = timezone.now()
+            action.action_end_date = timezone.now()
+            action.type = Action_type.objects.get(title='перемещение')
+            action.used_in_equipment = equipment
+            action.new_container = equipment.in_container
+            action.save()
+
             return redirect('equipment_detail', pk=equipment.pk)
     else:
         form = EquipmentForm(user=request.user)
@@ -174,7 +186,10 @@ def action_new(request):
             action.created_date = timezone.now()
             action.type = form.cleaned_data['type']
             action.action_start_date = form.cleaned_data['action_start_date']
-            action.action_end_date = form.cleaned_data['action_end_date']
+            if form.cleaned_data['action_end_date']:
+                action.action_end_date = form.cleaned_data['action_end_date']
+            else:
+                action.action_end_date = form.cleaned_data['action_start_date']
             action.scheduled = form.cleaned_data['scheduled']
             action.description = form.cleaned_data['description']
             action.used_in_equipment = form.cleaned_data['used_in_equipment']
@@ -193,8 +208,10 @@ def action_edit(request, pk):
             action.owner = request.user
             action.created_date = timezone.now()
             action.type = form.cleaned_data['type']
-            action.action_start_date = form.cleaned_data['action_start_date']
-            action.action_end_date = form.cleaned_data['action_end_date']
+            if form.cleaned_data['action_end_date']:
+                action.action_end_date = form.cleaned_data['action_end_date']
+            else:
+                action.action_end_date = form.cleaned_data['action_start_date']
             action.scheduled = form.cleaned_data['scheduled']
             action.description = form.cleaned_data['description']
             action.used_in_equipment = form.cleaned_data['used_in_equipment']
