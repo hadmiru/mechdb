@@ -10,28 +10,7 @@
         <li>Ремонтная организация: {{container.is_repair_organization}}</li>
       </ul>
       <h2>Содержимое</h2>
-
-      <b>Оборудование:</b>
-      <ul>
-      {% for i in content_equipments %}
-        <li>
-          <a href="{% url 'equipment_detail' pk=i.pk %}">
-          {{ i.sizename.title }} № {{ i.serial_number }}
-          </a>
-        </li>
+      {% for i in content %}
+      {{ i|safe }}
       {% endfor %}
-      </ul>
-      
-      <b>Контейнеры:</b>
-      <ul>
-        {% for i in content_containers %}
-          <li>
-            <a href="{% url 'container_detail' pk=i.pk %}">
-            {{ i.title }}
-            </a>
-          </li>
-        {% endfor %}
-      </ul>
-
-
 {% endblock %}

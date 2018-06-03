@@ -21,19 +21,10 @@ def containers_map(request):
 
 def container_detail(request, pk):
     container = get_object_or_404(Container, pk=pk)
-    content_containers = Container.objects.filter(
-                                                    owner=request.user,
-                                                    in_container_id=container.pk
-                                                    ).order_by('title')
-    content_equipments = Equipment.objects.filter(
-                                                    owner=request.user,
-                                                    in_container=container
-                                                    ).order_by('sizename')
-
+    content=tree_parse(pk,'li equipment',request.user)
     return render(request, 'mechdb_core/container_detail.html', {
                                                                 'container':container,
-                                                                'content_containers':content_containers,
-                                                                'content_equipments':content_equipments
+                                                                'content':content
                                                                 })
 
 def container_new(request):
