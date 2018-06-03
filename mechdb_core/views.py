@@ -31,9 +31,19 @@ def container_new(request):
     if request.method == "POST":
         form = ContainerForm(request.POST, user=request.user)
         if form.is_valid():
-            container = form.save(commit=False)
+            print('form valid')
+            container = Container()
             container.owner = request.user
             container.created_date = timezone.now()
+            container.title = form.cleaned_data['title']
+            container.description = form.cleaned_data['description']
+            container.is_repair_organization = form.cleaned_data['is_repair_organization']
+            if form.cleaned_data['in_container_id']:
+                # если кладём не в нулевой конт - заполняем поле, если в нулевой - ставится Null
+                parrent_container = Container.objects.get(pk=form.cleaned_data['in_container_id'])
+                container.in_container = parrent_container
+            else:
+                container.in_container = None
             container.save()
             return redirect('container_detail', pk=container.pk)
     else:
@@ -42,15 +52,25 @@ def container_new(request):
 
 def container_edit(request, pk):
     container = get_object_or_404(Container, pk=pk)
+    instance = model_to_dict(container)
+    instance['in_container_id']=instance['in_container']
     if request.method == "POST":
-        form = ContainerForm(request.POST, user=request.user, instance=container)
+        form = ContainerForm(request.POST, user=request.user, initial=instance)
         if form.is_valid():
-            container = form.save(commit=False)
             container.owner = request.user
+            container.title = form.cleaned_data['title']
+            container.description = form.cleaned_data['description']
+            container.is_repair_organization = form.cleaned_data['is_repair_organization']
+            if form.cleaned_data['in_container_id']:
+                # если кладём не в нулевой конт - заполняем поле, если в нулевой - ставится Null
+                parrent_container = Container.objects.get(pk=form.cleaned_data['in_container_id'])
+                container.in_container = parrent_container
+            else:
+                container.in_container = None
             container.save()
             return redirect('container_detail', pk=container.pk)
     else:
-        form = ContainerForm(instance=container, user=request.user)
+        form = ContainerForm(initial=instance, user=request.user)
     return render(request, 'mechdb_core/container_edit.html', {'form': form})
 
 def equipment_list(request):

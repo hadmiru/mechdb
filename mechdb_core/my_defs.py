@@ -9,8 +9,12 @@ def tree_parse(input_pk, tree_format, user, need_zero_level=True, tree_level=-1)
     # формат "choice" - кортеж для ChoiceField формы
     # вход - pk исследуемого контейнера, выход - список html тегов для вставки в шаблон
 
-    containers = Container.objects.filter(owner=user, in_container_id=input_pk).order_by('title')
-    equipments = Equipment.objects.filter(owner=user, in_container=input_pk).order_by('sizename')
+    if input_pk==0:
+        containers = Container.objects.filter(owner=user, in_container__isnull=True).order_by('title')
+        equipments = Equipment.objects.filter(owner=user, in_container__isnull=True).order_by('sizename')
+    else:
+        containers = Container.objects.filter(owner=user, in_container=input_pk).order_by('title')
+        equipments = Equipment.objects.filter(owner=user, in_container=input_pk).order_by('sizename')
     def_output=[]
     if tree_format == 'li equipment' and equipments:
         for z in equipments:
@@ -63,5 +67,5 @@ def get_container_place(input_pk):
             recycle_flag=True
             parrent_container=get_object_or_404(Container, pk=input_pk)
             def_output.append((parrent_container.pk,parrent_container.title))
-            input_pk=parrent_container.in_container_id
+            input_pk=parrent_container.in_container.pk
     return def_output[::-1]
