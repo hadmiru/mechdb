@@ -6,6 +6,7 @@ from django.forms.models import model_to_dict
 from .forms import ContainerForm, EquipmentForm, SizenameForm, ActionForm
 from django.shortcuts import redirect
 from .my_defs import tree_parse, get_container_place
+from django.http import Http404
 
 
 # Create your views here.
@@ -30,6 +31,12 @@ def container_detail(request, pk):
         return redirect('index_page')
 
     container = get_object_or_404(Container, pk=pk)
+
+    # Проверка что объект принадлежит юзеру
+    if not request.user==container.owner:
+        raise Http404
+    # конец проверки
+
     content=tree_parse(pk,'li equipment',request.user)
     return render(request, 'mechdb_core/container_detail.html', {
                                                                 'container':container,
@@ -69,6 +76,12 @@ def container_edit(request, pk):
         return redirect('index_page')
 
     container = get_object_or_404(Container, pk=pk)
+
+    # Проверка что объект принадлежит юзеру
+    if not request.user==container.owner:
+        raise Http404
+    # конец проверки
+
     instance = model_to_dict(container)
     instance['in_container_id']=instance['in_container']
     if request.method == "POST":
@@ -104,6 +117,12 @@ def equipment_detail(request, pk):
         return redirect('index_page')
 
     equipment = get_object_or_404(Equipment, pk=pk)
+
+    # Проверка что объект принадлежит юзеру
+    if not request.user==equipment.owner:
+        raise Http404
+    # конец проверки
+
     place = get_container_place(equipment.in_container.pk)
     actions = Action.objects.filter(owner=request.user, used_in_equipment=equipment).order_by('-action_start_date')
     return render(request, 'mechdb_core/equipment_detail.html', {'equipment':equipment,'place':place, 'actions':actions})
@@ -113,10 +132,13 @@ def equipment_remove(request, pk):
     if not request.user.is_authenticated:
         return redirect('index_page')
 
-    if not request.user.is_authenticated:
-        return redirect('index_page')
-
     equipment = get_object_or_404(Equipment, pk=pk)
+
+    # Проверка что объект принадлежит юзеру
+    if not request.user==equipment.owner:
+        raise Http404
+    # конец проверки
+
     if 'confirmed' in request.POST:
         print('Сработало удаление оборудования')
         if equipment.owner == request.user:
@@ -168,6 +190,12 @@ def equipment_edit(request, pk, formtype):
         return redirect('index_page')
 
     equipment = get_object_or_404(Equipment, pk=pk)
+
+    # Проверка что объект принадлежит юзеру
+    if not request.user==equipment.owner:
+        raise Http404
+    # конец проверки
+
     instance = model_to_dict(equipment)
     instance['in_container_id']=instance['in_container']
 
@@ -217,6 +245,12 @@ def sizename_detail(request, pk):
         return redirect('index_page')
 
     sizename = get_object_or_404(Equipment_sizename, pk=pk)
+
+    # Проверка что объект принадлежит юзеру
+    if not request.user==sizename.owner:
+        raise Http404
+    # конец проверки
+
     slave_equipments = Equipment.objects.filter(owner=request.user, sizename=sizename).order_by('serial_number')
     slaves_list=[]
     for slave in slave_equipments:
@@ -246,6 +280,12 @@ def sizename_edit(request, pk):
         return redirect('index_page')
 
     sizename = get_object_or_404(Equipment_sizename, pk=pk)
+
+    # Проверка что объект принадлежит юзеру
+    if not request.user==sizename.owner:
+        raise Http404
+    # конец проверки
+
     if request.method == "POST":
         form = SizenameForm(request.POST, instance=sizename)
         if form.is_valid():
@@ -271,6 +311,12 @@ def action_detail(request, pk):
         return redirect('index_page')
 
     action = get_object_or_404(Action, pk=pk)
+
+    # Проверка что объект принадлежит юзеру
+    if not request.user==action.owner:
+        raise Http404
+    # конец проверки
+
     return render(request, 'mechdb_core/action_detail.html', {'action':action})
 
 def action_new(request):
@@ -305,6 +351,12 @@ def action_edit(request, pk):
         return redirect('index_page')
 
     action = get_object_or_404(Action, pk=pk)
+
+    # Проверка что объект принадлежит юзеру
+    if not request.user==action.owner:
+        raise Http404
+    # конец проверки
+
     instance=model_to_dict(action)
     if request.method == "POST":
         form = ActionForm(request.POST, initial=instance, user=request.user)
