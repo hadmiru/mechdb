@@ -1,16 +1,41 @@
 {% extends 'mechdb_core/base.html' %}
 
 {% block content %}
-      <p>
-        <b>{{equipment.sizename.title}} № {{equipment.serial_number}}</b><br>
-        <a href="{% url 'equipment_edit' pk=equipment.pk%}">редактировать</a><br><br>
+      <p><b>{{equipment.sizename.title}} № {{equipment.serial_number}}</b><br></p>
+
+        <div class="btn-group">
+          <button type="button" class="btn btn-warning">Действия</button>
+          <button type="button" class="btn btn-warning dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="sr-only">Toggle Dropdown</span>
+          </button>
+
+        <div class="dropdown-menu">
+          <h6 class="dropdown-header">Добавить воздействие</h6>
+          <a class="dropdown-item" href="#">ТО</a>
+          <a class="dropdown-item" href="#">ТР</a>
+          <a class="dropdown-item" href="#">КР</a>
+          <a class="dropdown-item" href="#">КТС</a>
+          <a class="dropdown-item" href="#">Ремонт</a>
+          <a class="dropdown-item" href="#">Информация</a>
+          <a class="dropdown-item" href="#">Отказ</a>
+          <a class="dropdown-item" href="#">Вывоз в ремонт</a>
+          <a class="dropdown-item" href="#">Завоз с ремонта</a>
+          <a class="dropdown-item" href="#">Монтаж</a>
+          <a class="dropdown-item" href="#">Демонтаж</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="{% url 'equipment_edit' pk=equipment.pk%}">Редактировать</a>
+          <a class="dropdown-item" href="{% url 'equipment_edit_move' pk=equipment.pk%}">Переместить</a>
+          <a class="dropdown-item" href="{% url 'equipment_edit' pk=equipment.pk%}">Удалить</a>
+        </div>
+      </div>
+
+      <p><br>
         Месторасположение:<br>
         {% for i in place %}
           {% if not forloop.first %} &lt; {% endif %}
           <a class="containerhref" href="{% url 'container_detail' pk=i.0 %}">{{ i.1 }}</a>
         {% endfor %}
         <br>
-        <a href="{% url 'equipment_edit_move' pk=equipment.pk%}">переместить</a><br><br>
       </p>
 
       <ul>
