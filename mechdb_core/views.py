@@ -10,9 +10,11 @@ from .my_defs import tree_parse, get_container_place
 
 # Create your views here.
 def index_page(request):
+    timezone.now
     return render(request, 'mechdb_core/under_construction.html', {})
 
 def containers_map(request):
+    timezone.now
     if request.POST:
         containers_output=tree_parse(0, request.POST, request.user)
     else:
@@ -20,6 +22,7 @@ def containers_map(request):
     return render(request, 'mechdb_core/containers_map.html', {'containers': containers_output})
 
 def container_detail(request, pk):
+    timezone.now
     container = get_object_or_404(Container, pk=pk)
     content=tree_parse(pk,'li equipment',request.user)
     return render(request, 'mechdb_core/container_detail.html', {
@@ -28,13 +31,14 @@ def container_detail(request, pk):
                                                                 })
 
 def container_new(request):
+    timezone.now
     if request.method == "POST":
-        form = ContainerForm(request.POST, user=request.user)
+        form = ContainerForm(request.POST, user=request.user, self_pk=0)
         if form.is_valid():
             print('form valid')
             container = Container()
             container.owner = request.user
-            container.created_date = timezone.now
+            container.created_date = timezone.now()
             container.title = form.cleaned_data['title']
             container.description = form.cleaned_data['description']
             container.is_repair_organization = form.cleaned_data['is_repair_organization']
@@ -47,15 +51,16 @@ def container_new(request):
             container.save()
             return redirect('container_detail', pk=container.pk)
     else:
-        form = ContainerForm(user=request.user)
+        form = ContainerForm(user=request.user, self_pk=0)
     return render(request, 'mechdb_core/container_edit.html', {'form': form})
 
 def container_edit(request, pk):
+    timezone.now
     container = get_object_or_404(Container, pk=pk)
     instance = model_to_dict(container)
     instance['in_container_id']=instance['in_container']
     if request.method == "POST":
-        form = ContainerForm(request.POST, user=request.user, initial=instance)
+        form = ContainerForm(request.POST, user=request.user, initial=instance, self_pk=container.pk)
         if form.is_valid():
             container.owner = request.user
             container.title = form.cleaned_data['title']
@@ -70,26 +75,29 @@ def container_edit(request, pk):
             container.save()
             return redirect('container_detail', pk=container.pk)
     else:
-        form = ContainerForm(initial=instance, user=request.user)
+        form = ContainerForm(initial=instance, user=request.user, self_pk=container.pk)
     return render(request, 'mechdb_core/container_edit.html', {'form': form})
 
 def equipment_list(request):
+    timezone.now
     equipments = Equipment.objects.filter(owner=request.user).order_by('sizename')
     return render(request, 'mechdb_core/equipment_list.html', {'equipments':equipments})
 
 def equipment_detail(request, pk):
+    timezone.now
     equipment = get_object_or_404(Equipment, pk=pk)
     place = get_container_place(equipment.in_container.pk)
     actions = Action.objects.filter(owner=request.user, used_in_equipment=equipment).order_by('-action_start_date')
     return render(request, 'mechdb_core/equipment_detail.html', {'equipment':equipment,'place':place, 'actions':actions})
 
 def equipment_new(request):
+    timezone.now
     if request.method == "POST":
         form = EquipmentForm(request.POST ,user=request.user, formtype="new")
         if form.is_valid():
             equipment = Equipment()
             equipment.owner = request.user
-            equipment.created_date = timezone.now
+            equipment.created_date = timezone.now()
             equipment.sizename = form.cleaned_data['sizename']
             equipment.serial_number = form.cleaned_data['serial_number']
             equipment.registration_number = form.cleaned_data['registration_number']
@@ -99,9 +107,9 @@ def equipment_new(request):
             # создаём action "перемещение"
             action = Action()
             action.owner = request.user
-            action.created_date = timezone.now
-            action.action_start_date = timezone.now
-            action.action_end_date = timezone.now
+            action.created_date = timezone.now()
+            action.action_start_date = timezone.now()
+            action.action_end_date = timezone.now()
             action.type = Action_type.objects.get(title='перемещение')
             action.used_in_equipment = equipment
             action.new_container = equipment.in_container
@@ -113,6 +121,7 @@ def equipment_new(request):
     return render(request, 'mechdb_core/equipment_edit.html', {'form': form})
 
 def equipment_edit(request, pk, formtype):
+    timezone.now
     equipment = get_object_or_404(Equipment, pk=pk)
     instance = model_to_dict(equipment)
     instance['in_container_id']=instance['in_container']
@@ -130,7 +139,7 @@ def equipment_edit(request, pk, formtype):
                 # создаём action перемещения
                 action = Action()
                 action.owner = request.user
-                action.created_date = timezone.now
+                action.created_date = timezone.now()
                 # время берём из соответствующего поля
                 action.action_start_date = form.cleaned_data['action_datetime']
                 action.action_end_date = form.cleaned_data['action_datetime']
@@ -139,7 +148,7 @@ def equipment_edit(request, pk, formtype):
                 action.new_container = get_object_or_404(Container, pk=form.cleaned_data['in_container_id'])
                 action.save()
                 # после добавления action проверяем методом объекта equipment текущее местоположение и переписываем соответствующее поле объекта
-                last_place = equipment.get_place_on_date(timezone.now)
+                last_place = equipment.get_place_on_date(timezone.now())
                 if last_place:
                     equipment.in_container = last_place
             equipment.save()
@@ -150,10 +159,12 @@ def equipment_edit(request, pk, formtype):
     return render(request, 'mechdb_core/equipment_edit.html', {'form': form})
 
 def sizename_list(request):
+    timezone.now
     sizenames = Equipment_sizename.objects.filter(owner=request.user).order_by('title')
     return render(request, 'mechdb_core/sizename_list.html', {'sizenames':sizenames})
 
 def sizename_detail(request, pk):
+    timezone.now
     sizename = get_object_or_404(Equipment_sizename, pk=pk)
     slave_equipments = Equipment.objects.filter(owner=request.user, sizename=sizename).order_by('serial_number')
     slaves_list=[]
@@ -162,12 +173,13 @@ def sizename_detail(request, pk):
     return render(request, 'mechdb_core/sizename_detail.html', {'sizename':sizename, 'slaves_list':slaves_list})
 
 def sizename_new(request):
+    timezone.now
     if request.method == "POST":
         form = SizenameForm(request.POST)
         if form.is_valid():
             sizename = form.save(commit=False)
             sizename.owner = request.user
-            sizename.created_date = timezone.now
+            sizename.created_date = timezone.now()
             sizename.save()
             return redirect('sizename_detail', pk=sizename.pk)
     else:
@@ -175,6 +187,7 @@ def sizename_new(request):
     return render(request, 'mechdb_core/sizename_edit.html', {'form': form})
 
 def sizename_edit(request, pk):
+    timezone.now
     sizename = get_object_or_404(Equipment_sizename, pk=pk)
     if request.method == "POST":
         form = SizenameForm(request.POST, instance=sizename)
@@ -188,20 +201,23 @@ def sizename_edit(request, pk):
     return render(request, 'mechdb_core/sizename_edit.html', {'form': form})
 
 def action_list(request):
+    timezone.now
     actions = Action.objects.filter(owner=request.user).order_by('-action_start_date')
     return render(request, 'mechdb_core/action_list.html', {'actions':actions})
 
 def action_detail(request, pk):
+    timezone.now
     action = get_object_or_404(Action, pk=pk)
     return render(request, 'mechdb_core/action_detail.html', {'action':action})
 
 def action_new(request):
+    timezone.now
     if request.method == "POST":
         form = ActionForm(request.POST, user=request.user)
         if form.is_valid():
             action = Action()
             action.owner = request.user
-            action.created_date = timezone.now
+            action.created_date = timezone.now()
             action.type = form.cleaned_data['type']
             action.action_start_date = form.cleaned_data['action_start_date']
             if form.cleaned_data['action_end_date']:
@@ -218,13 +234,14 @@ def action_new(request):
     return render(request, 'mechdb_core/action_edit.html', {'form': form})
 
 def action_edit(request, pk):
+    timezone.now
     action = get_object_or_404(Action, pk=pk)
     instance=model_to_dict(action)
     if request.method == "POST":
         form = ActionForm(request.POST, initial=instance, user=request.user)
         if form.is_valid():
             action.owner = request.user
-            action.created_date = timezone.now
+            action.created_date = timezone.now()
             action.type = form.cleaned_data['type']
             if form.cleaned_data['action_end_date']:
                 action.action_end_date = form.cleaned_data['action_end_date']

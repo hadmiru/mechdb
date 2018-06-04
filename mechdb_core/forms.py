@@ -16,7 +16,10 @@ class In_container_choicefield(forms.ChoiceField):
         saved_list=[]
         recycle_flag=True
         checked_pk=value
-        saved_list.append(self.initial)
+        print(self.self_pk)
+
+        if self.self_pk: #если равен нулю - не добавляем в список и новые конты проскакивают проверку
+            saved_list.append(self.self_pk)
 
         while recycle_flag == True:
 
@@ -40,8 +43,10 @@ class ContainerForm(forms.Form):
 
     def __init__(self, *args, **kwargs):
         user=kwargs.pop('user',None)
+        self_pk=kwargs.pop('self_pk',None)
         super(ContainerForm, self).__init__(*args, **kwargs)
         self.fields['in_container_id'].choices=tree_parse(0, 'choice', user)
+        self.fields['in_container_id'].self_pk=self_pk
 
 class EquipmentForm(forms.Form):
 
