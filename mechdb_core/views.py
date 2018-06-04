@@ -108,27 +108,28 @@ def equipment_new(request):
 
             return redirect('equipment_detail', pk=equipment.pk)
     else:
-        form = EquipmentForm(user=request.user)
+        form = EquipmentForm(user=request.user, formtype='new')
     return render(request, 'mechdb_core/equipment_edit.html', {'form': form})
 
-def equipment_edit(request, pk):
+def equipment_edit(request, pk, formtype):
     equipment = get_object_or_404(Equipment, pk=pk)
     instance = model_to_dict(equipment)
     instance['in_container_id']=instance['in_container']
 
     if request.method == "POST":
-        form = EquipmentForm(request.POST ,user=request.user, initial=instance)
+        form = EquipmentForm(request.POST ,user=request.user, initial=instance, formtype=formtype)
         if form.is_valid():
             equipment.owner = request.user
             equipment.sizename = form.cleaned_data['sizename']
             equipment.serial_number = form.cleaned_data['serial_number']
             equipment.registration_number = form.cleaned_data['registration_number']
-            equipment.in_container = get_object_or_404(Container, pk=request.POST['in_container_id'])
+            if 'in_container_id' in form.fields:
+                equipment.in_container = get_object_or_404(Container, pk=form.cleaned_data['in_container_id'])
             equipment.save()
             return redirect('equipment_detail', pk=equipment.pk)
     else:
         print(equipment)
-        form = EquipmentForm(user=request.user, initial=instance)
+        form = EquipmentForm(user=request.user, initial=instance, formtype=formtype)
     return render(request, 'mechdb_core/equipment_edit.html', {'form': form})
 
 def sizename_list(request):

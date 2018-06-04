@@ -48,13 +48,24 @@ class EquipmentForm(forms.Form):
     sizename = forms.ModelChoiceField(queryset=Equipment_sizename.objects.filter(owner=0), empty_label=None, required=True, label='Модель')
     serial_number = forms.CharField(max_length=50, required=False, label='Заводской номер')
     registration_number = forms.CharField(max_length=50, required=False, label='Регистрационный номер')
-    in_container_id = forms.ChoiceField(required=True, label='Расположение')
+    in_container_id = forms.ChoiceField(required=False, label='Расположение')
+    # надо добавить поле времени для перемещения
 
     def __init__(self, *args, **kwargs):
         user=kwargs.pop('user',None)
+        formtype=kwargs.pop('formtype',None)
         super(EquipmentForm, self).__init__(*args, **kwargs)
         self.fields['in_container_id'].choices=tree_parse(0, 'choice', user, False)
         self.fields['sizename'].queryset=Equipment_sizename.objects.filter(owner=user).order_by('title')
+        if formtype=="new":
+            self.fields['in_container_id'].required=True
+        elif formtype=="edit":
+            del self.fields['in_container_id']
+        elif formtype=='move':
+            del self.fields['sizename']
+            del self.fields['serial_number']
+            del self.fields['registration_number']
+
 
 class SizenameForm(forms.ModelForm):
     class Meta:
