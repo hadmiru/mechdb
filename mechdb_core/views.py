@@ -15,6 +15,9 @@ def index_page(request):
 
 def containers_map(request):
     timezone.now
+    if not request.user.is_authenticated:
+        return redirect('index_page')
+
     if request.POST:
         containers_output=tree_parse(0, request.POST, request.user)
     else:
@@ -23,6 +26,9 @@ def containers_map(request):
 
 def container_detail(request, pk):
     timezone.now
+    if not request.user.is_authenticated:
+        return redirect('index_page')
+
     container = get_object_or_404(Container, pk=pk)
     content=tree_parse(pk,'li equipment',request.user)
     return render(request, 'mechdb_core/container_detail.html', {
@@ -32,6 +38,9 @@ def container_detail(request, pk):
 
 def container_new(request):
     timezone.now
+    if not request.user.is_authenticated:
+        return redirect('index_page')
+
     if request.method == "POST":
         form = ContainerForm(request.POST, user=request.user, self_pk=0)
         if form.is_valid():
@@ -56,6 +65,9 @@ def container_new(request):
 
 def container_edit(request, pk):
     timezone.now
+    if not request.user.is_authenticated:
+        return redirect('index_page')
+
     container = get_object_or_404(Container, pk=pk)
     instance = model_to_dict(container)
     instance['in_container_id']=instance['in_container']
@@ -80,11 +92,17 @@ def container_edit(request, pk):
 
 def equipment_list(request):
     timezone.now
+    if not request.user.is_authenticated:
+        return redirect('index_page')
+
     equipments = Equipment.objects.filter(owner=request.user).order_by('sizename')
     return render(request, 'mechdb_core/equipment_list.html', {'equipments':equipments})
 
 def equipment_detail(request, pk):
     timezone.now
+    if not request.user.is_authenticated:
+        return redirect('index_page')
+
     equipment = get_object_or_404(Equipment, pk=pk)
     place = get_container_place(equipment.in_container.pk)
     actions = Action.objects.filter(owner=request.user, used_in_equipment=equipment).order_by('-action_start_date')
@@ -92,8 +110,11 @@ def equipment_detail(request, pk):
 
 def equipment_remove(request, pk):
     timezone.now
+    if not request.user.is_authenticated:
+        return redirect('index_page')
 
-
+    if not request.user.is_authenticated:
+        return redirect('index_page')
 
     equipment = get_object_or_404(Equipment, pk=pk)
     if 'confirmed' in request.POST:
@@ -110,6 +131,9 @@ def equipment_remove(request, pk):
 
 def equipment_new(request):
     timezone.now
+    if not request.user.is_authenticated:
+        return redirect('index_page')
+
     if request.method == "POST":
         form = EquipmentForm(request.POST ,user=request.user, formtype="new")
         if form.is_valid():
@@ -140,6 +164,9 @@ def equipment_new(request):
 
 def equipment_edit(request, pk, formtype):
     timezone.now
+    if not request.user.is_authenticated:
+        return redirect('index_page')
+
     equipment = get_object_or_404(Equipment, pk=pk)
     instance = model_to_dict(equipment)
     instance['in_container_id']=instance['in_container']
@@ -178,11 +205,17 @@ def equipment_edit(request, pk, formtype):
 
 def sizename_list(request):
     timezone.now
+    if not request.user.is_authenticated:
+        return redirect('index_page')
+
     sizenames = Equipment_sizename.objects.filter(owner=request.user).order_by('title')
     return render(request, 'mechdb_core/sizename_list.html', {'sizenames':sizenames})
 
 def sizename_detail(request, pk):
     timezone.now
+    if not request.user.is_authenticated:
+        return redirect('index_page')
+
     sizename = get_object_or_404(Equipment_sizename, pk=pk)
     slave_equipments = Equipment.objects.filter(owner=request.user, sizename=sizename).order_by('serial_number')
     slaves_list=[]
@@ -192,6 +225,9 @@ def sizename_detail(request, pk):
 
 def sizename_new(request):
     timezone.now
+    if not request.user.is_authenticated:
+        return redirect('index_page')
+
     if request.method == "POST":
         form = SizenameForm(request.POST)
         if form.is_valid():
@@ -206,6 +242,9 @@ def sizename_new(request):
 
 def sizename_edit(request, pk):
     timezone.now
+    if not request.user.is_authenticated:
+        return redirect('index_page')
+
     sizename = get_object_or_404(Equipment_sizename, pk=pk)
     if request.method == "POST":
         form = SizenameForm(request.POST, instance=sizename)
@@ -220,16 +259,25 @@ def sizename_edit(request, pk):
 
 def action_list(request):
     timezone.now
+    if not request.user.is_authenticated:
+        return redirect('index_page')
+
     actions = Action.objects.filter(owner=request.user).order_by('-action_start_date')
     return render(request, 'mechdb_core/action_list.html', {'actions':actions})
 
 def action_detail(request, pk):
     timezone.now
+    if not request.user.is_authenticated:
+        return redirect('index_page')
+
     action = get_object_or_404(Action, pk=pk)
     return render(request, 'mechdb_core/action_detail.html', {'action':action})
 
 def action_new(request):
     timezone.now
+    if not request.user.is_authenticated:
+        return redirect('index_page')
+
     if request.method == "POST":
         form = ActionForm(request.POST, user=request.user)
         if form.is_valid():
@@ -253,6 +301,9 @@ def action_new(request):
 
 def action_edit(request, pk):
     timezone.now
+    if not request.user.is_authenticated:
+        return redirect('index_page')
+
     action = get_object_or_404(Action, pk=pk)
     instance=model_to_dict(action)
     if request.method == "POST":
