@@ -49,6 +49,8 @@ class EquipmentForm(forms.Form):
     serial_number = forms.CharField(max_length=50, required=False, label='Заводской номер')
     registration_number = forms.CharField(max_length=50, required=False, label='Регистрационный номер')
     in_container_id = forms.ChoiceField(required=False, label='Расположение')
+    action_datetime = forms.DateTimeField(initial=timezone.now(), required=True, label='Дата перемещения')
+
     # надо добавить поле времени для перемещения
 
     def __init__(self, *args, **kwargs):
@@ -58,10 +60,16 @@ class EquipmentForm(forms.Form):
         self.fields['in_container_id'].choices=tree_parse(0, 'choice', user, False)
         self.fields['sizename'].queryset=Equipment_sizename.objects.filter(owner=user).order_by('title')
         if formtype=="new":
+            self.label="Создание оборудования"
             self.fields['in_container_id'].required=True
+            del self.fields['action_datetime']
         elif formtype=="edit":
+            self.label="Редактирование оборудования"
             del self.fields['in_container_id']
+            del self.fields['action_datetime']
         elif formtype=='move':
+            self.label="Перемещение оборудования"
+            self.fields['in_container_id'].label='Новое местоположение'
             del self.fields['sizename']
             del self.fields['serial_number']
             del self.fields['registration_number']
