@@ -16,7 +16,7 @@ class In_container_choicefield(forms.ChoiceField):
         saved_list=[]
         recycle_flag=True
         checked_pk=value
-        saved_list.append(value)
+        saved_list.append(self.initial)
 
         while recycle_flag == True:
 
@@ -49,7 +49,7 @@ class EquipmentForm(forms.Form):
     serial_number = forms.CharField(max_length=50, required=False, label='Заводской номер')
     registration_number = forms.CharField(max_length=50, required=False, label='Регистрационный номер')
     in_container_id = forms.ChoiceField(required=False, label='Расположение')
-    action_datetime = forms.DateTimeField(initial=timezone.now(), required=True, label='Дата перемещения')
+    action_datetime = forms.DateTimeField(initial=timezone.now, required=True, label='Дата перемещения')
 
     def __init__(self, *args, **kwargs):
         user=kwargs.pop('user',None)
@@ -86,7 +86,7 @@ class ActionForm(forms.Form):
     type = forms.ModelChoiceField(queryset=Action_type.objects.all(), empty_label=None, required=True, label='Тип воздействия')
     used_in_equipment = forms.ModelChoiceField(queryset=Equipment.objects.filter(owner=0), empty_label=None, required=True, label='Оборудование')
     description = forms.CharField(max_length=2000, required=False, widget=forms.Textarea, label='Описание')
-    action_start_date = forms.DateTimeField(initial=timezone.now(), required=True, label='Начало')
+    action_start_date = forms.DateTimeField(initial=timezone.now, required=True, label='Начало')
     action_end_date = forms.DateTimeField(required=False, label='Окончание')
     scheduled = forms.BooleanField(required=False, label='Плановое?')
 

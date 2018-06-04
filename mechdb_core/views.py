@@ -34,7 +34,7 @@ def container_new(request):
             print('form valid')
             container = Container()
             container.owner = request.user
-            container.created_date = timezone.now()
+            container.created_date = timezone.now
             container.title = form.cleaned_data['title']
             container.description = form.cleaned_data['description']
             container.is_repair_organization = form.cleaned_data['is_repair_organization']
@@ -89,7 +89,7 @@ def equipment_new(request):
         if form.is_valid():
             equipment = Equipment()
             equipment.owner = request.user
-            equipment.created_date = timezone.now()
+            equipment.created_date = timezone.now
             equipment.sizename = form.cleaned_data['sizename']
             equipment.serial_number = form.cleaned_data['serial_number']
             equipment.registration_number = form.cleaned_data['registration_number']
@@ -99,9 +99,9 @@ def equipment_new(request):
             # создаём action "перемещение"
             action = Action()
             action.owner = request.user
-            action.created_date = timezone.now()
-            action.action_start_date = timezone.now()
-            action.action_end_date = timezone.now()
+            action.created_date = timezone.now
+            action.action_start_date = timezone.now
+            action.action_end_date = timezone.now
             action.type = Action_type.objects.get(title='перемещение')
             action.used_in_equipment = equipment
             action.new_container = equipment.in_container
@@ -127,22 +127,25 @@ def equipment_edit(request, pk, formtype):
             if 'registration_number' in form.fields:
                 equipment.registration_number = form.cleaned_data['registration_number']
             if 'in_container_id' in form.fields:
-                equipment.in_container = get_object_or_404(Container, pk=form.cleaned_data['in_container_id'])
                 # создаём action перемещения
                 action = Action()
                 action.owner = request.user
-                action.created_date = timezone.now()
+                action.created_date = timezone.now
                 # время берём из соответствующего поля
                 action.action_start_date = form.cleaned_data['action_datetime']
                 action.action_end_date = form.cleaned_data['action_datetime']
                 action.type = Action_type.objects.get(title='перемещение')
                 action.used_in_equipment = equipment
-                action.new_container = equipment.in_container
+                action.new_container = get_object_or_404(Container, pk=form.cleaned_data['in_container_id'])
                 action.save()
+                # после добавления action проверяем методом объекта equipment текущее местоположение и переписываем соответствующее поле объекта
+                last_place = equipment.get_place_on_date(timezone.now)
+                if last_place:
+                    equipment.in_container = last_place
             equipment.save()
             return redirect('equipment_detail', pk=equipment.pk)
     else:
-        print(equipment)
+
         form = EquipmentForm(user=request.user, initial=instance, formtype=formtype)
     return render(request, 'mechdb_core/equipment_edit.html', {'form': form})
 
@@ -164,7 +167,7 @@ def sizename_new(request):
         if form.is_valid():
             sizename = form.save(commit=False)
             sizename.owner = request.user
-            sizename.created_date = timezone.now()
+            sizename.created_date = timezone.now
             sizename.save()
             return redirect('sizename_detail', pk=sizename.pk)
     else:
@@ -198,7 +201,7 @@ def action_new(request):
         if form.is_valid():
             action = Action()
             action.owner = request.user
-            action.created_date = timezone.now()
+            action.created_date = timezone.now
             action.type = form.cleaned_data['type']
             action.action_start_date = form.cleaned_data['action_start_date']
             if form.cleaned_data['action_end_date']:
@@ -221,7 +224,7 @@ def action_edit(request, pk):
         form = ActionForm(request.POST, initial=instance, user=request.user)
         if form.is_valid():
             action.owner = request.user
-            action.created_date = timezone.now()
+            action.created_date = timezone.now
             action.type = form.cleaned_data['type']
             if form.cleaned_data['action_end_date']:
                 action.action_end_date = form.cleaned_data['action_end_date']

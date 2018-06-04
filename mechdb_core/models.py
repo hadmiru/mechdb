@@ -44,8 +44,15 @@ class Equipment(models.Model):
     in_container = models.ForeignKey(Container, on_delete=models.CASCADE, blank=False, null=False)
     def __str__(self):
         return str(self.sizename.title)+" № "+str(self.serial_number)+'  ['+self.in_container.title+']'
-    def in_container_on_date(self,date):
+    def get_place_on_date(self,date):
         print('Тут будет функция поиска расположения на определённую дату')
+        last_move_action = Action.objects.filter(used_in_equipment=self, new_container__isnull=False, action_start_date__lt=date).order_by("action_start_date").last()
+        print(last_move_action)
+        if last_move_action:
+            return last_move_action.new_container
+        else:
+            return False
+
 
 class Spare_part(models.Model):
     owner = models.ForeignKey('auth.User', on_delete=models.CASCADE)
