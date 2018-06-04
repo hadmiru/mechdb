@@ -79,8 +79,9 @@ def equipment_list(request):
 
 def equipment_detail(request, pk):
     equipment = get_object_or_404(Equipment, pk=pk)
-    place=get_container_place(equipment.in_container.pk)
-    return render(request, 'mechdb_core/equipment_detail.html', {'equipment':equipment,'place':place})
+    place = get_container_place(equipment.in_container.pk)
+    actions = Action.objects.filter(owner=request.user, used_in_equipment=equipment).order_by('-action_start_date')
+    return render(request, 'mechdb_core/equipment_detail.html', {'equipment':equipment,'place':place, 'actions':actions})
 
 def equipment_new(request):
     if request.method == "POST":

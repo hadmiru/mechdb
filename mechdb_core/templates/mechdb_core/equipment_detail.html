@@ -21,4 +21,9 @@
         <li>Регистрационный №:: {{equipment.registration_number}}</li>
         <li>Расположение: {{equipment.in_container}}</li>
       </ul>
+      <h3>Последние воздействия</h3>
+      {% for i in actions %}
+        {{ i.action_start_date|date:"d.m.y H:i" }} {{ i.type.title }} {{ i.new_container.title }}<br>
+      {% endfor %}
+
 {% endblock %}
