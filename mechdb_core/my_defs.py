@@ -38,7 +38,7 @@ def tree_parse(input_pk, tree_format, user, need_zero_level=True, tree_level=-1)
                 def_output.append('<LI style="line-height:1;margin-top:10px">')
 
             if tree_format in ('li','li equipment'):
-                def_output.append('<a href="/place/'+str(y.pk)+'">'+escape(y.title)+'</a>')
+                def_output.append('<a href="/place/'+str(y.pk)+'" class="containerhref">'+escape(y.title)+'</a>')
             elif tree_format=='choice' or tree_format=='choice_objects':
                 def_output.append((str(y.pk),tree_level*'⠀⠀'+escape(y.title)))
 

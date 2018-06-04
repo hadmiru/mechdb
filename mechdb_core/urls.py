@@ -13,7 +13,7 @@ urlpatterns = [
     url(r'^equipment/(?P<pk>\d+)/$', views.equipment_detail, name='equipment_detail'),
     url(r'^equipment/new/$', views.equipment_new, name='equipment_new'),
     url(r'^equipment/(?P<pk>\d+)/edit/$', views.equipment_edit, kwargs={'formtype': 'edit'}, name='equipment_edit'),
-    url(r'^equipment/(?P<pk>\d+)/move/$', views.equipment_edit, kwargs={'formtype': 'move'}, name='equipment_move'),
+    url(r'^equipment/(?P<pk>\d+)/move/$', views.equipment_edit, kwargs={'formtype': 'move'}, name='equipment_edit_move'),
     # === типоразмеры ===
     url(r'^model/list/$', views.sizename_list, name='sizename_list'),
     url(r'^model/(?P<pk>\d+)/$', views.sizename_detail, name='sizename_detail'),

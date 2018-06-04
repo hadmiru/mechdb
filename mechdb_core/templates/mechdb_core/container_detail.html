@@ -9,7 +9,11 @@
         <li>Ремонтная организация: {{container.is_repair_organization}}</li>
       </ul>
       <h2>Содержимое</h2>
+
+      <UL>
+      <b class="containerhref">{{container.title}}</b>
       {% for i in content %}
       {{ i|safe }}
       {% endfor %}
+      </UL>
 {% endblock %}

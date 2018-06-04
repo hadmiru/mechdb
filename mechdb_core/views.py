@@ -84,7 +84,7 @@ def equipment_detail(request, pk):
 
 def equipment_new(request):
     if request.method == "POST":
-        form = EquipmentForm(request.POST ,user=request.user)
+        form = EquipmentForm(request.POST ,user=request.user, formtype="new")
         if form.is_valid():
             equipment = Equipment()
             equipment.owner = request.user
@@ -119,10 +119,12 @@ def equipment_edit(request, pk, formtype):
     if request.method == "POST":
         form = EquipmentForm(request.POST ,user=request.user, initial=instance, formtype=formtype)
         if form.is_valid():
-            equipment.owner = request.user
-            equipment.sizename = form.cleaned_data['sizename']
-            equipment.serial_number = form.cleaned_data['serial_number']
-            equipment.registration_number = form.cleaned_data['registration_number']
+            if 'sizename' in form.fields:
+                equipment.sizename = form.cleaned_data['sizename']
+            if 'serial_number' in form.fields:
+                equipment.serial_number = form.cleaned_data['serial_number']
+            if 'registration_number' in form.fields:
+                equipment.registration_number = form.cleaned_data['registration_number']
             if 'in_container_id' in form.fields:
                 equipment.in_container = get_object_or_404(Container, pk=form.cleaned_data['in_container_id'])
             equipment.save()

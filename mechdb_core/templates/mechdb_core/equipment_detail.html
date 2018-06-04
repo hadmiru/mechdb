@@ -7,8 +7,10 @@
         Месторасположение:<br>
         {% for i in place %}
           {% if not forloop.first %} &lt; {% endif %}
-          <a href="{% url 'container_detail' pk=i.0 %}">{{ i.1 }}</a>
+          <a class="containerhref" href="{% url 'container_detail' pk=i.0 %}">{{ i.1 }}</a>
         {% endfor %}
+        <br>
+        <a href="{% url 'equipment_edit_move' pk=equipment.pk%}">переместить</a><br><br>
       </p>
 
       <ul>
