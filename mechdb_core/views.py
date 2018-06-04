@@ -90,6 +90,24 @@ def equipment_detail(request, pk):
     actions = Action.objects.filter(owner=request.user, used_in_equipment=equipment).order_by('-action_start_date')
     return render(request, 'mechdb_core/equipment_detail.html', {'equipment':equipment,'place':place, 'actions':actions})
 
+def equipment_remove(request, pk):
+    timezone.now
+
+
+
+    equipment = get_object_or_404(Equipment, pk=pk)
+    if 'confirmed' in request.POST:
+        print('Сработало удаление оборудования')
+        if equipment.owner == request.user:
+            equipment.delete()
+        return redirect('equipment_list')
+    else:
+        confirmed=False
+
+    place = get_container_place(equipment.in_container.pk)
+    actions = Action.objects.filter(owner=request.user, used_in_equipment=equipment).order_by('-action_start_date')
+    return render(request, 'mechdb_core/equipment_remove.html', {'equipment':equipment, 'confirmed':confirmed})
+
 def equipment_new(request):
     timezone.now
     if request.method == "POST":
