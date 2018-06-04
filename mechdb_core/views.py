@@ -132,6 +132,7 @@ def equipment_edit(request, pk, formtype):
                 action = Action()
                 action.owner = request.user
                 action.created_date = timezone.now()
+                # время берём из соответствующего поля
                 action.action_start_date = form.cleaned_data['action_datetime']
                 action.action_end_date = form.cleaned_data['action_datetime']
                 action.type = Action_type.objects.get(title='перемещение')

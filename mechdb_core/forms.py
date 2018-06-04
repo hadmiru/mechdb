@@ -6,7 +6,6 @@ from django.utils import timezone
 class In_container_choicefield(forms.ChoiceField):
     # Класс для проверки на зацикленность поля in_container_id объектов Container
     def to_python(self, value):
-        # Return an empty list if no input was given.
         if not value:
             return []
         return int(value)
@@ -17,6 +16,7 @@ class In_container_choicefield(forms.ChoiceField):
         saved_list=[]
         recycle_flag=True
         checked_pk=value
+        saved_list.append(value)
 
         while recycle_flag == True:
 
@@ -51,14 +51,15 @@ class EquipmentForm(forms.Form):
     in_container_id = forms.ChoiceField(required=False, label='Расположение')
     action_datetime = forms.DateTimeField(initial=timezone.now(), required=True, label='Дата перемещения')
 
-    # надо добавить поле времени для перемещения
-
     def __init__(self, *args, **kwargs):
         user=kwargs.pop('user',None)
         formtype=kwargs.pop('formtype',None)
         super(EquipmentForm, self).__init__(*args, **kwargs)
+        # Поле in_container_id заполняем деревом, которое строит функция tree_parse
         self.fields['in_container_id'].choices=tree_parse(0, 'choice', user, False)
+        # Поле sizename заполняем моделями только для текущего юзверя
         self.fields['sizename'].queryset=Equipment_sizename.objects.filter(owner=user).order_by('title')
+        # в зависимости от ситуации в которой используется форма удаляем ненужные поля, меняем некоторые значения полей:
         if formtype=="new":
             self.label="Создание оборудования"
             self.fields['in_container_id'].required=True
