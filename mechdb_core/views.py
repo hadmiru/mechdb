@@ -127,6 +127,16 @@ def equipment_edit(request, pk, formtype):
                 equipment.registration_number = form.cleaned_data['registration_number']
             if 'in_container_id' in form.fields:
                 equipment.in_container = get_object_or_404(Container, pk=form.cleaned_data['in_container_id'])
+                # создаём action перемещения
+                action = Action()
+                action.owner = request.user
+                action.created_date = timezone.now()
+                action.action_start_date = timezone.now()
+                action.action_end_date = timezone.now()
+                action.type = Action_type.objects.get(title='перемещение')
+                action.used_in_equipment = equipment
+                action.new_container = equipment.in_container
+                action.save()
             equipment.save()
             return redirect('equipment_detail', pk=equipment.pk)
     else:
