@@ -188,6 +188,9 @@ def equipment_edit(request, pk):
     # если вторая прогрузка формы - formtype передаётся из одноимённого поля
     if 'formtype' in request.POST:
         formtype = request.POST['formtype']
+        allowable_formtypes = ('new', 'edit', 'move')
+        if not formtype in allowable_formtypes:
+            raise Http404
     else:
         formtype='edit'
     equipment = get_object_or_404(Equipment, pk=pk)

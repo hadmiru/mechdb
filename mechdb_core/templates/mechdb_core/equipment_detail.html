@@ -11,7 +11,13 @@
 
         <div class="dropdown-menu">
           <h6 class="dropdown-header">Добавить воздействие</h6>
-          <a class="dropdown-item" href="#">ТО</a>
+
+          <form id="TO" method="post" action="{% url 'equipment_edit' pk=equipment.pk%}">
+            {% csrf_token %}
+            <input type="hidden" name="formtype" value="repair,to" />
+            <input class="dropdown-item" type="submit" value="ТО">
+          </form>
+
           <a class="dropdown-item" href="#">ТР</a>
           <a class="dropdown-item" href="#">КР</a>
           <a class="dropdown-item" href="#">КТС</a>
@@ -28,7 +34,7 @@
           <form id="move" method="post" action="{% url 'equipment_edit' pk=equipment.pk%}">
             {% csrf_token %}
             <input type="hidden" name="formtype" value="move" />
-            <a class="dropdown-item" href="#" onclick="document.forms[0].submit();return false;">Переместить</a>
+            <input class="dropdown-item" type="submit" value="Переместить">
           </form>
 
 
