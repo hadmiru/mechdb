@@ -234,7 +234,7 @@ def equipment_edit(request, pk):
     else:
 
         form = EquipmentForm(user=request.user, initial=instance, formtype=formtype)
-    return render(request, 'mechdb_core/equipment_edit.html', {'form': form})
+    return render(request, 'mechdb_core/equipment_edit.html', {'form': form, 'equipment':equipment})
 
 def sizename_list(request):
     timezone.now
@@ -329,7 +329,35 @@ def action_new(request):
     if not request.user.is_authenticated:
         return redirect('index_page')
 
-    if request.method == "POST":
+    #Проверяем что в Post передан typeform, если нет - ставим 'edit'
+    # если первая прогрузка формы - formtype передаётся из ссылки
+    # если вторая прогрузка формы - formtype передаётся из одноимённого поля
+    if 'formtype' in request.POST and 'equipment_pk' in request.POST:
+        formtype = request.POST['formtype']
+        allowable_formtypes = (
+                'equipment,repair,TO',
+                'equipment,repair,TR',
+                'equipment,repair,KR',
+                'equipment,repair,KTS',
+                'equipment,repair,DEFF',
+                'equipment,INFO',
+                'equipment,FAILURE',
+                'equipment,REPAIR_EXPORT',
+                'equipment,REPAIR_IMPORT',
+                'equipment,MOUNT',
+                'equipment,UNMOUNT'
+                )
+        if not formtype in allowable_formtypes:
+            raise Http404
+        equipment = get_object_or_404(Equipment, pk=request.POST['equipment_pk'])
+        # Проверка что объект принадлежит юзеру
+        if not request.user==equipment.owner:
+            raise Http404
+        # конец проверки
+    else:
+        raise Http404
+
+    if 'form_completed' in request.POST:
         form = ActionForm(request.POST, user=request.user)
         if form.is_valid():
             action = Action()
@@ -347,7 +375,7 @@ def action_new(request):
             action.save()
             return redirect('action_detail', pk=action.pk)
     else:
-        form = ActionForm(user=request.user)
+        form = ActionForm(user=request.user, formtype=formtype, object=equipment)
     return render(request, 'mechdb_core/action_edit.html', {'form': form})
 
 def action_edit(request, pk):
