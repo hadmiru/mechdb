@@ -12,9 +12,9 @@ urlpatterns = [
     url(r'^equipment/list/$', views.equipment_list, name='equipment_list'),
     url(r'^equipment/(?P<pk>\d+)/$', views.equipment_detail, name='equipment_detail'),
     url(r'^equipment/new/$', views.equipment_new, name='equipment_new'),
-    url(r'^equipment/(?P<pk>\d+)/edit/$', views.equipment_edit, kwargs={'formtype': 'edit'}, name='equipment_edit'),
+    url(r'^equipment/(?P<pk>\d+)/edit/$', views.equipment_edit, name='equipment_edit'),
     url(r'^equipment/(?P<pk>\d+)/remove/$', views.equipment_remove, name='equipment_remove'),
-    url(r'^equipment/(?P<pk>\d+)/move/$', views.equipment_edit, kwargs={'formtype': 'move'}, name='equipment_edit_move'),
+#    url(r'^equipment/(?P<pk>\d+)/move/$', views.equipment_edit, kwargs={'formtype': 'move'}, name='equipment_edit_move'),
     # === типоразмеры ===
     url(r'^model/list/$', views.sizename_list, name='sizename_list'),
     url(r'^model/(?P<pk>\d+)/$', views.sizename_detail, name='sizename_detail'),

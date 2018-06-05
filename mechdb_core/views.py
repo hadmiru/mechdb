@@ -178,11 +178,18 @@ def equipment_new(request):
         form = EquipmentForm(user=request.user, formtype='new')
     return render(request, 'mechdb_core/equipment_edit.html', {'form': form})
 
-def equipment_edit(request, pk, formtype):
+def equipment_edit(request, pk):
     timezone.now
     if not request.user.is_authenticated:
         return redirect('index_page')
 
+    #Проверяем что в Post передан typeform, если нет - ставим 'edit'
+    # если первая прогрузка формы - formtype передаётся из ссылки
+    # если вторая прогрузка формы - formtype передаётся из одноимённого поля
+    if 'formtype' in request.POST:
+        formtype = request.POST['formtype']
+    else:
+        formtype='edit'
     equipment = get_object_or_404(Equipment, pk=pk)
 
     # Проверка что объект принадлежит юзеру
@@ -192,8 +199,9 @@ def equipment_edit(request, pk, formtype):
 
     instance = model_to_dict(equipment)
     instance['in_container_id']=instance['in_container']
+    instance['formtype']=formtype
 
-    if request.method == "POST":
+    if 'form_completed' in request.POST:
         form = EquipmentForm(request.POST ,user=request.user, initial=instance, formtype=formtype)
         if form.is_valid():
             if 'sizename' in form.fields:

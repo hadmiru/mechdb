@@ -50,6 +50,9 @@ class ContainerForm(forms.Form):
 
 class EquipmentForm(forms.Form):
 
+    formtype = forms.CharField(max_length=50, widget=forms.HiddenInput())
+    form_completed = forms.BooleanField(initial=True, widget=forms.HiddenInput())
+
     sizename = forms.ModelChoiceField(queryset=Equipment_sizename.objects.filter(owner=0), empty_label=None, required=True, label='Модель')
     serial_number = forms.CharField(max_length=50, required=False, label='Заводской номер')
     registration_number = forms.CharField(max_length=50, required=False, label='Регистрационный номер')
@@ -64,7 +67,7 @@ class EquipmentForm(forms.Form):
         self.fields['in_container_id'].choices=tree_parse(0, 'choice', user, False)
         # Поле sizename заполняем моделями только для текущего юзверя
         self.fields['sizename'].queryset=Equipment_sizename.objects.filter(owner=user).order_by('title')
-        # в зависимости от ситуации в которой используется форма удаляем ненужные поля, меняем некоторые значения полей:
+        # в зависимости от ситуации в которой используется форма (значение formtype) удаляем ненужные поля, меняем некоторые значения полей:
         if formtype=="new":
             self.label="Создание оборудования"
             self.fields['in_container_id'].required=True
