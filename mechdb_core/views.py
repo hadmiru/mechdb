@@ -140,16 +140,10 @@ def equipment_remove(request, pk):
     # конец проверки
 
     if 'confirmed' in request.POST:
-        print('Сработало удаление оборудования')
         if equipment.owner == request.user:
             equipment.delete()
         return redirect('equipment_list')
-    else:
-        confirmed=False
-
-    place = get_container_place(equipment.in_container.pk)
-    actions = Action.objects.filter(owner=request.user, used_in_equipment=equipment).order_by('-action_start_date')
-    return render(request, 'mechdb_core/equipment_remove.html', {'equipment':equipment, 'confirmed':confirmed})
+    return render(request, 'mechdb_core/equipment_remove.html', {'equipment':equipment})
 
 def equipment_new(request):
     timezone.now
