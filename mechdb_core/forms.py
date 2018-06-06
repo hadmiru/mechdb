@@ -119,12 +119,21 @@ class ActionForm(forms.Form):
         self.fields['object_pk'].initial=object.pk
         # =====================
         # меняем форму в соответствии с formtype
+        if 'MOVE' in formtype:
+            self.label="Переместить"
+            self.object=object
+            self.fields['action_start_date'].label="Дата перемещения"
+            del self.fields['scheduled']
+            del self.fields['quantity_delta']
+            del self.fields['action_end_date']
+
         if 'equipment' in formtype:
             self.fields['used_in_equipment'].widget = forms.HiddenInput()
             self.fields['used_in_equipment'].initial = object
             del self.fields['used_in_action']
             del self.fields['used_in_spare_part']
-            del self.fields['quantity_delta']
+            if 'quantity_delta' in self.fields:
+                del self.fields['quantity_delta']
             if 'repair' in formtype:
                 del self.fields['new_container']
                 if 'TO' in formtype:
@@ -178,6 +187,3 @@ class ActionForm(forms.Form):
                 self.object=object
                 self.fields['action_start_date'].label="Дата демонтажа"
                 del self.fields['scheduled']
-
-
-        #if 'repair' in formtype:

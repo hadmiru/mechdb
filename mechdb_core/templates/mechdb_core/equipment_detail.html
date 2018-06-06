@@ -114,12 +114,14 @@
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="{% url 'equipment_edit' pk=equipment.pk%}">Редактировать</a>
 
-          <form id="move" method="post" action="{% url 'equipment_edit' pk=equipment.pk%}">
+          <!--  Переместить начало -->
+          <form id="MOVE" method="post" action="{% url 'action_new' %}">
             {% csrf_token %}
-            <input type="hidden" name="formtype" value="move" />
+            <input type="hidden" name="formtype" value="equipment,MOVE" />
+            <input type="hidden" name="object_pk" value="{{equipment.pk}}" />
             <input class="dropdown-item" type="submit" value="Переместить">
           </form>
-
+          <!-- Переместить конец -->
 
           <a class="dropdown-item" href="{% url 'equipment_remove' pk=equipment.pk%}">Удалить</a>
         </div>
@@ -144,7 +146,10 @@
       </ul>
       <h3>Последние воздействия</h3>
       {% for i in actions %}
-        {{ i.action_start_date|date:"d.m.y H:i" }} {{ i.type.title }} {{ i.new_container.title }}<br>
+        {{ i.action_start_date|date:"d.m.y H:i" }}
+        <a href="{% url 'action_detail' pk=i.pk%}">
+        {{ i.type.title }} {{ i.new_container.title }}<br>
+        </a>
       {% endfor %}
 
 {% endblock %}

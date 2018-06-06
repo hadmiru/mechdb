@@ -188,7 +188,7 @@ def equipment_edit(request, pk):
     # если вторая прогрузка формы - formtype передаётся из одноимённого поля
     if 'formtype' in request.POST:
         formtype = request.POST['formtype']
-        allowable_formtypes = ('new', 'edit', 'move')
+        allowable_formtypes = ('new', 'edit')
         if not formtype in allowable_formtypes:
             raise Http404
     else:
@@ -214,6 +214,8 @@ def equipment_edit(request, pk):
             if 'registration_number' in form.fields:
                 equipment.registration_number = form.cleaned_data['registration_number']
             if 'in_container_id' in form.fields:
+                # остатки старого кода когда equipmentform могла перемещать оборудование.
+                #оставил на всякий случай. да и при создании оборудования будет создаваться action перемещения, что важно
                 # создаём action перемещения
                 action = Action()
                 action.owner = request.user
@@ -348,21 +350,19 @@ def action_new(request):
                 'equipment,REPAIR_EXPORT':"вывоз в ремонт",
                 'equipment,REPAIR_IMPORT':"завоз с ремонта",
                 'equipment,MOUNT':"монтаж",
-                'equipment,UNMOUNT':"демонтаж"
+                'equipment,UNMOUNT':"демонтаж",
+                'equipment,MOVE':"перемещение"
                 }
         if not formtype in allowable_formtypes:
             # выдаём 404 если с формтайпом что-то не то. возможно подмена запроса злобными хацкерами
-            print('Не найден formtype')
             raise Http404
         # object может быть как оборудованием, так и spare_part (второе обрабатывается в следующем блоке)
         object = get_object_or_404(Equipment, pk=request.POST['object_pk'])
         # Проверка что объект принадлежит юзеру
         if not request.user==object.owner:
-            print('Не совпадает юзер')
             raise Http404
         # конец проверки
     else:
-        print('кажется нашёл')
         raise Http404
 
     if 'form_completed' in request.POST:
@@ -400,7 +400,7 @@ def action_new(request):
                 action.new_container = Container.objects.get(pk=form.cleaned_data['new_container'])
             action.save()
             object.set_current_container()
-            
+
             return redirect('equipment_detail', pk=object.pk)
     else:
         form = ActionForm(user=request.user, formtype=formtype, object=object)
