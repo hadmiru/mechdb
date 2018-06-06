@@ -215,7 +215,7 @@ def equipment_edit(request, pk):
                 equipment.registration_number = form.cleaned_data['registration_number']
             if 'in_container_id' in form.fields:
                 # остатки старого кода когда equipmentform могла перемещать оборудование.
-                #оставил на всякий случай. да и при создании оборудования будет создаваться action перемещения, что важно
+                # оставил на всякий случай. да и при создании оборудования будет создаваться action перемещения, что важно
                 # создаём action перемещения
                 action = Action()
                 action.owner = request.user
@@ -376,8 +376,6 @@ def action_new(request):
 
             if 'action_start_date' in form.fields:
                 action.action_start_date = form.cleaned_data['action_start_date']
-                print('Записал СТАРТ')
-                print(action.action_start_date)
             else:
                 action.action_start_date = timezone.now()
             if 'action_end_date' in form.fields and form.cleaned_data['action_end_date']:
@@ -412,28 +410,71 @@ def action_edit(request, pk):
         return redirect('index_page')
 
     action = get_object_or_404(Action, pk=pk)
-
     # Проверка что объект принадлежит юзеру
     if not request.user==action.owner:
         raise Http404
     # конец проверки
 
+    # =====================Начало формирования formtype
+    formtype=''
+    if action.used_in_equipment:
+        object = action.used_in_equipment
+
+        allowable_formtypes = {
+                'equipment,repair,TO':"ТО",
+                'equipment,repair,TR':"ТР",
+                'equipment,repair,KR':"КР",
+                'equipment,repair,KTS':"КТС",
+                'equipment,repair,DEFF':"ремонт",
+                'equipment,INFO':"информация",
+                'equipment,FAILURE':"отказ",
+                'equipment,REPAIR_EXPORT':"вывоз в ремонт",
+                'equipment,REPAIR_IMPORT':"завоз с ремонта",
+                'equipment,MOUNT':"монтаж",
+                'equipment,UNMOUNT':"демонтаж",
+                'equipment,MOVE':"перемещение"
+                }
+        # меняем в словаре местами ключи и значения и составляем formtype на основе action_type нашего action
+        allowable_formtypes_reverse = {v:k for k, v in allowable_formtypes.items()}
+        if action.type.title in allowable_formtypes_reverse:
+            formtype = allowable_formtypes_reverse[action.type.title]
+    elif action.used_in_action:
+        object = action.used_in_action
+    elif action.used_in_spare_part:
+        object = action.used_in_spare_part
+    else:
+        raise Http404
+    # ==============конец формирования formtype
+
     instance=model_to_dict(action)
-    if request.method == "POST":
-        form = ActionForm(request.POST, initial=instance, user=request.user)
+    if 'form_completed' in request.POST:
+        form = ActionForm(request.POST, initial=instance, formtype=formtype, object=object, user=request.user)
         if form.is_valid():
-            action.owner = request.user
-            action.created_date = timezone.now()
-            action.type = form.cleaned_data['type']
-            if form.cleaned_data['action_end_date']:
+
+            if 'action_start_date' in form.fields:
+                action.action_start_date = form.cleaned_data['action_start_date']
+            if 'action_end_date' in form.fields and form.cleaned_data['action_end_date']:
                 action.action_end_date = form.cleaned_data['action_end_date']
             else:
-                action.action_end_date = form.cleaned_data['action_start_date']
-            action.scheduled = form.cleaned_data['scheduled']
-            action.description = form.cleaned_data['description']
-            action.used_in_equipment = form.cleaned_data['used_in_equipment']
+                action.action_end_date = action.action_start_date
+            if 'scheduled' in form.fields:
+                action.scheduled = form.cleaned_data['scheduled']
+            if 'description' in form.fields:
+                action.description = form.cleaned_data['description']
+            if 'used_in_equipment' in form.fields:
+                action.used_in_equipment = object
+            if 'used_in_action' in form.fields:
+                action.used_in_action = object
+            if 'used_in_spare_part' in form.fields:
+                action.used_in_spare_part = object
+            if 'quantity_delta' in form.fields:
+                action.quantity_delta = form.cleaned_data['quantity_delta']
+            if 'new_container' in form.fields:
+                action.new_container = Container.objects.get(pk=form.cleaned_data['new_container'])
             action.save()
+            object.set_current_container()
+
             return redirect('action_detail', pk=action.pk)
     else:
-        form = ActionForm(initial=instance, user=request.user)
+        form = ActionForm(initial=instance, formtype=formtype, object=object, user=request.user)
     return render(request, 'mechdb_core/action_edit.html', {'form': form})
