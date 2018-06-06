@@ -1,6 +1,8 @@
+{% load staticfiles %}
 <HTML>
 <HEAD>
   {% include "./counters.html" %}
+  <link rel="shortcut icon" type="image/png" href="{{STATIC_URL}}/static/img/favicon.ico"/>
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
   <style>
