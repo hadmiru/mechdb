@@ -45,11 +45,18 @@ class Equipment(models.Model):
     def __str__(self):
         return str(self.sizename.title)+" № "+str(self.serial_number)+'  ['+self.in_container.title+']'
     def get_place_on_date(self,date):
-        print('Тут будет функция поиска расположения на определённую дату')
-        last_move_action = Action.objects.filter(used_in_equipment=self, new_container__isnull=False, action_start_date__lt=date).order_by("action_start_date").last()
-        print(last_move_action)
+        last_move_action = Action.objects.filter(used_in_equipment=self, new_container__isnull=False, action_start_date__lt=date).order_by("action_end_date").last()
         if last_move_action:
             return last_move_action.new_container
+        else:
+            return False
+
+    def set_current_container(self):
+        # функция расчитывает и записывает текущее местоположение
+        last_move_action = Action.objects.filter(used_in_equipment=self, new_container__isnull=False).order_by("-action_end_date")[0]
+        if last_move_action:
+            self.in_container=last_move_action.new_container
+            self.save()
         else:
             return False
 
@@ -72,7 +79,7 @@ class Action(models.Model):
     type = models.ForeignKey(Action_type, on_delete=models.PROTECT, blank=False, null=False)
     action_start_date = models.DateTimeField(default=timezone.now, blank=False, null=False)
     action_end_date = models.DateTimeField(default=timezone.now, blank=False, null=False)
-    scheduled = models.BooleanField(default=False)
+    scheduled = models.NullBooleanField(default=None)
     description = models.TextField(blank=True, null=True)
     used_in_equipment = models.ForeignKey(Equipment, on_delete=models.CASCADE, blank=True, null=True)
     used_in_action = models.ForeignKey('self', on_delete=models.CASCADE, blank=True, null=True)

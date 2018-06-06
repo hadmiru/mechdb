@@ -17,7 +17,6 @@ class In_container_choicefield(forms.ChoiceField):
         saved_list=[]
         recycle_flag=True
         checked_pk=value
-        print(self.self_pk)
 
         if self.self_pk: #если равен нулю - не добавляем в список и новые конты проскакивают проверку
             saved_list.append(self.self_pk)
@@ -28,7 +27,6 @@ class In_container_choicefield(forms.ChoiceField):
             if checked_pk in saved_list:
                 raise forms.ValidationError("Нельзя положить контейнер сам в себя")
             saved_list.append(checked_pk)
-            print(checked_pk)
             if checked_pk>0:
                 checked_container = Container.objects.get(pk=checked_pk)
                 if checked_container.in_container:
@@ -93,6 +91,7 @@ class ActionForm(forms.Form):
 
     formtype = forms.CharField(max_length=50, widget=forms.HiddenInput())
     form_completed = forms.BooleanField(initial=True, widget=forms.HiddenInput())
+    object_pk = forms.IntegerField(required=True, widget=forms.HiddenInput())
 
     used_in_equipment = forms.ModelChoiceField(queryset=Equipment.objects.filter(owner=0), empty_label=None, required=False, label='Родительское борудование')
     used_in_action = forms.ModelChoiceField(queryset=Action.objects.filter(owner=0), empty_label=None, required=False, label='Родительское воздействие')
@@ -115,6 +114,9 @@ class ActionForm(forms.Form):
         self.fields['used_in_action'].queryset=Action.objects.filter(owner=user).order_by('action_start_date')
         self.fields['used_in_spare_part'].queryset=Spare_part.objects.filter(owner=user).order_by('created_date')
         self.fields['new_container'].choices=tree_parse(0, 'choice', user, False)
+
+        self.fields['formtype'].initial=formtype
+        self.fields['object_pk'].initial=object.pk
         # =====================
         # меняем форму в соответствии с formtype
         if 'equipment' in formtype:
@@ -143,25 +145,39 @@ class ActionForm(forms.Form):
             if 'INFO' in formtype:
                 self.label="Добавить информацию о работе оборудования"
                 self.object=object
+                self.fields['action_start_date'].label="Дата"
                 del self.fields['action_end_date']
+                del self.fields['scheduled']
+                del self.fields['new_container']
             if 'FAILURE' in formtype:
                 self.label="Добавить информацию об отказе"
                 self.object=object
+                self.fields['action_start_date'].label="Дата отказа"
                 del self.fields['action_end_date']
+                del self.fields['scheduled']
+                del self.fields['new_container']
             if 'REPAIR_EXPORT' in formtype:
                 self.label='Добавить Вывоз в ремонт оборудования'
                 self.object=object
+                self.fields['action_start_date'].label="Дата вывоза в ремонт"
                 del self.fields['action_end_date']
+                del self.fields['scheduled']
             if 'REPAIR_IMPORT' in formtype:
                 self.label='Добавить Завоз с ремонта оборудования'
                 self.object=object
+                self.fields['action_start_date'].label="Дата завоза с ремонта"
                 del self.fields['action_end_date']
+                del self.fields['scheduled']
             if formtype=='equipment,MOUNT':
                 self.label="Добавить Монтаж оборудования"
                 self.object=object
+                self.fields['action_start_date'].label="Дата монтажа"
+                del self.fields['scheduled']
             if formtype=='equipment,UNMOUNT':
                 self.label="Добавить Демонтаж оборудования"
                 self.object=object
+                self.fields['action_start_date'].label="Дата демонтажа"
+                del self.fields['scheduled']
 
 
         #if 'repair' in formtype:

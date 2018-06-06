@@ -332,50 +332,78 @@ def action_new(request):
     #Проверяем что в Post передан typeform, если нет - ставим 'edit'
     # если первая прогрузка формы - formtype передаётся из ссылки
     # если вторая прогрузка формы - formtype передаётся из одноимённого поля
-    if 'formtype' in request.POST and 'equipment_pk' in request.POST:
+
+    # блок обработки действий над оборудованием
+    if 'formtype' in request.POST and 'object_pk' in request.POST:
+        # представлению должны быть переданы тип формы и оборудование над которым будет воздействие. иначе - отказ
         formtype = request.POST['formtype']
-        allowable_formtypes = (
-                'equipment,repair,TO',
-                'equipment,repair,TR',
-                'equipment,repair,KR',
-                'equipment,repair,KTS',
-                'equipment,repair,DEFF',
-                'equipment,INFO',
-                'equipment,FAILURE',
-                'equipment,REPAIR_EXPORT',
-                'equipment,REPAIR_IMPORT',
-                'equipment,MOUNT',
-                'equipment,UNMOUNT'
-                )
+        allowable_formtypes = {
+                'equipment,repair,TO':"ТО",
+                'equipment,repair,TR':"ТР",
+                'equipment,repair,KR':"КР",
+                'equipment,repair,KTS':"КТС",
+                'equipment,repair,DEFF':"ремонт",
+                'equipment,INFO':"информация",
+                'equipment,FAILURE':"отказ",
+                'equipment,REPAIR_EXPORT':"вывоз в ремонт",
+                'equipment,REPAIR_IMPORT':"завоз с ремонта",
+                'equipment,MOUNT':"монтаж",
+                'equipment,UNMOUNT':"демонтаж"
+                }
         if not formtype in allowable_formtypes:
+            # выдаём 404 если с формтайпом что-то не то. возможно подмена запроса злобными хацкерами
+            print('Не найден formtype')
             raise Http404
-        equipment = get_object_or_404(Equipment, pk=request.POST['equipment_pk'])
+        # object может быть как оборудованием, так и spare_part (второе обрабатывается в следующем блоке)
+        object = get_object_or_404(Equipment, pk=request.POST['object_pk'])
         # Проверка что объект принадлежит юзеру
-        if not request.user==equipment.owner:
+        if not request.user==object.owner:
+            print('Не совпадает юзер')
             raise Http404
         # конец проверки
     else:
+        print('кажется нашёл')
         raise Http404
 
     if 'form_completed' in request.POST:
-        form = ActionForm(request.POST, user=request.user)
+        form = ActionForm(request.POST, user=request.user, formtype=formtype, object=object)
         if form.is_valid():
             action = Action()
             action.owner = request.user
             action.created_date = timezone.now()
-            action.type = form.cleaned_data['type']
-            action.action_start_date = form.cleaned_data['action_start_date']
-            if form.cleaned_data['action_end_date']:
+
+            action.type = Action_type.objects.get(title=allowable_formtypes[formtype])
+
+            if 'action_start_date' in form.fields:
+                action.action_start_date = form.cleaned_data['action_start_date']
+                print('Записал СТАРТ')
+                print(action.action_start_date)
+            else:
+                action.action_start_date = timezone.now()
+            if 'action_end_date' in form.fields and form.cleaned_data['action_end_date']:
                 action.action_end_date = form.cleaned_data['action_end_date']
             else:
-                action.action_end_date = form.cleaned_data['action_start_date']
-            action.scheduled = form.cleaned_data['scheduled']
-            action.description = form.cleaned_data['description']
-            action.used_in_equipment = form.cleaned_data['used_in_equipment']
+                action.action_end_date = action.action_start_date
+            if 'scheduled' in form.fields:
+                action.scheduled = form.cleaned_data['scheduled']
+            if 'description' in form.fields:
+                action.description = form.cleaned_data['description']
+            if 'used_in_equipment' in form.fields:
+                action.used_in_equipment = object
+            if 'used_in_action' in form.fields:
+                action.used_in_action = object
+            if 'used_in_spare_part' in form.fields:
+                action.used_in_spare_part = object
+            if 'quantity_delta' in form.fields:
+                action.quantity_delta = form.cleaned_data['quantity_delta']
+            if 'new_container' in form.fields:
+                action.new_container = Container.objects.get(pk=form.cleaned_data['new_container'])
             action.save()
-            return redirect('action_detail', pk=action.pk)
+            object.set_current_container()
+            
+            return redirect('equipment_detail', pk=object.pk)
     else:
-        form = ActionForm(user=request.user, formtype=formtype, object=equipment)
+        form = ActionForm(user=request.user, formtype=formtype, object=object)
     return render(request, 'mechdb_core/action_edit.html', {'form': form})
 
 def action_edit(request, pk):

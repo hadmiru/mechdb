@@ -16,7 +16,7 @@
           <form id="TO" method="post" action="{% url 'action_new' %}">
             {% csrf_token %}
             <input type="hidden" name="formtype" value="equipment,repair,TO" />
-            <input type="hidden" name="equipment_pk" value="{{equipment.pk}}" />
+            <input type="hidden" name="object_pk" value="{{equipment.pk}}" />
             <input class="dropdown-item" type="submit" value="ТО">
           </form>
           <!-- ТО конец -->
@@ -25,7 +25,7 @@
           <form id="TR" method="post" action="{% url 'action_new' %}">
             {% csrf_token %}
             <input type="hidden" name="formtype" value="equipment,repair,TR" />
-            <input type="hidden" name="equipment_pk" value="{{equipment.pk}}" />
+            <input type="hidden" name="object_pk" value="{{equipment.pk}}" />
             <input class="dropdown-item" type="submit" value="ТР">
           </form>
           <!-- ТР конец -->
@@ -34,7 +34,7 @@
           <form id="KR" method="post" action="{% url 'action_new' %}">
             {% csrf_token %}
             <input type="hidden" name="formtype" value="equipment,repair,KR" />
-            <input type="hidden" name="equipment_pk" value="{{equipment.pk}}" />
+            <input type="hidden" name="object_pk" value="{{equipment.pk}}" />
             <input class="dropdown-item" type="submit" value="КР">
           </form>
           <!-- КР конец -->
@@ -43,7 +43,7 @@
           <form id="KTS" method="post" action="{% url 'action_new' %}">
             {% csrf_token %}
             <input type="hidden" name="formtype" value="equipment,repair,KTS" />
-            <input type="hidden" name="equipment_pk" value="{{equipment.pk}}" />
+            <input type="hidden" name="object_pk" value="{{equipment.pk}}" />
             <input class="dropdown-item" type="submit" value="КТС">
           </form>
           <!-- КТС конец -->
@@ -52,7 +52,7 @@
           <form id="DEFF" method="post" action="{% url 'action_new' %}">
             {% csrf_token %}
             <input type="hidden" name="formtype" value="equipment,repair,DEFF" />
-            <input type="hidden" name="equipment_pk" value="{{equipment.pk}}" />
+            <input type="hidden" name="object_pk" value="{{equipment.pk}}" />
             <input class="dropdown-item" type="submit" value="Ремонт">
           </form>
           <!-- Ремонт конец -->
@@ -61,7 +61,7 @@
           <form id="INFO" method="post" action="{% url 'action_new' %}">
             {% csrf_token %}
             <input type="hidden" name="formtype" value="equipment,INFO" />
-            <input type="hidden" name="equipment_pk" value="{{equipment.pk}}" />
+            <input type="hidden" name="object_pk" value="{{equipment.pk}}" />
             <input class="dropdown-item" type="submit" value="Информация">
           </form>
           <!-- Информация конец -->
@@ -70,7 +70,7 @@
           <form id="FAILURE" method="post" action="{% url 'action_new' %}">
             {% csrf_token %}
             <input type="hidden" name="formtype" value="equipment,FAILURE" />
-            <input type="hidden" name="equipment_pk" value="{{equipment.pk}}" />
+            <input type="hidden" name="object_pk" value="{{equipment.pk}}" />
             <input class="dropdown-item" type="submit" value="Отказ">
           </form>
           <!-- Отказ конец -->
@@ -79,7 +79,7 @@
           <form id="REPAIR_EXPORT" method="post" action="{% url 'action_new' %}">
             {% csrf_token %}
             <input type="hidden" name="formtype" value="equipment,REPAIR_EXPORT" />
-            <input type="hidden" name="equipment_pk" value="{{equipment.pk}}" />
+            <input type="hidden" name="object_pk" value="{{equipment.pk}}" />
             <input class="dropdown-item" type="submit" value="Вывоз в ремонт">
           </form>
           <!-- Вывоз в ремонт конец -->
@@ -88,7 +88,7 @@
           <form id="REPAIR_IMPORT" method="post" action="{% url 'action_new' %}">
             {% csrf_token %}
             <input type="hidden" name="formtype" value="equipment,REPAIR_IMPORT" />
-            <input type="hidden" name="equipment_pk" value="{{equipment.pk}}" />
+            <input type="hidden" name="object_pk" value="{{equipment.pk}}" />
             <input class="dropdown-item" type="submit" value="Завоз с ремонта">
           </form>
           <!-- Завоз с ремонта конец -->
@@ -97,7 +97,7 @@
           <form id="MOUNT" method="post" action="{% url 'action_new' %}">
             {% csrf_token %}
             <input type="hidden" name="formtype" value="equipment,MOUNT" />
-            <input type="hidden" name="equipment_pk" value="{{equipment.pk}}" />
+            <input type="hidden" name="object_pk" value="{{equipment.pk}}" />
             <input class="dropdown-item" type="submit" value="Монтаж">
           </form>
           <!-- Монтаж конец -->
@@ -106,7 +106,7 @@
           <form id="UNMOUNT" method="post" action="{% url 'action_new' %}">
             {% csrf_token %}
             <input type="hidden" name="formtype" value="equipment,UNMOUNT" />
-            <input type="hidden" name="equipment_pk" value="{{equipment.pk}}" />
+            <input type="hidden" name="object_pk" value="{{equipment.pk}}" />
             <input class="dropdown-item" type="submit" value="Демонтаж">
           </form>
           <!-- Демонтаж конец -->

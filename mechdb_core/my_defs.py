@@ -66,7 +66,6 @@ def get_container_place(input_pk):
         if input_pk:
             recycle_flag=True
             parrent_container=Container.objects.get(pk=input_pk)
-            print(parrent_container)
             def_output.append((parrent_container.pk,parrent_container.title))
 
             if parrent_container.in_container:
