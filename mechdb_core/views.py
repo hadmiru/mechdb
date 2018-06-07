@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Container, Equipment, Equipment_sizename, Action, Action_type
+from .models import Container, Equipment, Equipment_sizename, Action, Action_type, Profile
 from django.utils import timezone
 from django.utils.html import escape
 from django.forms.models import model_to_dict
@@ -7,9 +7,31 @@ from .forms import ContainerForm, EquipmentForm, SizenameForm, ActionForm
 from django.shortcuts import redirect
 from .my_defs import tree_parse, get_container_place
 from django.http import Http404
+from .forms import SignUpForm
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.models import User
+
 
 
 # Create your views here.
+
+def signup(request):
+
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            user.refresh_from_db()
+            user.profile.email = form.cleaned_data.get('email')
+            user.save()
+            my_password = form.cleaned_data.get('password1')
+            user = authenticate(username=user.username, password=my_password)
+            login(request, user)
+            return redirect('containers_map')
+    else:
+        form = SignUpForm()
+    return render(request, 'mechdb_core/signup.html', {'form': form})
+
 def index_page(request):
     timezone.now
     return render(request, 'mechdb_core/under_construction.html', {})

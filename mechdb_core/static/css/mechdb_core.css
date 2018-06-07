@@ -10,15 +10,16 @@
     text-decoration: none;
 }
 
-.content {
-    margin:20 auto;
-    width:70%
+.col-centered{
+    float: none;
+    margin: 0 auto;
 }
 
-.row {
-    margin:20px auto;
-    width:100%
-}
+.content{
+    margin-top: 20px;
+    background-color: #FFFFFF;
+  }
+
 
 h1, h2, h3, h4 {
     font-family: 'Bowlby One SC', cursive;
@@ -48,11 +49,6 @@ h1, h2, h3, h4 {
     width: 80%;
 }
 
-.col-md-8 {
-  margin:0 auto;
-  width: 100%;
-}
-
 .equipmenthref,  .equipmenthref:hover, .equipmenthref:visited {
   color: #05851F;
   font-size: 10pt;
@@ -66,4 +62,16 @@ h1, h2, h3, h4 {
 }
 .dropdown-menu {
   background-color: #FFEBAD;
+}
+
+.formhelptext {
+  color: #858585;
+  font-size: 10pt;
+  margin-top:0px;
+  margin-bottom:0px;
+  line-height: 0;
+}
+
+.formerrortext {
+  color: #AC2A20;
 }

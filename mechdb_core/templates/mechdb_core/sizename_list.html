@@ -1,6 +1,10 @@
 {% extends 'mechdb_core/base.html' %}
 
 {% block content %}
+<div class="col-md-2">
+</div>
+<div class="col-md-8">
+
   <p><h3><center><a href="{% url 'sizename_new' %}">Создать новую модель оборудования</a></center></h3></p>
   <ul>
     {% for i in sizenames %}
@@ -9,4 +13,6 @@
       </li>
     {% endfor %}
   </ul>
+
+</div>
 {% endblock %}

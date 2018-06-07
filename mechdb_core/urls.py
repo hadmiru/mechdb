@@ -2,6 +2,7 @@ from django.conf.urls import url
 from . import views
 
 urlpatterns = [
+    url(r'^signup/$', views.signup, name='signup'),
     url(r'^$', views.index_page, name='index_page'),
     # === контейнеры ===
     url(r'^map/', views.containers_map, name='containers_map'),

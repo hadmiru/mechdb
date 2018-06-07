@@ -1,8 +1,14 @@
 from django import forms
-from .models import Container, Equipment, Equipment_sizename, Action, Action_type, Spare_part
+from .models import Container, Equipment, Equipment_sizename, Action, Action_type, Spare_part, Profile
 from .my_defs import tree_parse
 from django.utils import timezone
-from django.contrib.admin.widgets import AdminDateWidget
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+
+class SignUpForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'password1', 'password2')
 
 class In_container_choicefield(forms.ChoiceField):
     # Класс для проверки на зацикленность поля in_container_id объектов Container
