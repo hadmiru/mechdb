@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'mechdb_core',
+    'nocaptcha_recaptcha',
 ]
 
 MIDDLEWARE = [
@@ -120,3 +121,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+NORECAPTCHA_SITE_KEY  = '6Le7zl0UAAAAAJxRExiAjeSZSMxgqs2_g4-dNMl0'
+NORECAPTCHA_SECRET_KEY = '6Le7zl0UAAAAAHK1sbNKq6LgXEKbfuCFqHJxrvQG'
+NORECAPTCHA_VERIFY_URL = 'https://www.google.com/recaptcha/api/siteverify'
