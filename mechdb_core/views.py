@@ -8,12 +8,24 @@ from django.shortcuts import redirect
 from .my_defs import tree_parse, get_container_place
 from django.http import Http404
 from .forms import SignUpForm
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 
 
 
 # Create your views here.
+
+def signin(request):
+    if request.method == 'POST':
+        if 'name' in request.POST and 'password' in request.POST:
+            user = authenticate(username=request.POST['name'], password=request.POST['password'])
+            login(request, user)
+            return redirect('containers_map')
+    raise Http404
+
+def logout_view(request):
+    logout(request)
+    return redirect('index_page')
 
 def signup(request):
 
@@ -30,11 +42,11 @@ def signup(request):
             return redirect('containers_map')
     else:
         form = SignUpForm()
-    return render(request, 'mechdb_core/signup.html', {'form': form})
+    return render(request, 'mechdb_core/signup.html', {'current_user':request.user, 'authorization_hide':True ,'form': form})
 
 def index_page(request):
     timezone.now
-    return render(request, 'mechdb_core/under_construction.html', {})
+    return render(request, 'mechdb_core/under_construction.html', {'current_user':request.user})
 
 def containers_map(request):
     timezone.now
@@ -45,7 +57,7 @@ def containers_map(request):
         containers_output=tree_parse(0, request.POST, request.user)
     else:
         containers_output=tree_parse(0, 'li', request.user)
-    return render(request, 'mechdb_core/containers_map.html', {'containers': containers_output})
+    return render(request, 'mechdb_core/containers_map.html', {'current_user':request.user, 'containers': containers_output})
 
 def container_detail(request, pk):
     timezone.now
@@ -61,6 +73,7 @@ def container_detail(request, pk):
 
     content=tree_parse(pk,'li equipment',request.user)
     return render(request, 'mechdb_core/container_detail.html', {
+                                                                'current_user':request.user,
                                                                 'container':container,
                                                                 'content':content
                                                                 })
@@ -90,7 +103,7 @@ def container_new(request):
             return redirect('container_detail', pk=container.pk)
     else:
         form = ContainerForm(user=request.user, self_pk=0)
-    return render(request, 'mechdb_core/container_edit.html', {'form': form})
+    return render(request, 'mechdb_core/container_edit.html', {'current_user':request.user, 'form': form})
 
 def container_edit(request, pk):
     timezone.now
@@ -123,7 +136,7 @@ def container_edit(request, pk):
             return redirect('container_detail', pk=container.pk)
     else:
         form = ContainerForm(initial=instance, user=request.user, self_pk=container.pk)
-    return render(request, 'mechdb_core/container_edit.html', {'form': form})
+    return render(request, 'mechdb_core/container_edit.html', {'current_user':request.user, 'form': form})
 
 def equipment_list(request):
     timezone.now
@@ -131,7 +144,7 @@ def equipment_list(request):
         return redirect('index_page')
 
     equipments = Equipment.objects.filter(owner=request.user).order_by('sizename')
-    return render(request, 'mechdb_core/equipment_list.html', {'equipments':equipments})
+    return render(request, 'mechdb_core/equipment_list.html', {'current_user':request.user, 'equipments':equipments})
 
 def equipment_detail(request, pk):
     timezone.now
@@ -147,7 +160,7 @@ def equipment_detail(request, pk):
 
     place = get_container_place(equipment.in_container.pk)
     actions = Action.objects.filter(owner=request.user, used_in_equipment=equipment).order_by('-action_start_date')
-    return render(request, 'mechdb_core/equipment_detail.html', {'equipment':equipment,'place':place, 'actions':actions})
+    return render(request, 'mechdb_core/equipment_detail.html', {'current_user':request.user, 'equipment':equipment,'place':place, 'actions':actions})
 
 def equipment_remove(request, pk):
     timezone.now
@@ -165,7 +178,7 @@ def equipment_remove(request, pk):
         if equipment.owner == request.user:
             equipment.delete()
         return redirect('equipment_list')
-    return render(request, 'mechdb_core/equipment_remove.html', {'equipment':equipment})
+    return render(request, 'mechdb_core/equipment_remove.html', {'current_user':request.user, 'equipment':equipment})
 
 def equipment_new(request):
     timezone.now
@@ -198,7 +211,7 @@ def equipment_new(request):
             return redirect('equipment_detail', pk=equipment.pk)
     else:
         form = EquipmentForm(user=request.user, formtype='new')
-    return render(request, 'mechdb_core/equipment_edit.html', {'form': form})
+    return render(request, 'mechdb_core/equipment_edit.html', {'current_user':request.user, 'form': form})
 
 def equipment_edit(request, pk):
     timezone.now
@@ -258,7 +271,7 @@ def equipment_edit(request, pk):
     else:
 
         form = EquipmentForm(user=request.user, initial=instance, formtype=formtype)
-    return render(request, 'mechdb_core/equipment_edit.html', {'form': form, 'equipment':equipment})
+    return render(request, 'mechdb_core/equipment_edit.html', {'current_user':request.user, 'form': form, 'equipment':equipment})
 
 def sizename_list(request):
     timezone.now
@@ -266,7 +279,7 @@ def sizename_list(request):
         return redirect('index_page')
 
     sizenames = Equipment_sizename.objects.filter(owner=request.user).order_by('title')
-    return render(request, 'mechdb_core/sizename_list.html', {'sizenames':sizenames})
+    return render(request, 'mechdb_core/sizename_list.html', {'current_user':request.user, 'sizenames':sizenames})
 
 def sizename_detail(request, pk):
     timezone.now
@@ -284,7 +297,7 @@ def sizename_detail(request, pk):
     slaves_list=[]
     for slave in slave_equipments:
         slaves_list.append((slave.pk, slave.serial_number,get_container_place(slave.in_container.pk)))
-    return render(request, 'mechdb_core/sizename_detail.html', {'sizename':sizename, 'slaves_list':slaves_list})
+    return render(request, 'mechdb_core/sizename_detail.html', {'current_user':request.user, 'sizename':sizename, 'slaves_list':slaves_list})
 
 def sizename_new(request):
     timezone.now
@@ -301,7 +314,7 @@ def sizename_new(request):
             return redirect('sizename_detail', pk=sizename.pk)
     else:
         form = SizenameForm()
-    return render(request, 'mechdb_core/sizename_edit.html', {'form': form})
+    return render(request, 'mechdb_core/sizename_edit.html', {'current_user':request.user, 'form': form})
 
 def sizename_edit(request, pk):
     timezone.now
@@ -324,7 +337,7 @@ def sizename_edit(request, pk):
             return redirect('sizename_detail', pk=sizename.pk)
     else:
         form = SizenameForm(instance=sizename)
-    return render(request, 'mechdb_core/sizename_edit.html', {'form': form})
+    return render(request, 'mechdb_core/sizename_edit.html', {'current_user':request.user, 'form': form})
 
 def action_list(request):
     timezone.now
@@ -332,7 +345,7 @@ def action_list(request):
         return redirect('index_page')
 
     actions = Action.objects.filter(owner=request.user).order_by('-action_start_date')
-    return render(request, 'mechdb_core/action_list.html', {'actions':actions})
+    return render(request, 'mechdb_core/action_list.html', {'current_user':request.user, 'actions':actions})
 
 def action_detail(request, pk):
     timezone.now
@@ -346,7 +359,7 @@ def action_detail(request, pk):
         raise Http404
     # конец проверки
 
-    return render(request, 'mechdb_core/action_detail.html', {'action':action})
+    return render(request, 'mechdb_core/action_detail.html', {'current_user':request.user, 'action':action})
 
 def action_new(request):
     timezone.now
@@ -424,7 +437,7 @@ def action_new(request):
             return redirect('equipment_detail', pk=object.pk)
     else:
         form = ActionForm(user=request.user, formtype=formtype, object=object)
-    return render(request, 'mechdb_core/action_edit.html', {'form': form})
+    return render(request, 'mechdb_core/action_edit.html', {'current_user':request.user, 'form': form})
 
 def action_edit(request, pk):
     timezone.now
@@ -499,4 +512,4 @@ def action_edit(request, pk):
             return redirect('action_detail', pk=action.pk)
     else:
         form = ActionForm(initial=instance, formtype=formtype, object=object, user=request.user)
-    return render(request, 'mechdb_core/action_edit.html', {'form': form})
+    return render(request, 'mechdb_core/action_edit.html', {'current_user':request.user, 'form': form})

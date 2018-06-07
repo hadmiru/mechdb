@@ -1,3 +1,18 @@
+/* ФОРМА РЕГИСТРАЦИИ*/
+#id_username{
+  width:100%;
+}
+#id_email{
+  width:100%;
+}
+#id_password1{
+  width:100%;
+}
+#id_password2{
+  width:100%;
+}
+/* ФОРМА РЕГИСТРАЦИИ*/
+
 .page-header {
     background-color: #ff9400;
     min-width: 1140px;
@@ -85,6 +100,7 @@
 
 .login-submit:hover{
 	color:#fff;
+  background:#D65A00;
 }
 
 .login-icon{
@@ -96,6 +112,11 @@
   text-align:right;
   margin-top:7px;
   margin-right:10px;
+}
+
+#login-forgotpass-href{
+  font-size: 8pt;
+  color: #3D3D3D
 }
 
 /*endloginform*/
@@ -124,6 +145,10 @@ h1, h2, h3, h4 {
 .save {
     float: right;
     background:#FF6B00;
+}
+
+.save:hover {
+    background:#D65A00;
 }
 
 .post-form textarea, .post-form input {
