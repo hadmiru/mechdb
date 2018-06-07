@@ -116,7 +116,15 @@
 
 #login-forgotpass-href{
   font-size: 8pt;
-  color: #3D3D3D
+  color: #3D3D3D;
+}
+
+#login-error-message{
+  font-size: 10pt;
+  margin-top:0px;
+  margin-bottom:5px;
+  color: #B2130A;
+  text-align:center;
 }
 
 /*endloginform*/
@@ -128,6 +136,7 @@
 
 .content{
     padding: 20px;
+    padding-bottom: 70px;
     background-color: #FFFFFF;
   }
 
@@ -194,9 +203,16 @@ h1, h2, h3, h4 {
 
 .formerrortext {
   color: #AC2A20;
+  margin-top:10px;
 }
 
 .footer {
   background-color: #ff9400;
-  min-height: 50px;
+  height: 65px;
+}
+
+#footer-text {
+  font-size:8pt;
+  padding:10px;
+  text-align: center;
 }

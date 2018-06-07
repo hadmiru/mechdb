@@ -11,16 +11,23 @@ from .forms import SignUpForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 
-
-
 # Create your views here.
 
 def signin(request):
     if request.method == 'POST':
         if 'name' in request.POST and 'password' in request.POST:
             user = authenticate(username=request.POST['name'], password=request.POST['password'])
+            if not user:
+                # логин или пароль не верные
+                error_message = 'Введённые логин или пароль не верны<br>Попробуйте ещё раз'
+                return render(request, 'mechdb_core/signin.html', {
+                                                            'current_user':request.user,
+                                                            'authorization_hide':True,
+                                                            'error_message':error_message}
+                                                            )
             login(request, user)
             return redirect('containers_map')
+
     raise Http404
 
 def logout_view(request):
@@ -46,7 +53,12 @@ def signup(request):
 
 def index_page(request):
     timezone.now
-    return render(request, 'mechdb_core/under_construction.html', {'current_user':request.user})
+    if not request.user.is_authenticated:
+        # Если не пользователь не авторизован - отправляем на главную страницу
+        return render(request, 'mechdb_core/under_construction.html', {'current_user':request.user})
+    else:
+        # Если пользователь авторизован - перенаправляем на containers_map
+        return redirect('containers_map')
 
 def containers_map(request):
     timezone.now

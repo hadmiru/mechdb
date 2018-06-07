@@ -1,4 +1,5 @@
 
+{% if current_user.username %}
 <a class="btn btn-primary" href="{% url 'containers_map' %}" role="button">Карта</a>
 <div class="btn-group">
   <button type="button" class="btn btn-danger">Просмотр</button>
@@ -24,3 +25,8 @@
     <a class="dropdown-item" href="{% url 'sizename_new' %}">Новая модель оборудования</a>
   </div>
 </div>
+{% else %}
+<a class="btn btn-primary" href="{% url 'index_page' %}" role="button">Главная</a>
+<a class="btn btn-danger" href="{% url 'signup' %}" role="button">Регистрация</a>
+{% endif %}
+<a class="btn btn-danger" href="#" role="button">Инструкция</a>

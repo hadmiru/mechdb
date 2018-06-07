@@ -9,6 +9,14 @@ class SignUpForm(UserCreationForm):
     class Meta:
         model = User
         fields = ('username', 'email', 'password1', 'password2')
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        username = self.cleaned_data.get('username')
+        if email and User.objects.filter(email=email).exclude(username=username).exists():
+            raise forms.ValidationError(u'Пользователь с таким email уже зарегистрирован')
+        if not email:
+            raise forms.ValidationError(u'Поле email является обязательным')
+        return email
 
 class In_container_choicefield(forms.ChoiceField):
     # Класс для проверки на зацикленность поля in_container_id объектов Container
