@@ -19,10 +19,6 @@ def new_user(sender, instance, created, **kwargs):
 
 class Action_type(models.Model):
     title = models.CharField(max_length=20, blank=False, null=False)
-    used_in_actions = models.BooleanField(default=True, blank=False, null=False)
-    used_in_movement_actions = models.BooleanField(default=True, blank=False, null=False)
-    used_in_equipments = models.BooleanField(default=True, blank=False, null=False)
-    used_in_spare_parts = models.BooleanField(default=True, blank=False, null=False)
     only_repair_containers = models.BooleanField(default=False, blank=False, null=False)
 
     def __str__(self):
