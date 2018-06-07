@@ -1,5 +1,6 @@
 .page-header {
     background-color: #ff9400;
+    min-width: 1140px;
     margin-top: 0;
     padding: 20px 20px 20px 40px;
 }
@@ -10,15 +11,106 @@
     text-decoration: none;
 }
 
+
+
+/*loginform*/
+.title-block {
+  width:810px;
+  height:98px;
+  margin-left:0px;
+}
+
+
+.login-window {
+    background-color: #FFB857;
+    width: 270px;
+    height: 98px;
+    padding:0;
+    border:0px;
+    border-radius:5px;
+
+}
+
+#loginformblock{
+	margin:0 auto;
+  width:250px;
+  height: 98px;
+}
+
+.login-input{
+  margin-left:0px;
+  width:205px;
+  height: 25px;
+  border:0px;
+  padding:5px;
+  border-radius:0 5px 5px 0;
+
+}
+
+.password-input{
+  margin-left:0px;
+  width:160px;
+  height: 25px;
+  border:0px;
+  padding:5px;
+  border-radius:0;
+
+}
+
+.login-label{
+  background:#ff9400;
+  margin-top: 10px;
+  margin-bottom: 0px;
+  margin-left:10px;
+  width:25px;
+  height: 25px;
+  border:0px;
+  padding:0px;
+  text-shadow:0 -1px 0 #666;
+  border-radius:5px 0 0 5px;
+
+}
+
+.login-submit{
+  width: 45px;
+  height: 25px;
+  margin-left:0;
+  margin-top:10px;
+  position:absolute;
+  padding: 0;
+	border:0;
+  border-radius:0 5px 5px 0;
+	background:#FF6B00;
+}
+
+.login-submit:hover{
+	color:#fff;
+}
+
+.login-icon{
+  margin: 5px 6px;
+}
+
+#login-forgotpass{
+  font-size: 8pt;
+  text-align:right;
+  margin-top:7px;
+  margin-right:10px;
+}
+
+/*endloginform*/
+
 .col-centered{
     float: none;
     margin: 0 auto;
 }
 
 .content{
-    margin-top: 20px;
+    padding: 20px;
     background-color: #FFFFFF;
   }
+
+
 
 
 h1, h2, h3, h4 {
@@ -31,6 +123,7 @@ h1, h2, h3, h4 {
 
 .save {
     float: right;
+    background:#FF6B00;
 }
 
 .post-form textarea, .post-form input {
@@ -41,8 +134,10 @@ h1, h2, h3, h4 {
     color: #ffffff;
     font-size: 26pt;
     margin:0 auto;
-    width:380px;
+    min-width:450px;
 }
+
+
 
 .formsdiv {
     margin:20px auto;
@@ -74,4 +169,9 @@ h1, h2, h3, h4 {
 
 .formerrortext {
   color: #AC2A20;
+}
+
+.footer {
+  background-color: #ff9400;
+  min-height: 50px;
 }
