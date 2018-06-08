@@ -1,0 +1,3015 @@
+[
+{
+  "model": "auth.permission",
+  "pk": 1,
+  "fields": {
+    "name": "Can add log entry",
+    "content_type": 1,
+    "codename": "add_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 2,
+  "fields": {
+    "name": "Can change log entry",
+    "content_type": 1,
+    "codename": "change_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 3,
+  "fields": {
+    "name": "Can delete log entry",
+    "content_type": 1,
+    "codename": "delete_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 4,
+  "fields": {
+    "name": "Can add permission",
+    "content_type": 2,
+    "codename": "add_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 5,
+  "fields": {
+    "name": "Can change permission",
+    "content_type": 2,
+    "codename": "change_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 6,
+  "fields": {
+    "name": "Can delete permission",
+    "content_type": 2,
+    "codename": "delete_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 7,
+  "fields": {
+    "name": "Can add group",
+    "content_type": 3,
+    "codename": "add_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 8,
+  "fields": {
+    "name": "Can change group",
+    "content_type": 3,
+    "codename": "change_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 9,
+  "fields": {
+    "name": "Can delete group",
+    "content_type": 3,
+    "codename": "delete_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 10,
+  "fields": {
+    "name": "Can add user",
+    "content_type": 4,
+    "codename": "add_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 11,
+  "fields": {
+    "name": "Can change user",
+    "content_type": 4,
+    "codename": "change_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 12,
+  "fields": {
+    "name": "Can delete user",
+    "content_type": 4,
+    "codename": "delete_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 13,
+  "fields": {
+    "name": "Can add content type",
+    "content_type": 5,
+    "codename": "add_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 14,
+  "fields": {
+    "name": "Can change content type",
+    "content_type": 5,
+    "codename": "change_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 15,
+  "fields": {
+    "name": "Can delete content type",
+    "content_type": 5,
+    "codename": "delete_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 16,
+  "fields": {
+    "name": "Can add session",
+    "content_type": 6,
+    "codename": "add_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 17,
+  "fields": {
+    "name": "Can change session",
+    "content_type": 6,
+    "codename": "change_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 18,
+  "fields": {
+    "name": "Can delete session",
+    "content_type": 6,
+    "codename": "delete_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 19,
+  "fields": {
+    "name": "Can add movement_action",
+    "content_type": 7,
+    "codename": "add_movement_action"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 20,
+  "fields": {
+    "name": "Can change movement_action",
+    "content_type": 7,
+    "codename": "change_movement_action"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 21,
+  "fields": {
+    "name": "Can delete movement_action",
+    "content_type": 7,
+    "codename": "delete_movement_action"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 22,
+  "fields": {
+    "name": "Can add equipment_sizename",
+    "content_type": 8,
+    "codename": "add_equipment_sizename"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 23,
+  "fields": {
+    "name": "Can change equipment_sizename",
+    "content_type": 8,
+    "codename": "change_equipment_sizename"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 24,
+  "fields": {
+    "name": "Can delete equipment_sizename",
+    "content_type": 8,
+    "codename": "delete_equipment_sizename"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 25,
+  "fields": {
+    "name": "Can add action",
+    "content_type": 9,
+    "codename": "add_action"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 26,
+  "fields": {
+    "name": "Can change action",
+    "content_type": 9,
+    "codename": "change_action"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 27,
+  "fields": {
+    "name": "Can delete action",
+    "content_type": 9,
+    "codename": "delete_action"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 28,
+  "fields": {
+    "name": "Can add container",
+    "content_type": 10,
+    "codename": "add_container"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 29,
+  "fields": {
+    "name": "Can change container",
+    "content_type": 10,
+    "codename": "change_container"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 30,
+  "fields": {
+    "name": "Can delete container",
+    "content_type": 10,
+    "codename": "delete_container"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 31,
+  "fields": {
+    "name": "Can add manufacturer",
+    "content_type": 11,
+    "codename": "add_manufacturer"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 32,
+  "fields": {
+    "name": "Can change manufacturer",
+    "content_type": 11,
+    "codename": "change_manufacturer"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 33,
+  "fields": {
+    "name": "Can delete manufacturer",
+    "content_type": 11,
+    "codename": "delete_manufacturer"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 34,
+  "fields": {
+    "name": "Can add action_type",
+    "content_type": 12,
+    "codename": "add_action_type"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 35,
+  "fields": {
+    "name": "Can change action_type",
+    "content_type": 12,
+    "codename": "change_action_type"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 36,
+  "fields": {
+    "name": "Can delete action_type",
+    "content_type": 12,
+    "codename": "delete_action_type"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 37,
+  "fields": {
+    "name": "Can add equipment",
+    "content_type": 13,
+    "codename": "add_equipment"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 38,
+  "fields": {
+    "name": "Can change equipment",
+    "content_type": 13,
+    "codename": "change_equipment"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 39,
+  "fields": {
+    "name": "Can delete equipment",
+    "content_type": 13,
+    "codename": "delete_equipment"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 40,
+  "fields": {
+    "name": "Can add spare_part",
+    "content_type": 14,
+    "codename": "add_spare_part"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 41,
+  "fields": {
+    "name": "Can change spare_part",
+    "content_type": 14,
+    "codename": "change_spare_part"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 42,
+  "fields": {
+    "name": "Can delete spare_part",
+    "content_type": 14,
+    "codename": "delete_spare_part"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 43,
+  "fields": {
+    "name": "Can add supply_provider",
+    "content_type": 15,
+    "codename": "add_supply_provider"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 44,
+  "fields": {
+    "name": "Can change supply_provider",
+    "content_type": 15,
+    "codename": "change_supply_provider"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 45,
+  "fields": {
+    "name": "Can delete supply_provider",
+    "content_type": 15,
+    "codename": "delete_supply_provider"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 46,
+  "fields": {
+    "name": "Can add profile",
+    "content_type": 16,
+    "codename": "add_profile"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 47,
+  "fields": {
+    "name": "Can change profile",
+    "content_type": 16,
+    "codename": "change_profile"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 48,
+  "fields": {
+    "name": "Can delete profile",
+    "content_type": 16,
+    "codename": "delete_profile"
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$100000$lehSVpWnv4sw$7FAOtiH+br/v1dsu85SbX6LxHznMxiKeOtP+AfiHbLM=",
+    "last_login": "2018-05-27T18:51:09.976Z",
+    "is_superuser": true,
+    "username": "hadmi",
+    "first_name": "",
+    "last_name": "",
+    "email": "roman.ostanin@gmail.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2018-05-26T19:44:57.795Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$100000$5pYUOMGxwpuK$k/qBohZOnUIFWECbfO1QZQheAFo2h1dLUCpry7PSguk=",
+    "last_login": "2018-06-08T00:22:15.604Z",
+    "is_superuser": true,
+    "username": "OstaninRS",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2018-05-28T08:11:43Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$100000$xShp7AUd4K2P$uKXrl8Vs0Trw3A0AT8HNKMT9eoTpl1QzLzfCQiSLJNo=",
+    "last_login": "2018-06-01T22:52:58.826Z",
+    "is_superuser": true,
+    "username": "another_user",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2018-06-01T22:52:28Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "7l4c5dwxol0mo539d9qxrgq48bfjuaiy",
+  "fields": {
+    "session_data": "MmMzMTgxM2NjYTZlZTJiZWE0ZTQyNTA1MjVjZTE3MGZhYjE5Njk2Mjp7Il9hdXRoX3VzZXJfaWQiOiIyIiwiX2F1dGhfdXNlcl9oYXNoIjoiNTY2ZmNiZjgxMDZiNjcwOWU5Y2U2ODA1NWNkOGRjN2E4MDFmNjZjNCIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIn0=",
+    "expire_date": "2018-06-16T20:25:05.557Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "bjerifnt0cnhcvhza8cckjjhb4tdyhkf",
+  "fields": {
+    "session_data": "Yjc3MDI2YWQxZDFkYWI4ZDIxMzJhYjI2NTE0M2Y1ZDA0YTZiNGQzMDp7fQ==",
+    "expire_date": "2018-06-21T20:15:11.638Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "h3xji5nu7bm29j0jccs21r3b230e33lc",
+  "fields": {
+    "session_data": "ZjhmNDJjMTUyM2Y1YTBiYzMxNjc2ZTMzOWVhMTQ1OWFjZDJhNjE4NDp7Il9hdXRoX3VzZXJfaGFzaCI6IjU2NmZjYmY4MTA2YjY3MDllOWNlNjgwNTVjZDhkYzdhODAxZjY2YzQiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIyIn0=",
+    "expire_date": "2018-06-22T00:22:15.870Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "khe91uoegsxqs6nnnuwvrn81sy4qgety",
+  "fields": {
+    "session_data": "Yjc3MDI2YWQxZDFkYWI4ZDIxMzJhYjI2NTE0M2Y1ZDA0YTZiNGQzMDp7fQ==",
+    "expire_date": "2018-06-21T00:25:16.922Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "tehykl1uzsxciz86l2vpff7j1zfcmgst",
+  "fields": {
+    "session_data": "Yjc3MDI2YWQxZDFkYWI4ZDIxMzJhYjI2NTE0M2Y1ZDA0YTZiNGQzMDp7fQ==",
+    "expire_date": "2018-06-21T00:25:43.853Z"
+  }
+},
+{
+  "model": "mechdb_core.profile",
+  "pk": 5,
+  "fields": {
+    "user": 2
+  }
+},
+{
+  "model": "mechdb_core.profile",
+  "pk": 6,
+  "fields": {
+    "user": 1
+  }
+},
+{
+  "model": "mechdb_core.profile",
+  "pk": 7,
+  "fields": {
+    "user": 3
+  }
+},
+{
+  "model": "mechdb_core.action_type",
+  "pk": 1,
+  "fields": {
+    "title": "\u0422\u041e",
+    "only_repair_containers": false
+  }
+},
+{
+  "model": "mechdb_core.action_type",
+  "pk": 2,
+  "fields": {
+    "title": "\u0422\u0420",
+    "only_repair_containers": false
+  }
+},
+{
+  "model": "mechdb_core.action_type",
+  "pk": 3,
+  "fields": {
+    "title": "\u041a\u0420",
+    "only_repair_containers": false
+  }
+},
+{
+  "model": "mechdb_core.action_type",
+  "pk": 4,
+  "fields": {
+    "title": "\u041a\u0422\u0421",
+    "only_repair_containers": false
+  }
+},
+{
+  "model": "mechdb_core.action_type",
+  "pk": 5,
+  "fields": {
+    "title": "\u0432\u044b\u0432\u043e\u0437 \u0432 \u0440\u0435\u043c\u043e\u043d\u0442",
+    "only_repair_containers": false
+  }
+},
+{
+  "model": "mechdb_core.action_type",
+  "pk": 6,
+  "fields": {
+    "title": "\u0437\u0430\u0432\u043e\u0437 \u0441 \u0440\u0435\u043c\u043e\u043d\u0442\u0430",
+    "only_repair_containers": false
+  }
+},
+{
+  "model": "mechdb_core.action_type",
+  "pk": 7,
+  "fields": {
+    "title": "\u043c\u043e\u043d\u0442\u0430\u0436",
+    "only_repair_containers": false
+  }
+},
+{
+  "model": "mechdb_core.action_type",
+  "pk": 8,
+  "fields": {
+    "title": "\u0434\u0435\u043c\u043e\u043d\u0442\u0430\u0436",
+    "only_repair_containers": false
+  }
+},
+{
+  "model": "mechdb_core.action_type",
+  "pk": 9,
+  "fields": {
+    "title": "\u043e\u0442\u043a\u0430\u0437",
+    "only_repair_containers": false
+  }
+},
+{
+  "model": "mechdb_core.action_type",
+  "pk": 10,
+  "fields": {
+    "title": "\u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u044f",
+    "only_repair_containers": false
+  }
+},
+{
+  "model": "mechdb_core.action_type",
+  "pk": 11,
+  "fields": {
+    "title": "\u043f\u0435\u0440\u0435\u043c\u0435\u0449\u0435\u043d\u0438\u0435",
+    "only_repair_containers": false
+  }
+},
+{
+  "model": "mechdb_core.action_type",
+  "pk": 12,
+  "fields": {
+    "title": "\u0440\u0435\u043c\u043e\u043d\u0442",
+    "only_repair_containers": false
+  }
+},
+{
+  "model": "mechdb_core.container",
+  "pk": 1,
+  "fields": {
+    "owner": 1,
+    "created_date": "2018-05-26T20:04:31Z",
+    "title": "\u0423\u041f\u041d \"\u0412. \u041b\u0430\u043c\u0431\u0435\u0439\u0448\u043e\u0440\"",
+    "description": "",
+    "is_repair_organization": false,
+    "in_container": null
+  }
+},
+{
+  "model": "mechdb_core.container",
+  "pk": 2,
+  "fields": {
+    "owner": 1,
+    "created_date": "2018-05-26T20:06:59Z",
+    "title": "\u041d\u041f\u0421-2",
+    "description": "",
+    "is_repair_organization": false,
+    "in_container": null
+  }
+},
+{
+  "model": "mechdb_core.container",
+  "pk": 3,
+  "fields": {
+    "owner": 1,
+    "created_date": "2018-05-26T20:16:57Z",
+    "title": "510\u041d 2/1",
+    "description": "",
+    "is_repair_organization": false,
+    "in_container": null
+  }
+},
+{
+  "model": "mechdb_core.container",
+  "pk": 4,
+  "fields": {
+    "owner": 1,
+    "created_date": "2018-05-26T20:17:54Z",
+    "title": "510\u041d 2/2",
+    "description": "",
+    "is_repair_organization": false,
+    "in_container": null
+  }
+},
+{
+  "model": "mechdb_core.container",
+  "pk": 5,
+  "fields": {
+    "owner": 1,
+    "created_date": "2018-05-26T20:18:11Z",
+    "title": "510\u041d 2/3",
+    "description": "",
+    "is_repair_organization": false,
+    "in_container": null
+  }
+},
+{
+  "model": "mechdb_core.container",
+  "pk": 6,
+  "fields": {
+    "owner": 2,
+    "created_date": "2018-05-30T20:50:32Z",
+    "title": "\u0423\u041f\u041d \"\u0412. \u041b\u0430\u043c\u0431\u0435\u0439\u0448\u043e\u0440\"",
+    "description": "",
+    "is_repair_organization": false,
+    "in_container": null
+  }
+},
+{
+  "model": "mechdb_core.container",
+  "pk": 7,
+  "fields": {
+    "owner": 2,
+    "created_date": "2018-05-28T08:15:56Z",
+    "title": "\u041d\u041f\u041e-\u0421\u0435\u0440\u0432\u0438\u0441",
+    "description": "",
+    "is_repair_organization": true,
+    "in_container": null
+  }
+},
+{
+  "model": "mechdb_core.container",
+  "pk": 8,
+  "fields": {
+    "owner": 2,
+    "created_date": "2018-05-28T08:16:26Z",
+    "title": "\u0426\u0420\u0411\u0438\u041d\u041e",
+    "description": "",
+    "is_repair_organization": true,
+    "in_container": 7
+  }
+},
+{
+  "model": "mechdb_core.container",
+  "pk": 9,
+  "fields": {
+    "owner": 2,
+    "created_date": "2018-05-28T08:16:44Z",
+    "title": "\u041c\u0421\u0426",
+    "description": "",
+    "is_repair_organization": true,
+    "in_container": 7
+  }
+},
+{
+  "model": "mechdb_core.container",
+  "pk": 10,
+  "fields": {
+    "owner": 2,
+    "created_date": "2018-05-28T08:17:07Z",
+    "title": "\u041d\u041f\u0421-1",
+    "description": "",
+    "is_repair_organization": false,
+    "in_container": 6
+  }
+},
+{
+  "model": "mechdb_core.container",
+  "pk": 11,
+  "fields": {
+    "owner": 2,
+    "created_date": "2018-05-28T08:18:35Z",
+    "title": "510\u041d 1/1",
+    "description": "",
+    "is_repair_organization": false,
+    "in_container": 10
+  }
+},
+{
+  "model": "mechdb_core.container",
+  "pk": 12,
+  "fields": {
+    "owner": 2,
+    "created_date": "2018-05-28T08:18:47Z",
+    "title": "510\u041d 1/2",
+    "description": "",
+    "is_repair_organization": false,
+    "in_container": 10
+  }
+},
+{
+  "model": "mechdb_core.container",
+  "pk": 13,
+  "fields": {
+    "owner": 2,
+    "created_date": "2018-05-28T08:19:02Z",
+    "title": "510\u041d 1/3",
+    "description": "",
+    "is_repair_organization": false,
+    "in_container": 10
+  }
+},
+{
+  "model": "mechdb_core.container",
+  "pk": 15,
+  "fields": {
+    "owner": 2,
+    "created_date": "2018-05-30T20:52:31.161Z",
+    "title": "\u041d\u041f\u0421-2",
+    "description": "\u041e\u043f\u0438\u0441\u0430\u043d\u0438\u0435 \u043a\u043e\u043d\u0442\u0435\u0439\u043d\u0435\u0440\u0430 \u041d\u041f\u0421-2 \u0445\u0435\u0445\u0435\u0445\u0435",
+    "is_repair_organization": false,
+    "in_container": 6
+  }
+},
+{
+  "model": "mechdb_core.container",
+  "pk": 16,
+  "fields": {
+    "owner": 2,
+    "created_date": "2018-05-28T21:43:01Z",
+    "title": "510\u041d 2/1",
+    "description": "",
+    "is_repair_organization": false,
+    "in_container": 15
+  }
+},
+{
+  "model": "mechdb_core.container",
+  "pk": 17,
+  "fields": {
+    "owner": 2,
+    "created_date": "2018-05-28T21:43:14Z",
+    "title": "510\u041d 2/2",
+    "description": "",
+    "is_repair_organization": false,
+    "in_container": 15
+  }
+},
+{
+  "model": "mechdb_core.container",
+  "pk": 18,
+  "fields": {
+    "owner": 2,
+    "created_date": "2018-05-28T21:43:22Z",
+    "title": "510\u041d 2/3",
+    "description": "",
+    "is_repair_organization": false,
+    "in_container": 15
+  }
+},
+{
+  "model": "mechdb_core.container",
+  "pk": 19,
+  "fields": {
+    "owner": 2,
+    "created_date": "2018-05-30T22:10:50.282Z",
+    "title": "\u0422\u0435\u0441\u0442\u043e\u0432\u044b\u0439 \u043a\u043e\u043d\u0442\u0435\u0439\u043d\u0435\u0440 (\u043f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u0440\u0435\u0434\u0430\u043a\u0442)",
+    "description": "\u041e\u043d \u0434\u043e\u043b\u0436\u0435\u043d \u0431\u044b\u0442\u044c \u0440\u0435\u043c\u043e\u043d\u0442\u043d\u044b\u043c \u0438 \u043d\u0430\u0445\u043e\u0434\u0438\u0442\u0441\u044f \u0432 \u041d\u041f\u0421-2\r\n\u041e\u0442\u0440\u0435\u0434\u0430\u043a\u0442\u0438\u0440\u043e\u0432\u0430\u043d\u043e\r\n\u0414\u043e\u043b\u0436\u0435\u043d \u043f\u0435\u0440\u0435\u0441\u0442\u0430\u0442\u044c \u0431\u044b\u0442\u044c \u0440\u0435\u043c\u043e\u043d\u0442\u043d\u044b\u043c",
+    "is_repair_organization": false,
+    "in_container": 6
+  }
+},
+{
+  "model": "mechdb_core.container",
+  "pk": 20,
+  "fields": {
+    "owner": 2,
+    "created_date": "2018-05-30T19:31:32.700Z",
+    "title": "\u0422\u0435\u0441\u0442\u043e\u0432\u044b\u0439 \u043a\u043e\u043d\u0442 2",
+    "description": "\u0431\u043b\u0430\u0431\u043b\u04302",
+    "is_repair_organization": false,
+    "in_container": 6
+  }
+},
+{
+  "model": "mechdb_core.container",
+  "pk": 21,
+  "fields": {
+    "owner": 3,
+    "created_date": "2018-06-01T22:53:11Z",
+    "title": "### \u041d\u0415\u0412\u0418\u0414\u0418\u041c\u042b\u0419 \u041a\u041e\u041d\u0422\u0415\u0419\u041d\u0415\u0420 ###",
+    "description": "",
+    "is_repair_organization": false,
+    "in_container": null
+  }
+},
+{
+  "model": "mechdb_core.container",
+  "pk": 22,
+  "fields": {
+    "owner": 3,
+    "created_date": "2018-06-01T22:54:06Z",
+    "title": "### \u041d\u0415\u0412\u0418\u0414\u0418\u041c\u0410\u042f \u0420\u0415\u041c \u041e\u0420\u0413\u0410\u041d\u0418\u0417\u0410\u0426\u0418\u042f ###",
+    "description": "",
+    "is_repair_organization": true,
+    "in_container": null
+  }
+},
+{
+  "model": "mechdb_core.container",
+  "pk": 23,
+  "fields": {
+    "owner": 3,
+    "created_date": "2018-06-01T22:54:33Z",
+    "title": "### \u041d\u0415\u0412\u0418\u0414\u0418\u041c\u041e\u0415 \u0422\u0415\u0425\u041c\u0415\u0421\u0422\u041e ###",
+    "description": "",
+    "is_repair_organization": false,
+    "in_container": null
+  }
+},
+{
+  "model": "mechdb_core.container",
+  "pk": 31,
+  "fields": {
+    "owner": 2,
+    "created_date": "2018-06-03T21:28:00.584Z",
+    "title": "null  cont",
+    "description": "",
+    "is_repair_organization": false,
+    "in_container": null
+  }
+},
+{
+  "model": "mechdb_core.container",
+  "pk": 32,
+  "fields": {
+    "owner": 2,
+    "created_date": "2018-06-04T21:35:00.322Z",
+    "title": "\u0444\u044b\u0432\u0444\u044b\u0432\u0444\u044b\u0432",
+    "description": "",
+    "is_repair_organization": false,
+    "in_container": 11
+  }
+},
+{
+  "model": "mechdb_core.container",
+  "pk": 33,
+  "fields": {
+    "owner": 2,
+    "created_date": "2018-06-04T21:40:25.168Z",
+    "title": "null222",
+    "description": "",
+    "is_repair_organization": false,
+    "in_container": 31
+  }
+},
+{
+  "model": "mechdb_core.equipment_sizename",
+  "pk": 1,
+  "fields": {
+    "owner": 2,
+    "created_date": "2018-05-26T20:19:12Z",
+    "title": "MTC C 100/6-7,123.73",
+    "manufacturer": "KSB Multitec",
+    "supply_provider": "KSB Multitec"
+  }
+},
+{
+  "model": "mechdb_core.equipment_sizename",
+  "pk": 2,
+  "fields": {
+    "owner": 2,
+    "created_date": "2018-05-31T18:29:07Z",
+    "title": "\u0426\u041d\u0421 300/120 (\u043f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u0432\u0440\u0435\u043c\u0435\u043d\u0438)",
+    "manufacturer": "\u041e\u041e\u041e \"\u0420\u043e\u0433\u0430 \u0438 \u043a\u043e\u043f\u044b\u0442\u0430\"",
+    "supply_provider": "\u041e\u041e\u041e \"\u0420\u043e\u0433\u0430 \u0438 \u043a\u043e\u043f\u044b\u0442\u0430\""
+  }
+},
+{
+  "model": "mechdb_core.equipment_sizename",
+  "pk": 3,
+  "fields": {
+    "owner": 2,
+    "created_date": "2018-05-31T18:33:51Z",
+    "title": "\u0426\u041d\u0421 180/1900 \u0443\u0431\u0435\u0440\u043f\u0430\u0443\u044d\u0440 228",
+    "manufacturer": "\u0418\u041f \"\u0412\u0430\u0441\u044f \u041f\u0443\u043f\u043a\u0438\u043d\"",
+    "supply_provider": "\u041e\u041e\u041e \"\u0420\u043e\u0433\u0430 \u0438 \u043a\u043e\u043f\u044b\u0442\u0430\""
+  }
+},
+{
+  "model": "mechdb_core.equipment_sizename",
+  "pk": 4,
+  "fields": {
+    "owner": 2,
+    "created_date": "2018-05-31T21:00:24.797Z",
+    "title": "\u041f\u0440\u043e\u0432\u0435\u0440\u043e\u0447\u043d\u0430\u044f \u043c\u043e\u0434\u0435\u043b\u044c",
+    "manufacturer": "\u043d/\u0434",
+    "supply_provider": "\u043d/\u0434"
+  }
+},
+{
+  "model": "mechdb_core.equipment_sizename",
+  "pk": 5,
+  "fields": {
+    "owner": 3,
+    "created_date": "2018-06-01T22:55:21Z",
+    "title": "### \u041d\u0415\u0412\u0418\u0414\u0418\u041c\u0410\u042f \u041c\u041e\u0414\u0415\u041b\u042c ###",
+    "manufacturer": "\u041d\u0415\u0412\u0418\u0414\u0418\u041c\u0410\u042f \u041a\u041e\u041c\u041f\u0410\u041d\u0418\u042f",
+    "supply_provider": "\u041d\u0415\u0412\u0418\u0414\u0418\u041c\u0410\u042f \u041a\u041e\u041c\u041f\u0410\u041d\u0418\u042f"
+  }
+},
+{
+  "model": "mechdb_core.equipment",
+  "pk": 6,
+  "fields": {
+    "owner": 2,
+    "created_date": "2018-05-30T22:09:12Z",
+    "sizename": 1,
+    "serial_number": "9972565406/000100/03",
+    "registration_number": null,
+    "in_container": 1
+  }
+},
+{
+  "model": "mechdb_core.equipment",
+  "pk": 7,
+  "fields": {
+    "owner": 2,
+    "created_date": "2018-05-31T22:38:30.752Z",
+    "sizename": 4,
+    "serial_number": "123",
+    "registration_number": "123",
+    "in_container": 31
+  }
+},
+{
+  "model": "mechdb_core.equipment",
+  "pk": 9,
+  "fields": {
+    "owner": 2,
+    "created_date": "2018-05-31T22:44:12.027Z",
+    "sizename": 3,
+    "serial_number": "11111111111111",
+    "registration_number": "111111111111111",
+    "in_container": 16
+  }
+},
+{
+  "model": "mechdb_core.equipment",
+  "pk": 11,
+  "fields": {
+    "owner": 2,
+    "created_date": "2018-05-31T22:53:04.824Z",
+    "sizename": 1,
+    "serial_number": "asd",
+    "registration_number": "asdxzccxz",
+    "in_container": 20
+  }
+},
+{
+  "model": "mechdb_core.equipment",
+  "pk": 12,
+  "fields": {
+    "owner": 2,
+    "created_date": "2018-06-01T08:21:05.471Z",
+    "sizename": 4,
+    "serial_number": "asdasdasd",
+    "registration_number": "zxczc",
+    "in_container": 13
+  }
+},
+{
+  "model": "mechdb_core.equipment",
+  "pk": 13,
+  "fields": {
+    "owner": 3,
+    "created_date": "2018-06-01T22:56:18Z",
+    "sizename": 5,
+    "serial_number": "### \u041d\u0415\u0412\u0418\u0414\u041c\u042b\u0419 \u041d\u041e\u041c\u0415\u0420 ###",
+    "registration_number": "### \u041d\u0415\u0412\u0418\u0414\u041c\u042b\u0419 \u041d\u041e\u041c\u0415\u0420 ###",
+    "in_container": 23
+  }
+},
+{
+  "model": "mechdb_core.equipment",
+  "pk": 14,
+  "fields": {
+    "owner": 2,
+    "created_date": "2018-06-02T11:56:43.185Z",
+    "sizename": 4,
+    "serial_number": "asd",
+    "registration_number": "asd",
+    "in_container": 17
+  }
+},
+{
+  "model": "mechdb_core.equipment",
+  "pk": 16,
+  "fields": {
+    "owner": 2,
+    "created_date": "2018-06-03T23:00:07.295Z",
+    "sizename": 4,
+    "serial_number": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u043f\u0435\u0440\u0435\u043c\u0435\u0449\u0435\u043d\u0438\u044f",
+    "registration_number": "",
+    "in_container": 17
+  }
+},
+{
+  "model": "mechdb_core.equipment",
+  "pk": 17,
+  "fields": {
+    "owner": 2,
+    "created_date": "2018-06-03T23:00:35.132Z",
+    "sizename": 4,
+    "serial_number": "123",
+    "registration_number": "123",
+    "in_container": 12
+  }
+},
+{
+  "model": "mechdb_core.equipment",
+  "pk": 20,
+  "fields": {
+    "owner": 2,
+    "created_date": "2018-06-04T18:08:35.354Z",
+    "sizename": 2,
+    "serial_number": "asd",
+    "registration_number": "asd",
+    "in_container": 17
+  }
+},
+{
+  "model": "mechdb_core.spare_part",
+  "pk": 1,
+  "fields": {
+    "owner": 1,
+    "created_date": "2018-05-26T20:31:47Z",
+    "title": "\u0423\u0441\u043b\u043e\u0432\u043d\u044b\u0439_\u0432\u0438\u0431\u0440\u043e\u043c\u0435\u0442\u0440",
+    "unit_name": "\u0448\u0442",
+    "in_container": 2,
+    "manufacturer": "\u043d/\u0434",
+    "suply_provider": "\u043d/\u0434",
+    "used_in_equipment": [
+      1
+    ]
+  }
+},
+{
+  "model": "mechdb_core.action",
+  "pk": 2,
+  "fields": {
+    "owner": 2,
+    "created_date": "2018-06-01T17:10:09Z",
+    "type": 3,
+    "action_start_date": "2018-06-01T16:56:27Z",
+    "action_end_date": "2018-06-01T16:56:27Z",
+    "scheduled": false,
+    "description": "\u041e\u043f\u0438\u0441\u0430\u043d\u0438\u0435",
+    "used_in_equipment": 7,
+    "used_in_action": null,
+    "used_in_spare_part": null,
+    "quantity_delta": null,
+    "new_container": null
+  }
+},
+{
+  "model": "mechdb_core.action",
+  "pk": 3,
+  "fields": {
+    "owner": 2,
+    "created_date": "2018-06-01T19:32:50.528Z",
+    "type": 9,
+    "action_start_date": "2018-06-01T19:29:38Z",
+    "action_end_date": "2018-06-01T19:29:38Z",
+    "scheduled": false,
+    "description": "\u041e\u043b\u043e\u043b\u043e \u0432\u0441\u0451 \u0441\u043b\u043e\u043c\u0430\u043b\u043e\u0441\u044c",
+    "used_in_equipment": 7,
+    "used_in_action": null,
+    "used_in_spare_part": null,
+    "quantity_delta": null,
+    "new_container": null
+  }
+},
+{
+  "model": "mechdb_core.action",
+  "pk": 6,
+  "fields": {
+    "owner": 2,
+    "created_date": "2018-06-01T20:14:28.200Z",
+    "type": 1,
+    "action_start_date": "2018-06-01T20:14:04Z",
+    "action_end_date": "2018-06-01T20:14:04Z",
+    "scheduled": false,
+    "description": "\u0422\u0435\u0441\u043e\u0432\u043e\u0435 \u0432\u043e\u0437\u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0435",
+    "used_in_equipment": 7,
+    "used_in_action": null,
+    "used_in_spare_part": null,
+    "quantity_delta": null,
+    "new_container": null
+  }
+},
+{
+  "model": "mechdb_core.action",
+  "pk": 7,
+  "fields": {
+    "owner": 2,
+    "created_date": "2018-06-01T22:20:14.571Z",
+    "type": 9,
+    "action_start_date": "2018-06-01T21:28:13Z",
+    "action_end_date": "2018-06-01T21:28:14Z",
+    "scheduled": false,
+    "description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430",
+    "used_in_equipment": 9,
+    "used_in_action": null,
+    "used_in_spare_part": null,
+    "quantity_delta": null,
+    "new_container": null
+  }
+},
+{
+  "model": "mechdb_core.action",
+  "pk": 12,
+  "fields": {
+    "owner": 3,
+    "created_date": "2018-06-01T23:01:55Z",
+    "type": 5,
+    "action_start_date": "2099-06-01T23:01:55Z",
+    "action_end_date": "2099-06-01T23:01:55Z",
+    "scheduled": false,
+    "description": "\u041d\u0415\u0412\u0418\u0414\u0418\u041c\u041e\u0415 \u0414\u0415\u0419\u0421\u0422\u0412\u0418\u0415",
+    "used_in_equipment": 13,
+    "used_in_action": null,
+    "used_in_spare_part": null,
+    "quantity_delta": null,
+    "new_container": null
+  }
+},
+{
+  "model": "mechdb_core.action",
+  "pk": 13,
+  "fields": {
+    "owner": 2,
+    "created_date": "2018-06-02T19:09:23.437Z",
+    "type": 10,
+    "action_start_date": "2018-06-02T19:02:36Z",
+    "action_end_date": "2018-06-03T22:37:05.748Z",
+    "scheduled": false,
+    "description": "",
+    "used_in_equipment": 12,
+    "used_in_action": null,
+    "used_in_spare_part": null,
+    "quantity_delta": null,
+    "new_container": null
+  }
+},
+{
+  "model": "mechdb_core.action",
+  "pk": 14,
+  "fields": {
+    "owner": 2,
+    "created_date": "2018-06-03T23:00:35.262Z",
+    "type": 11,
+    "action_start_date": "2018-06-03T23:00:35.262Z",
+    "action_end_date": "2018-06-03T23:00:35.262Z",
+    "scheduled": false,
+    "description": null,
+    "used_in_equipment": 17,
+    "used_in_action": null,
+    "used_in_spare_part": null,
+    "quantity_delta": null,
+    "new_container": 31
+  }
+},
+{
+  "model": "mechdb_core.action",
+  "pk": 19,
+  "fields": {
+    "owner": 2,
+    "created_date": "2018-06-04T18:08:35.516Z",
+    "type": 11,
+    "action_start_date": "2018-06-04T18:08:35.516Z",
+    "action_end_date": "2018-06-04T18:08:35.516Z",
+    "scheduled": false,
+    "description": null,
+    "used_in_equipment": 20,
+    "used_in_action": null,
+    "used_in_spare_part": null,
+    "quantity_delta": null,
+    "new_container": 17
+  }
+},
+{
+  "model": "mechdb_core.action",
+  "pk": 20,
+  "fields": {
+    "owner": 2,
+    "created_date": "2018-06-04T18:12:51.399Z",
+    "type": 11,
+    "action_start_date": "2018-06-04T18:12:51.399Z",
+    "action_end_date": "2018-06-04T18:12:51.399Z",
+    "scheduled": false,
+    "description": null,
+    "used_in_equipment": 9,
+    "used_in_action": null,
+    "used_in_spare_part": null,
+    "quantity_delta": null,
+    "new_container": 16
+  }
+},
+{
+  "model": "mechdb_core.action",
+  "pk": 27,
+  "fields": {
+    "owner": 2,
+    "created_date": "2018-06-04T20:36:32.401Z",
+    "type": 11,
+    "action_start_date": "2018-06-04T20:34:24Z",
+    "action_end_date": "2018-06-04T20:34:24Z",
+    "scheduled": false,
+    "description": null,
+    "used_in_equipment": 16,
+    "used_in_action": null,
+    "used_in_spare_part": null,
+    "quantity_delta": null,
+    "new_container": 15
+  }
+},
+{
+  "model": "mechdb_core.action",
+  "pk": 28,
+  "fields": {
+    "owner": 2,
+    "created_date": "2018-06-04T20:36:40.442Z",
+    "type": 11,
+    "action_start_date": "2018-06-03T20:34:24Z",
+    "action_end_date": "2018-06-03T20:34:24Z",
+    "scheduled": false,
+    "description": null,
+    "used_in_equipment": 16,
+    "used_in_action": null,
+    "used_in_spare_part": null,
+    "quantity_delta": null,
+    "new_container": 10
+  }
+},
+{
+  "model": "mechdb_core.action",
+  "pk": 29,
+  "fields": {
+    "owner": 2,
+    "created_date": "2018-06-04T20:40:27.463Z",
+    "type": 11,
+    "action_start_date": "2018-06-04T20:40:11Z",
+    "action_end_date": "2018-06-04T20:40:11Z",
+    "scheduled": false,
+    "description": null,
+    "used_in_equipment": 16,
+    "used_in_action": null,
+    "used_in_spare_part": null,
+    "quantity_delta": null,
+    "new_container": 15
+  }
+},
+{
+  "model": "mechdb_core.action",
+  "pk": 30,
+  "fields": {
+    "owner": 2,
+    "created_date": "2018-06-04T20:40:47.949Z",
+    "type": 11,
+    "action_start_date": "2018-06-04T20:40:11Z",
+    "action_end_date": "2018-06-04T20:40:11Z",
+    "scheduled": false,
+    "description": null,
+    "used_in_equipment": 16,
+    "used_in_action": null,
+    "used_in_spare_part": null,
+    "quantity_delta": null,
+    "new_container": 15
+  }
+},
+{
+  "model": "mechdb_core.action",
+  "pk": 31,
+  "fields": {
+    "owner": 2,
+    "created_date": "2018-06-04T20:45:42.303Z",
+    "type": 11,
+    "action_start_date": "2018-06-04T20:45:29Z",
+    "action_end_date": "2018-06-04T20:45:29Z",
+    "scheduled": false,
+    "description": null,
+    "used_in_equipment": 16,
+    "used_in_action": null,
+    "used_in_spare_part": null,
+    "quantity_delta": null,
+    "new_container": 7
+  }
+},
+{
+  "model": "mechdb_core.action",
+  "pk": 32,
+  "fields": {
+    "owner": 2,
+    "created_date": "2018-06-04T20:45:50.183Z",
+    "type": 11,
+    "action_start_date": "2018-06-04T20:45:29Z",
+    "action_end_date": "2018-06-04T20:45:29Z",
+    "scheduled": false,
+    "description": null,
+    "used_in_equipment": 16,
+    "used_in_action": null,
+    "used_in_spare_part": null,
+    "quantity_delta": null,
+    "new_container": 18
+  }
+},
+{
+  "model": "mechdb_core.action",
+  "pk": 33,
+  "fields": {
+    "owner": 2,
+    "created_date": "2018-06-04T20:46:11.933Z",
+    "type": 11,
+    "action_start_date": "2018-06-04T20:45:29Z",
+    "action_end_date": "2018-06-04T20:45:29Z",
+    "scheduled": false,
+    "description": null,
+    "used_in_equipment": 16,
+    "used_in_action": null,
+    "used_in_spare_part": null,
+    "quantity_delta": null,
+    "new_container": 12
+  }
+},
+{
+  "model": "mechdb_core.action",
+  "pk": 34,
+  "fields": {
+    "owner": 2,
+    "created_date": "2018-06-04T20:46:48.010Z",
+    "type": 11,
+    "action_start_date": "2018-06-04T20:46:29Z",
+    "action_end_date": "2018-06-04T20:46:29Z",
+    "scheduled": false,
+    "description": null,
+    "used_in_equipment": 16,
+    "used_in_action": null,
+    "used_in_spare_part": null,
+    "quantity_delta": null,
+    "new_container": 17
+  }
+},
+{
+  "model": "mechdb_core.action",
+  "pk": 35,
+  "fields": {
+    "owner": 2,
+    "created_date": "2018-06-04T20:52:30.518Z",
+    "type": 2,
+    "action_start_date": "2018-06-04T20:45:29Z",
+    "action_end_date": "2018-06-04T20:45:29Z",
+    "scheduled": false,
+    "description": "",
+    "used_in_equipment": 11,
+    "used_in_action": null,
+    "used_in_spare_part": null,
+    "quantity_delta": null,
+    "new_container": null
+  }
+},
+{
+  "model": "mechdb_core.action",
+  "pk": 36,
+  "fields": {
+    "owner": 2,
+    "created_date": "2018-06-04T20:52:48.234Z",
+    "type": 11,
+    "action_start_date": "2018-06-03T20:45:29Z",
+    "action_end_date": "2018-06-03T20:45:29Z",
+    "scheduled": false,
+    "description": null,
+    "used_in_equipment": 11,
+    "used_in_action": null,
+    "used_in_spare_part": null,
+    "quantity_delta": null,
+    "new_container": 20
+  }
+},
+{
+  "model": "mechdb_core.action",
+  "pk": 37,
+  "fields": {
+    "owner": 2,
+    "created_date": "2018-06-04T20:53:16.259Z",
+    "type": 11,
+    "action_start_date": "2018-06-01T20:45:29Z",
+    "action_end_date": "2018-06-01T20:45:29Z",
+    "scheduled": false,
+    "description": null,
+    "used_in_equipment": 11,
+    "used_in_action": null,
+    "used_in_spare_part": null,
+    "quantity_delta": null,
+    "new_container": 19
+  }
+},
+{
+  "model": "mechdb_core.action",
+  "pk": 38,
+  "fields": {
+    "owner": 2,
+    "created_date": "2018-06-05T10:53:53.356Z",
+    "type": 11,
+    "action_start_date": "2018-06-05T10:53:49Z",
+    "action_end_date": "2018-06-05T10:53:49Z",
+    "scheduled": false,
+    "description": null,
+    "used_in_equipment": 17,
+    "used_in_action": null,
+    "used_in_spare_part": null,
+    "quantity_delta": null,
+    "new_container": 33
+  }
+},
+{
+  "model": "mechdb_core.action",
+  "pk": 39,
+  "fields": {
+    "owner": 2,
+    "created_date": "2018-06-05T10:54:01.897Z",
+    "type": 11,
+    "action_start_date": "2018-06-05T10:53:58Z",
+    "action_end_date": "2018-06-05T10:53:58Z",
+    "scheduled": false,
+    "description": null,
+    "used_in_equipment": 17,
+    "used_in_action": null,
+    "used_in_spare_part": null,
+    "quantity_delta": null,
+    "new_container": 11
+  }
+},
+{
+  "model": "mechdb_core.action",
+  "pk": 40,
+  "fields": {
+    "owner": 2,
+    "created_date": "2018-06-05T13:12:31.936Z",
+    "type": 11,
+    "action_start_date": "2018-06-05T13:12:27Z",
+    "action_end_date": "2018-06-05T13:12:27Z",
+    "scheduled": false,
+    "description": null,
+    "used_in_equipment": 17,
+    "used_in_action": null,
+    "used_in_spare_part": null,
+    "quantity_delta": null,
+    "new_container": 12
+  }
+},
+{
+  "model": "mechdb_core.action",
+  "pk": 41,
+  "fields": {
+    "owner": 2,
+    "created_date": "2018-06-05T20:15:57.899Z",
+    "type": 11,
+    "action_start_date": "2018-06-05T20:15:53Z",
+    "action_end_date": "2018-06-05T20:15:53Z",
+    "scheduled": false,
+    "description": null,
+    "used_in_equipment": 14,
+    "used_in_action": null,
+    "used_in_spare_part": null,
+    "quantity_delta": null,
+    "new_container": 9
+  }
+},
+{
+  "model": "mechdb_core.action",
+  "pk": 42,
+  "fields": {
+    "owner": 2,
+    "created_date": "2018-06-05T20:16:26.219Z",
+    "type": 11,
+    "action_start_date": "2018-06-04T20:16:18Z",
+    "action_end_date": "2018-06-04T20:16:18Z",
+    "scheduled": false,
+    "description": null,
+    "used_in_equipment": 14,
+    "used_in_action": null,
+    "used_in_spare_part": null,
+    "quantity_delta": null,
+    "new_container": 12
+  }
+},
+{
+  "model": "mechdb_core.action",
+  "pk": 70,
+  "fields": {
+    "owner": 2,
+    "created_date": "2018-06-06T22:21:36.689Z",
+    "type": 11,
+    "action_start_date": "2018-06-06T22:21:25Z",
+    "action_end_date": "2018-06-06T22:21:25Z",
+    "scheduled": null,
+    "description": "",
+    "used_in_equipment": 14,
+    "used_in_action": null,
+    "used_in_spare_part": null,
+    "quantity_delta": null,
+    "new_container": 16
+  }
+},
+{
+  "model": "mechdb_core.action",
+  "pk": 71,
+  "fields": {
+    "owner": 2,
+    "created_date": "2018-06-06T22:22:00.643Z",
+    "type": 11,
+    "action_start_date": "2018-06-05T22:21:45Z",
+    "action_end_date": "2018-06-05T22:21:45Z",
+    "scheduled": null,
+    "description": "",
+    "used_in_equipment": 14,
+    "used_in_action": null,
+    "used_in_spare_part": null,
+    "quantity_delta": null,
+    "new_container": 13
+  }
+},
+{
+  "model": "mechdb_core.action",
+  "pk": 72,
+  "fields": {
+    "owner": 2,
+    "created_date": "2018-06-06T22:22:09.459Z",
+    "type": 11,
+    "action_start_date": "2018-06-06T22:22:05Z",
+    "action_end_date": "2018-06-06T22:22:05Z",
+    "scheduled": null,
+    "description": "asdasd",
+    "used_in_equipment": 14,
+    "used_in_action": null,
+    "used_in_spare_part": null,
+    "quantity_delta": null,
+    "new_container": 31
+  }
+},
+{
+  "model": "mechdb_core.action",
+  "pk": 73,
+  "fields": {
+    "owner": 2,
+    "created_date": "2018-06-06T22:27:54.150Z",
+    "type": 11,
+    "action_start_date": "2018-06-06T22:27:50Z",
+    "action_end_date": "2018-06-06T22:27:50Z",
+    "scheduled": null,
+    "description": "",
+    "used_in_equipment": 14,
+    "used_in_action": null,
+    "used_in_spare_part": null,
+    "quantity_delta": null,
+    "new_container": 17
+  }
+},
+{
+  "model": "mechdb_core.action",
+  "pk": 75,
+  "fields": {
+    "owner": 2,
+    "created_date": "2018-06-07T23:55:57.673Z",
+    "type": 11,
+    "action_start_date": "2018-06-07T23:55:55Z",
+    "action_end_date": "2018-06-07T23:55:55Z",
+    "scheduled": null,
+    "description": "",
+    "used_in_equipment": 7,
+    "used_in_action": null,
+    "used_in_spare_part": null,
+    "quantity_delta": null,
+    "new_container": 31
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 1,
+  "fields": {
+    "action_time": "2018-05-26T19:50:14.150Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "1",
+    "object_repr": "Action_type object (1)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 2,
+  "fields": {
+    "action_time": "2018-05-26T19:50:17.406Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "2",
+    "object_repr": "Action_type object (2)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 3,
+  "fields": {
+    "action_time": "2018-05-26T19:50:22.849Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "3",
+    "object_repr": "Action_type object (3)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 4,
+  "fields": {
+    "action_time": "2018-05-26T20:03:30.001Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "4",
+    "object_repr": "\u0432\u0438\u0431\u0440\u043e\u0434\u0438\u0430\u0433\u043d\u043e\u0441\u0442\u0438\u043a\u0430",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 5,
+  "fields": {
+    "action_time": "2018-05-26T20:03:36.268Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "5",
+    "object_repr": "\u0432\u044b\u0432\u043e\u0437 \u0432 \u0440\u0435\u043c\u043e\u043d\u0442",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 6,
+  "fields": {
+    "action_time": "2018-05-26T20:03:44.113Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "6",
+    "object_repr": "\u0437\u0430\u0432\u043e\u0437 \u0441 \u0440\u0435\u043c\u043e\u043d\u0442\u0430",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 7,
+  "fields": {
+    "action_time": "2018-05-26T20:04:56.669Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "1",
+    "object_repr": "\u0423\u041f\u041d \"\u0412. \u041b\u0430\u043c\u0431\u0435\u0439\u0448\u043e\u0440\"",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 8,
+  "fields": {
+    "action_time": "2018-05-26T20:07:23.702Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "2",
+    "object_repr": "2 \u041d\u041f\u0421-2",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 9,
+  "fields": {
+    "action_time": "2018-05-26T20:17:54.432Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "3",
+    "object_repr": "3 510\u041d 2/1",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 10,
+  "fields": {
+    "action_time": "2018-05-26T20:18:11.560Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "4",
+    "object_repr": "4 510\u041d 2/2",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 11,
+  "fields": {
+    "action_time": "2018-05-26T20:18:22.273Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "5",
+    "object_repr": "5 510\u041d 2/3",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 12,
+  "fields": {
+    "action_time": "2018-05-26T20:19:30.280Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "1",
+    "object_repr": "MTC C 100/6-7,123.73",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 13,
+  "fields": {
+    "action_time": "2018-05-26T20:21:23.206Z",
+    "user": 1,
+    "content_type": 11,
+    "object_id": "1",
+    "object_repr": "KSB Multitec",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 14,
+  "fields": {
+    "action_time": "2018-05-26T20:21:39.849Z",
+    "user": 1,
+    "content_type": 15,
+    "object_id": "1",
+    "object_repr": "KSB Multitec",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 15,
+  "fields": {
+    "action_time": "2018-05-26T20:21:53.567Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "1",
+    "object_repr": "MTC C 100/6-7,123.73",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"manufacturer\", \"supply_provider\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 16,
+  "fields": {
+    "action_time": "2018-05-26T20:24:03.653Z",
+    "user": 1,
+    "content_type": 13,
+    "object_id": "1",
+    "object_repr": "MTC C 100/6-7,123.73s/n 9972565406/000100/01",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 17,
+  "fields": {
+    "action_time": "2018-05-26T20:24:48.989Z",
+    "user": 1,
+    "content_type": 13,
+    "object_id": "2",
+    "object_repr": "MTC C 100/6-7,123.73 s/n 9972565406/000100/02",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 18,
+  "fields": {
+    "action_time": "2018-05-26T20:25:08.849Z",
+    "user": 1,
+    "content_type": 13,
+    "object_id": "3",
+    "object_repr": "MTC C 100/6-7,123.73 s/n 9972565406/000100/03",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 19,
+  "fields": {
+    "action_time": "2018-05-26T20:31:17.571Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "1",
+    "object_repr": "2017-11-05 15:00:00+03:00",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 20,
+  "fields": {
+    "action_time": "2018-05-26T20:32:33.007Z",
+    "user": 1,
+    "content_type": 14,
+    "object_id": "1",
+    "object_repr": "\u0423\u0441\u043b\u043e\u0432\u043d\u044b\u0439_\u0432\u0438\u0431\u0440\u043e\u043c\u0435\u0442\u0440",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 21,
+  "fields": {
+    "action_time": "2018-05-26T20:34:20.307Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "1",
+    "object_repr": "2018-05-26 23:33:05+03:00",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 22,
+  "fields": {
+    "action_time": "2018-05-28T08:11:43.430Z",
+    "user": 1,
+    "content_type": 4,
+    "object_id": "2",
+    "object_repr": "OstaninRS",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 23,
+  "fields": {
+    "action_time": "2018-05-28T08:12:20.087Z",
+    "user": 1,
+    "content_type": 4,
+    "object_id": "2",
+    "object_repr": "OstaninRS",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"is_staff\", \"is_superuser\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 24,
+  "fields": {
+    "action_time": "2018-05-28T08:13:44.320Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "7",
+    "object_repr": "\u043c\u043e\u043d\u0442\u0430\u0436",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 25,
+  "fields": {
+    "action_time": "2018-05-28T08:13:49.355Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "8",
+    "object_repr": "\u0434\u0435\u043c\u043e\u043d\u0442\u0430\u0436",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 26,
+  "fields": {
+    "action_time": "2018-05-28T08:13:53.663Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "9",
+    "object_repr": "\u043e\u0442\u043a\u0430\u0437",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 27,
+  "fields": {
+    "action_time": "2018-05-28T08:13:59.576Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "10",
+    "object_repr": "\u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u044f",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 28,
+  "fields": {
+    "action_time": "2018-05-28T08:15:56.016Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "6",
+    "object_repr": "6 \u0423\u041f\u041d \"\u0412. \u041b\u0430\u043c\u0431\u0435\u0439\u0448\u043e\u0440\"",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 29,
+  "fields": {
+    "action_time": "2018-05-28T08:16:17.382Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "7",
+    "object_repr": "7 \u041d\u041f\u041e-\u0421\u0435\u0440\u0432\u0438\u0441",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 30,
+  "fields": {
+    "action_time": "2018-05-28T08:16:43.761Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "8",
+    "object_repr": "8 \u0426\u0420\u0411\u0438\u041d\u041e",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 31,
+  "fields": {
+    "action_time": "2018-05-28T08:16:56.042Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "9",
+    "object_repr": "9 \u041c\u0421\u0426",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 32,
+  "fields": {
+    "action_time": "2018-05-28T08:17:21.258Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "10",
+    "object_repr": "10 \u041d\u041f\u0421-1",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 33,
+  "fields": {
+    "action_time": "2018-05-28T08:18:47.230Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "11",
+    "object_repr": "11 510\u041d 1/1",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 34,
+  "fields": {
+    "action_time": "2018-05-28T08:19:01.842Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "12",
+    "object_repr": "12 510\u041d 1/2",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 35,
+  "fields": {
+    "action_time": "2018-05-28T08:19:18.289Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "13",
+    "object_repr": "13 510\u041d 1/3",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 36,
+  "fields": {
+    "action_time": "2018-05-28T20:01:32.745Z",
+    "user": 2,
+    "content_type": 10,
+    "object_id": "14",
+    "object_repr": "14 <H1>\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 escape</H1>",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 37,
+  "fields": {
+    "action_time": "2018-05-28T20:02:30.198Z",
+    "user": 2,
+    "content_type": 10,
+    "object_id": "14",
+    "object_repr": "14 <H1>\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 escape</H1>",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 38,
+  "fields": {
+    "action_time": "2018-05-28T21:42:57.880Z",
+    "user": 2,
+    "content_type": 10,
+    "object_id": "15",
+    "object_repr": "15 \u041d\u041f\u0421-2",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 39,
+  "fields": {
+    "action_time": "2018-05-28T21:43:13.971Z",
+    "user": 2,
+    "content_type": 10,
+    "object_id": "16",
+    "object_repr": "16 510\u041d 2/1",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 40,
+  "fields": {
+    "action_time": "2018-05-28T21:43:22.414Z",
+    "user": 2,
+    "content_type": 10,
+    "object_id": "17",
+    "object_repr": "17 510\u041d 2/2",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 41,
+  "fields": {
+    "action_time": "2018-05-28T21:43:30.789Z",
+    "user": 2,
+    "content_type": 10,
+    "object_id": "18",
+    "object_repr": "18 510\u041d 2/13",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 42,
+  "fields": {
+    "action_time": "2018-05-28T21:43:59.669Z",
+    "user": 2,
+    "content_type": 10,
+    "object_id": "18",
+    "object_repr": "18 510\u041d 2/3",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"title\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 43,
+  "fields": {
+    "action_time": "2018-05-28T21:46:35.876Z",
+    "user": 2,
+    "content_type": 10,
+    "object_id": "8",
+    "object_repr": "8 \u0426\u0420\u0411\u0438\u041d\u041e",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"is_repair_organization\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 44,
+  "fields": {
+    "action_time": "2018-05-28T21:46:41.053Z",
+    "user": 2,
+    "content_type": 10,
+    "object_id": "9",
+    "object_repr": "9 \u041c\u0421\u0426",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"is_repair_organization\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 45,
+  "fields": {
+    "action_time": "2018-05-30T19:17:39.252Z",
+    "user": 2,
+    "content_type": 10,
+    "object_id": "19",
+    "object_repr": "19 \u0422\u0435\u0441\u0442\u043e\u0432\u044b\u0439 \u043a\u043e\u043d\u0442\u0435\u0439\u043d\u0435\u0440 (\u043f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u0440\u0435\u0434\u0430\u043a\u0442)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"in_container_id\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 46,
+  "fields": {
+    "action_time": "2018-05-30T19:18:08.888Z",
+    "user": 2,
+    "content_type": 10,
+    "object_id": "19",
+    "object_repr": "19 \u0422\u0435\u0441\u0442\u043e\u0432\u044b\u0439 \u043a\u043e\u043d\u0442\u0435\u0439\u043d\u0435\u0440 (\u043f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u0440\u0435\u0434\u0430\u043a\u0442)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"in_container_id\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 47,
+  "fields": {
+    "action_time": "2018-05-30T19:22:03.740Z",
+    "user": 2,
+    "content_type": 10,
+    "object_id": "20",
+    "object_repr": "20 213",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 48,
+  "fields": {
+    "action_time": "2018-05-30T20:51:01.438Z",
+    "user": 2,
+    "content_type": 10,
+    "object_id": "6",
+    "object_repr": "6 OstaninRS \u0423\u041f\u041d \"\u0412. \u041b\u0430\u043c\u0431\u0435\u0439\u0448\u043e\u0440\"",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"in_container_id\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 49,
+  "fields": {
+    "action_time": "2018-05-30T20:53:23.315Z",
+    "user": 2,
+    "content_type": 13,
+    "object_id": "3",
+    "object_repr": "MTC C 100/6-7,123.73 s/n 9972565406/000100/03",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 50,
+  "fields": {
+    "action_time": "2018-05-30T20:53:23.437Z",
+    "user": 2,
+    "content_type": 13,
+    "object_id": "2",
+    "object_repr": "MTC C 100/6-7,123.73 s/n 9972565406/000100/02",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 51,
+  "fields": {
+    "action_time": "2018-05-30T20:53:23.549Z",
+    "user": 2,
+    "content_type": 13,
+    "object_id": "1",
+    "object_repr": "MTC C 100/6-7,123.73 s/n 9972565406/000100/01",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 52,
+  "fields": {
+    "action_time": "2018-05-30T21:04:41.892Z",
+    "user": 2,
+    "content_type": 8,
+    "object_id": "1",
+    "object_repr": "MTC C 100/6-7,123.73",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"owner\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 53,
+  "fields": {
+    "action_time": "2018-05-30T21:14:23.280Z",
+    "user": 2,
+    "content_type": 13,
+    "object_id": "4",
+    "object_repr": "4 OstaninRS MTC C 100/6-7,123.73",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 54,
+  "fields": {
+    "action_time": "2018-05-30T22:09:11.754Z",
+    "user": 2,
+    "content_type": 13,
+    "object_id": "5",
+    "object_repr": "5 OstaninRS MTC C 100/6-7,123.73 s/n 9972565406/000100/02",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 55,
+  "fields": {
+    "action_time": "2018-05-30T22:09:20.889Z",
+    "user": 2,
+    "content_type": 13,
+    "object_id": "6",
+    "object_repr": "6 OstaninRS MTC C 100/6-7,123.73 s/n 9972565406/000100/03",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 56,
+  "fields": {
+    "action_time": "2018-05-31T19:20:44.900Z",
+    "user": 2,
+    "content_type": 8,
+    "object_id": "3",
+    "object_repr": "\u0426\u041d\u0421 180/1900 \u0443\u0431\u0435\u0440\u043f\u0430\u0443\u044d\u0440 228",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"manufacturer\", \"supply_provider\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 57,
+  "fields": {
+    "action_time": "2018-05-31T19:20:52.586Z",
+    "user": 2,
+    "content_type": 8,
+    "object_id": "3",
+    "object_repr": "\u0426\u041d\u0421 180/1900 \u0443\u0431\u0435\u0440\u043f\u0430\u0443\u044d\u0440 228",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 58,
+  "fields": {
+    "action_time": "2018-05-31T19:21:08.672Z",
+    "user": 2,
+    "content_type": 8,
+    "object_id": "2",
+    "object_repr": "\u0426\u041d\u0421 300/120",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"manufacturer\", \"supply_provider\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 59,
+  "fields": {
+    "action_time": "2018-05-31T19:21:32.368Z",
+    "user": 2,
+    "content_type": 8,
+    "object_id": "3",
+    "object_repr": "\u0426\u041d\u0421 180/1900 \u0443\u0431\u0435\u0440\u043f\u0430\u0443\u044d\u0440 228",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"manufacturer\", \"supply_provider\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 60,
+  "fields": {
+    "action_time": "2018-05-31T19:22:15.078Z",
+    "user": 2,
+    "content_type": 8,
+    "object_id": "1",
+    "object_repr": "MTC C 100/6-7,123.73",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"manufacturer\", \"supply_provider\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 61,
+  "fields": {
+    "action_time": "2018-06-01T16:54:50.174Z",
+    "user": 2,
+    "content_type": 9,
+    "object_id": "1",
+    "object_repr": "2017-11-05 15:00:00+03:00",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"owner\", \"used_in_equipment\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 62,
+  "fields": {
+    "action_time": "2018-06-01T16:57:25.652Z",
+    "user": 2,
+    "content_type": 9,
+    "object_id": "2",
+    "object_repr": "2018-06-01 19:56:27+03:00 \u041a\u0420",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 63,
+  "fields": {
+    "action_time": "2018-06-01T17:18:48.608Z",
+    "user": 2,
+    "content_type": 9,
+    "object_id": "2",
+    "object_repr": "2018-06-01 19:56:27+03:00 \u041a\u0420",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"used_in_equipment\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 64,
+  "fields": {
+    "action_time": "2018-06-01T17:18:55.364Z",
+    "user": 2,
+    "content_type": 9,
+    "object_id": "1",
+    "object_repr": "2017-11-05 15:00:00+03:00 \u0432\u0438\u0431\u0440\u043e\u0434\u0438\u0430\u0433\u043d\u043e\u0441\u0442\u0438\u043a\u0430",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"used_in_equipment\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 65,
+  "fields": {
+    "action_time": "2018-06-01T22:52:28.442Z",
+    "user": 2,
+    "content_type": 4,
+    "object_id": "3",
+    "object_repr": "another_user",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 66,
+  "fields": {
+    "action_time": "2018-06-01T22:52:43.428Z",
+    "user": 2,
+    "content_type": 4,
+    "object_id": "3",
+    "object_repr": "another_user",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"is_staff\", \"is_superuser\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 67,
+  "fields": {
+    "action_time": "2018-06-01T22:53:46.507Z",
+    "user": 3,
+    "content_type": 10,
+    "object_id": "21",
+    "object_repr": "21 another_user ### \u041d\u0415\u0412\u0418\u0414\u0418\u042b\u0419 \u041a\u041e\u041d\u0422\u0415\u0419\u041d\u0415\u0420 ###",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 68,
+  "fields": {
+    "action_time": "2018-06-01T22:54:00.690Z",
+    "user": 3,
+    "content_type": 10,
+    "object_id": "21",
+    "object_repr": "21 another_user ### \u041d\u0415\u0412\u0418\u0414\u0418\u041c\u042b\u0419 \u041a\u041e\u041d\u0422\u0415\u0419\u041d\u0415\u0420 ###",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"title\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 69,
+  "fields": {
+    "action_time": "2018-06-01T22:54:28.757Z",
+    "user": 3,
+    "content_type": 10,
+    "object_id": "22",
+    "object_repr": "22 another_user ### \u041d\u0415\u0412\u0418\u0414\u0418\u041c\u0410\u042f \u0420\u0415\u041c \u041e\u0420\u0413\u0410\u041d\u0418\u0417\u0410\u0426\u0418\u042f ###",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 70,
+  "fields": {
+    "action_time": "2018-06-01T22:54:53.830Z",
+    "user": 3,
+    "content_type": 10,
+    "object_id": "23",
+    "object_repr": "23 another_user ### \u041d\u0415\u0412\u0418\u0414\u0418\u041c\u041e\u0415 \u0422\u0415\u0425\u041c\u0415\u0421\u0422\u041e ###",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 71,
+  "fields": {
+    "action_time": "2018-06-01T22:55:01.063Z",
+    "user": 3,
+    "content_type": 10,
+    "object_id": "23",
+    "object_repr": "23 another_user ### \u041d\u0415\u0412\u0418\u0414\u0418\u041c\u041e\u0415 \u0422\u0415\u0425\u041c\u0415\u0421\u0422\u041e ###",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"in_container_id\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 72,
+  "fields": {
+    "action_time": "2018-06-01T22:56:03.235Z",
+    "user": 3,
+    "content_type": 8,
+    "object_id": "5",
+    "object_repr": "### \u041d\u0415\u0412\u0418\u0414\u0418\u041c\u0410\u042f \u041c\u041e\u0414\u0415\u041b\u042c ###",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 73,
+  "fields": {
+    "action_time": "2018-06-01T22:56:56.698Z",
+    "user": 3,
+    "content_type": 13,
+    "object_id": "13",
+    "object_repr": "### \u041d\u0415\u0412\u0418\u0414\u0418\u041c\u0410\u042f \u041c\u041e\u0414\u0415\u041b\u042c ### \u2116 ### \u041d\u0415\u0412\u0418\u0414\u041c\u042b\u0419 \u041d\u041e\u041c\u0415\u0420 ###  [### \u041d\u0415\u0412\u0418\u0414\u0418\u041c\u041e\u0415 \u0422\u0415\u0425\u041c\u0415\u0421\u0422\u041e ###]",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 74,
+  "fields": {
+    "action_time": "2018-06-01T23:01:27.237Z",
+    "user": 3,
+    "content_type": 13,
+    "object_id": "13",
+    "object_repr": "### \u041d\u0415\u0412\u0418\u0414\u0418\u041c\u0410\u042f \u041c\u041e\u0414\u0415\u041b\u042c ### \u2116 ### \u041d\u0415\u0412\u0418\u0414\u041c\u042b\u0419 \u041d\u041e\u041c\u0415\u0420 ###  [",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 75,
+  "fields": {
+    "action_time": "2018-06-01T23:02:57.370Z",
+    "user": 3,
+    "content_type": 9,
+    "object_id": "12",
+    "object_repr": "02.06.2018 02:01 \u0432\u044b\u0432\u043e\u0437 \u0432 \u0440\u0435\u043c\u043e\u043d\u0442 [### \u041d\u0415\u0412\u0418\u0414\u0418\u041c\u0410\u042f \u041c\u041e\u0414\u0415\u041b\u042c ### \u2116 ### \u041d\u0415\u0412\u0418\u0414\u041c\u042b\u0419 \u041d\u041e\u041c\u0415\u0420 ###  [### \u041d\u0415\u0412\u0418\u0414\u0418\u041c\u041e\u0415 \u0422\u0415\u0425\u041c\u0415\u0421\u0422\u041e ###]]",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 76,
+  "fields": {
+    "action_time": "2018-06-01T23:04:24.624Z",
+    "user": 2,
+    "content_type": 9,
+    "object_id": "12",
+    "object_repr": "02.06.2099 02:01 \u0432\u044b\u0432\u043e\u0437 \u0432 \u0440\u0435\u043c\u043e\u043d\u0442 [### \u041d\u0415\u0412\u0418\u0414\u0418\u041c\u0410\u042f \u041c\u041e\u0414\u0415\u041b\u042c ### \u2116 ### \u041d\u0415\u0412\u0418\u0414\u041c\u042b\u0419 \u041d\u041e\u041c\u0415\u0420 ###  [### \u041d\u0415\u0412\u0418\u0414\u0418\u041c\u041e\u0415 \u0422\u0415\u0425\u041c\u0415\u0421\u0422\u041e ###]]",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"action_start_date\", \"action_end_date\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 77,
+  "fields": {
+    "action_time": "2018-06-02T18:55:11.380Z",
+    "user": 2,
+    "content_type": 9,
+    "object_id": "12",
+    "object_repr": "02.06.2099 02:01 \u0432\u044b\u0432\u043e\u0437 \u0432 \u0440\u0435\u043c\u043e\u043d\u0442 [### \u041d\u0415\u0412\u0418\u0414\u0418\u041c\u0410\u042f \u041c\u041e\u0414\u0415\u041b\u042c ### \u2116 ### \u041d\u0415\u0412\u0418\u0414\u041c\u042b\u0419 \u041d\u041e\u041c\u0415\u0420 ###  [### \u041d\u0415\u0412\u0418\u0414\u0418\u041c\u041e\u0415 \u0422\u0415\u0425\u041c\u0415\u0421\u0422\u041e ###]]",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"used_in_container\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 78,
+  "fields": {
+    "action_time": "2018-06-02T18:55:22.144Z",
+    "user": 2,
+    "content_type": 9,
+    "object_id": "11",
+    "object_repr": "02.06.2018 01:45 \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u044f [\u041f\u0440\u043e\u0432\u0435\u0440\u043e\u0447\u043d\u0430\u044f \u043c\u043e\u0434\u0435\u043b\u044c \u2116 NEW  [\u041d\u041f\u0421-1]]",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"used_in_container\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 79,
+  "fields": {
+    "action_time": "2018-06-03T20:52:07.992Z",
+    "user": 2,
+    "content_type": 10,
+    "object_id": "6",
+    "object_repr": "6 OstaninRS \u0423\u041f\u041d \"\u0412. \u041b\u0430\u043c\u0431\u0435\u0439\u0448\u043e\u0440\"",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"in_container\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 80,
+  "fields": {
+    "action_time": "2018-06-03T20:59:07.345Z",
+    "user": 2,
+    "content_type": 10,
+    "object_id": "7",
+    "object_repr": "7 OstaninRS \u041d\u041f\u041e-\u0421\u0435\u0440\u0432\u0438\u0441",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"in_container\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 81,
+  "fields": {
+    "action_time": "2018-06-03T21:17:26.142Z",
+    "user": 2,
+    "content_type": 10,
+    "object_id": "30",
+    "object_repr": "30 OstaninRS null cont #213123123",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 82,
+  "fields": {
+    "action_time": "2018-06-03T21:17:26.240Z",
+    "user": 2,
+    "content_type": 10,
+    "object_id": "29",
+    "object_repr": "29 OstaninRS null cont 2- 1/1 - 2/3",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 83,
+  "fields": {
+    "action_time": "2018-06-03T21:17:26.317Z",
+    "user": 2,
+    "content_type": 10,
+    "object_id": "28",
+    "object_repr": "28 OstaninRS nps2-3 cont",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 84,
+  "fields": {
+    "action_time": "2018-06-03T21:17:26.395Z",
+    "user": 2,
+    "content_type": 10,
+    "object_id": "27",
+    "object_repr": "27 OstaninRS null cont",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 85,
+  "fields": {
+    "action_time": "2018-06-03T21:17:26.488Z",
+    "user": 2,
+    "content_type": 10,
+    "object_id": "26",
+    "object_repr": "26 OstaninRS asdasdasdasd",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 86,
+  "fields": {
+    "action_time": "2018-06-03T21:17:26.561Z",
+    "user": 2,
+    "content_type": 10,
+    "object_id": "25",
+    "object_repr": "25 OstaninRS \u041f\u0440\u043e\u0432\u0435\u0440\u043e\u0447\u043d\u044b\u0439 \u043a\u043e\u043d\u0442 338",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 87,
+  "fields": {
+    "action_time": "2018-06-03T21:17:26.639Z",
+    "user": 2,
+    "content_type": 10,
+    "object_id": "24",
+    "object_repr": "24 OstaninRS \u0422\u0435\u0441\u0442\u043e\u0432\u044b\u0439 \u043a\u043e\u043d\u0442 228",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 88,
+  "fields": {
+    "action_time": "2018-06-03T22:14:47.327Z",
+    "user": 2,
+    "content_type": 12,
+    "object_id": "11",
+    "object_repr": "\u0441\u043e\u0437\u0434\u0430\u043d\u0438\u0435",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 89,
+  "fields": {
+    "action_time": "2018-06-03T22:26:23.561Z",
+    "user": 2,
+    "content_type": 12,
+    "object_id": "11",
+    "object_repr": "\u043f\u0435\u0440\u0435\u043c\u0435\u0449\u0435\u043d\u0438\u0435",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"title\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 90,
+  "fields": {
+    "action_time": "2018-06-04T18:39:01.726Z",
+    "user": 2,
+    "content_type": 10,
+    "object_id": "6",
+    "object_repr": "6 OstaninRS \u0423\u041f\u041d \"\u0412. \u041b\u0430\u043c\u0431\u0435\u0439\u0448\u043e\u0440\"",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"in_container\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 91,
+  "fields": {
+    "action_time": "2018-06-04T22:03:16.395Z",
+    "user": 2,
+    "content_type": 12,
+    "object_id": "4",
+    "object_repr": "\u041a\u0422\u0421",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"title\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 92,
+  "fields": {
+    "action_time": "2018-06-06T19:40:13.307Z",
+    "user": 2,
+    "content_type": 12,
+    "object_id": "12",
+    "object_repr": "\u0440\u0435\u043c\u043e\u043d\u0442",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 93,
+  "fields": {
+    "action_time": "2018-06-07T00:02:56.957Z",
+    "user": 2,
+    "content_type": 4,
+    "object_id": "4",
+    "object_repr": "TestAccount",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 94,
+  "fields": {
+    "action_time": "2018-06-07T00:23:29.314Z",
+    "user": 2,
+    "content_type": 4,
+    "object_id": "5",
+    "object_repr": "asdasdasd",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 95,
+  "fields": {
+    "action_time": "2018-06-07T00:23:29.415Z",
+    "user": 2,
+    "content_type": 4,
+    "object_id": "6",
+    "object_repr": "asdasdasd1",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 96,
+  "fields": {
+    "action_time": "2018-06-07T00:37:14.229Z",
+    "user": 2,
+    "content_type": 4,
+    "object_id": "8",
+    "object_repr": "adasd",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 97,
+  "fields": {
+    "action_time": "2018-06-07T00:37:14.563Z",
+    "user": 2,
+    "content_type": 4,
+    "object_id": "7",
+    "object_repr": "asdasdasd1",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 98,
+  "fields": {
+    "action_time": "2018-06-07T21:52:53.218Z",
+    "user": 2,
+    "content_type": 4,
+    "object_id": "9",
+    "object_repr": "asdasddas",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 99,
+  "fields": {
+    "action_time": "2018-06-07T21:52:53.366Z",
+    "user": 2,
+    "content_type": 4,
+    "object_id": "10",
+    "object_repr": "asdasddasasdadsdasd",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 100,
+  "fields": {
+    "action_time": "2018-06-07T21:52:53.488Z",
+    "user": 2,
+    "content_type": 4,
+    "object_id": "13",
+    "object_repr": "cxzadqdw",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 101,
+  "fields": {
+    "action_time": "2018-06-07T21:52:53.591Z",
+    "user": 2,
+    "content_type": 4,
+    "object_id": "11",
+    "object_repr": "xzcxzczcxzcx",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 102,
+  "fields": {
+    "action_time": "2018-06-07T21:52:53.699Z",
+    "user": 2,
+    "content_type": 4,
+    "object_id": "12",
+    "object_repr": "zxcddwdsad",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 103,
+  "fields": {
+    "action_time": "2018-06-07T22:30:58.150Z",
+    "user": 2,
+    "content_type": 4,
+    "object_id": "14",
+    "object_repr": "asddsaqwe",
+    "action_flag": 3,
+    "change_message": ""
+  }
+}
+]
