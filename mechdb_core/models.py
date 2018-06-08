@@ -99,7 +99,6 @@ class Action(models.Model):
                 ('child,OUTGO', "расход"),
                 )
     action_type_choices_all = action_type_choices_equipment + action_type_choices_spare_parts + action_type_choices_childs
-    # ТУТ ВСЁ СДЕЛАНО, МИГРАЦИЯ ПРОВЕДЕНА - ТЕПЕРЬ ПРАВЬ КОД
     type = models.CharField(max_length=25,choices=action_type_choices_all,default='equipment,INFO')
     action_start_date = models.DateTimeField(default=timezone.now, blank=False, null=False)
     action_end_date = models.DateTimeField(default=timezone.now, blank=False, null=False)
@@ -108,8 +107,9 @@ class Action(models.Model):
     used_in_equipment = models.ForeignKey(Equipment, on_delete=models.CASCADE, blank=True, null=True)
     used_in_action = models.ForeignKey('self', on_delete=models.CASCADE, blank=True, null=True)
     used_in_spare_part = models.ForeignKey(Spare_part, on_delete=models.CASCADE, blank=True, null=True)
+    used_in_container = models.ManyToManyField(Container, blank=True, related_name='used_in_container')
     quantity_delta = models.FloatField(default=None, blank=True, null=True)
-    new_container = models.ForeignKey(Container, on_delete=models.PROTECT, blank=True, null=True)
+    new_container = models.ForeignKey(Container, on_delete=models.CASCADE, blank=True, null=True, related_name='new_container')
 
     def __str__(self):
         return self.action_start_date.strftime("%d.%m.%Y %H:%M")+' '+self.get_type_display()+' '+ str(self.used_in_equipment)

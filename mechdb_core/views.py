@@ -248,9 +248,10 @@ def equipment_new(request):
             action.action_end_date = timezone.now()
             action.type = 'equipment,MOVE'
             action.used_in_equipment = equipment
-            action.new_container = equipment.in_container
+            action.new_container = get_object_or_404(Container, pk=form.cleaned_data['in_container_id'])
             action.save()
-
+            # добавляем used_in_container без всяких оговорок
+            action.used_in_container.add(action.new_container)
             return redirect('equipment_detail', pk=equipment.pk)
     else:
         form = EquipmentForm(user=request.user, formtype='new')
@@ -296,22 +297,6 @@ def equipment_edit(request, pk):
                 equipment.serial_number = form.cleaned_data['serial_number']
             if 'registration_number' in form.fields:
                 equipment.registration_number = form.cleaned_data['registration_number']
-            if 'in_container_id' in form.fields:
-                # остатки старого кода когда equipmentform могла перемещать оборудование.
-                # оставил на всякий случай. да и при создании оборудования будет создаваться action перемещения, что важно
-                # создаём action перемещения
-                action = Action()
-                action.owner = request.user
-                action.created_date = timezone.now()
-                # время берём из соответствующего поля
-                action.action_start_date = form.cleaned_data['action_datetime']
-                action.action_end_date = form.cleaned_data['action_datetime']
-                action.type = 'equipment,MOVE'
-                action.used_in_equipment = equipment
-                action.new_container = get_object_or_404(Container, pk=form.cleaned_data['in_container_id'])
-                action.save()
-                # после добавления action проверяем методом объекта equipment текущее местоположение и переписываем соответствующее поле объекта
-                equipment.set_current_container()
             equipment.save()
             return redirect('equipment_detail', pk=equipment.pk)
     else:
@@ -463,18 +448,15 @@ def action_new(request):
 
         if not formtype in allowable_formtypes:
             # выдаём 404 если с формтайпом что-то не то. возможно подмена запроса злобными хацкерами
-            print('ОПЯТЬ НЕВЕРНЫЙ ФОРМТАЙП')
             raise Http404
         # object может быть как оборудованием, так и spare_part (второе обрабатывается в следующем блоке)
         # КОТОРОГО ТУТ ПОКА НЕТ ОЛОЛО
 
         # Проверка что объект принадлежит юзеру
         if not request.user==object.owner:
-            print('НЕВЕРНЫЙ ЮЗЕР')
             raise Http404
         # конец проверки
     else:
-        print('НЕТ ОБЪЕКТА ИЛИ ФОРМТАЙПА')
         raise Http404
 
     if 'form_completed' in request.POST:
@@ -510,6 +492,13 @@ def action_new(request):
                 action.new_container = Container.objects.get(pk=form.cleaned_data['new_container'])
             action.save()
             object.set_current_container()
+            # заполняем used_in_container
+            if action.new_container:
+                action.used_in_container.add(action.new_container)
+            place_on_date = object.get_place_on_date(action.action_start_date)
+            if place_on_date:
+                action.used_in_container.add(place_on_date)
+            # ============
 
             return redirect('equipment_detail', pk=object.pk)
     else:
@@ -578,6 +567,14 @@ def action_edit(request, pk):
                 action.new_container = Container.objects.get(pk=form.cleaned_data['new_container'])
             action.save()
             object.set_current_container()
+            # заполняем used_in_container
+            action.used_in_container.clear()
+            if action.new_container:
+                action.used_in_container.add(action.new_container)
+            place_on_date = object.get_place_on_date(action.action_start_date)
+            if place_on_date:
+                action.used_in_container.add(place_on_date)
+            # ============
 
             return redirect('action_detail', pk=action.pk)
     else:
