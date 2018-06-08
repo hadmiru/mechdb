@@ -55,11 +55,11 @@ class Equipment(models.Model):
     def set_current_container(self):
         # функция расчитывает и записывает текущее местоположение
         last_move_action = Action.objects.filter(used_in_equipment=self, new_container__isnull=False).order_by("-action_end_date")[0]
-        if last_move_action:
+        if last_move_action is None:
+            return False
+        else:
             self.in_container=last_move_action.new_container
             self.save()
-        else:
-            return False
 
 
 class Spare_part(models.Model):

@@ -311,9 +311,7 @@ def equipment_edit(request, pk):
                 action.new_container = get_object_or_404(Container, pk=form.cleaned_data['in_container_id'])
                 action.save()
                 # после добавления action проверяем методом объекта equipment текущее местоположение и переписываем соответствующее поле объекта
-                last_place = equipment.get_place_on_date(timezone.now())
-                if last_place:
-                    equipment.in_container = last_place
+                equipment.set_current_container()
             equipment.save()
             return redirect('equipment_detail', pk=equipment.pk)
     else:
