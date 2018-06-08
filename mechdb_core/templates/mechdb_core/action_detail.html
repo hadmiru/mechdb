@@ -3,7 +3,7 @@
 {% block content %}
       <div class="col-md-8 col-centered">
       <center><h2>Ремонтное воздействие</h2></center>
-      <p>Воздействие: <b>{{action}}</b>
+      <p><b>{{action}}</b>
       <a href="{% url 'action_edit' pk=action.pk %}">ред.</a><br>
       Оборудование: {{action.used_in_equipment}}
       </p>

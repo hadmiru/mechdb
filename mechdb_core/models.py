@@ -17,13 +17,6 @@ def new_user(sender, instance, created, **kwargs):
         Profile.objects.create(user=instance)
     instance.profile.save()
 
-class Action_type(models.Model):
-    title = models.CharField(max_length=20, blank=False, null=False)
-    only_repair_containers = models.BooleanField(default=False, blank=False, null=False)
-
-    def __str__(self):
-        return self.title
-
 class Container(models.Model):
     owner = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     created_date = models.DateTimeField(default=timezone.now, blank=False, null=False)
@@ -84,7 +77,30 @@ class Spare_part(models.Model):
 class Action(models.Model):
     owner = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     created_date = models.DateTimeField(default=timezone.now, blank=False, null=False)
-    type = models.ForeignKey(Action_type, on_delete=models.PROTECT, blank=False, null=False)
+    action_type_choices_equipment = (
+                ('equipment,repair,TO', "ТО"),
+                ('equipment,repair,TR', "ТР"),
+                ('equipment,repair,KR', "КР"),
+                ('equipment,repair,KTS', "КТС"),
+                ('equipment,repair,DEFF', "ремонт"),
+                ('equipment,INFO', "информация"),
+                ('equipment,FAILURE', "отказ"),
+                ('equipment,REPAIR_EXPORT', "вывоз в ремонт"),
+                ('equipment,REPAIR_IMPORT', "завоз с ремонта"),
+                ('equipment,MOUNT', "монтаж"),
+                ('equipment,UNMOUNT', "демонтаж"),
+                ('equipment,MOVE', "перемещение")
+                )
+    action_type_choices_spare_parts = (
+                ('action,INFO', "информация"),
+                ('action,MOVE', "перемещение")
+                )
+    action_type_choices_childs = (
+                ('child,OUTGO', "расход"),
+                )
+    action_type_choices_all = action_type_choices_equipment + action_type_choices_spare_parts + action_type_choices_childs
+    # ТУТ ВСЁ СДЕЛАНО, МИГРАЦИЯ ПРОВЕДЕНА - ТЕПЕРЬ ПРАВЬ КОД
+    type = models.CharField(max_length=25,choices=action_type_choices_all,default='equipment,INFO')
     action_start_date = models.DateTimeField(default=timezone.now, blank=False, null=False)
     action_end_date = models.DateTimeField(default=timezone.now, blank=False, null=False)
     scheduled = models.NullBooleanField(default=None)
@@ -96,18 +112,4 @@ class Action(models.Model):
     new_container = models.ForeignKey(Container, on_delete=models.PROTECT, blank=True, null=True)
 
     def __str__(self):
-        return self.action_start_date.strftime("%d.%m.%Y %H:%M")+' '+self.type.title+' ['+ str(self.used_in_equipment)+']'
-
-
-#class Movement_action(models.Model):
-#    owner = models.ForeignKey('auth.User', on_delete=models.CASCADE)
-#    action_date = models.DateTimeField(default=timezone.now, blank=False, null=False)
-#    description = models.TextField(blank=True, null=True)
-#    type = models.ForeignKey(Action_type, on_delete=models.PROTECT, blank=True, null=True)
-#    used_in_action = models.ForeignKey(Action, on_delete=models.SET_NULL, blank=True, null=True)
-#    used_in_equipment = models.ForeignKey(Equipment, on_delete=models.CASCADE, blank=True, null=True)
-#    used_in_spare_part = models.ForeignKey(Spare_part, on_delete=models.CASCADE, blank=True, null=True)
-#    quantity_delta = models.FloatField(default=0, blank=True, null=True)
-#    new_container = models.ForeignKey(Container, on_delete=models.SET_NULL, blank=True, null=True)
-#    def __str__(self):
-#        return str(self.action_date)
+        return self.action_start_date.strftime("%d.%m.%Y %H:%M")+' '+self.get_type_display()+' '+ str(self.used_in_equipment)

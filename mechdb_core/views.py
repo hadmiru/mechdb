@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Container, Equipment, Equipment_sizename, Action, Action_type, Profile
+from .models import Container, Equipment, Equipment_sizename, Action, Profile
 from django.utils import timezone
 from django.utils.html import escape
 from django.forms.models import model_to_dict
@@ -246,7 +246,7 @@ def equipment_new(request):
             action.created_date = timezone.now()
             action.action_start_date = timezone.now()
             action.action_end_date = timezone.now()
-            action.type = Action_type.objects.get(title='перемещение')
+            action.type = 'equipment,MOVE'
             action.used_in_equipment = equipment
             action.new_container = equipment.in_container
             action.save()
@@ -306,7 +306,7 @@ def equipment_edit(request, pk):
                 # время берём из соответствующего поля
                 action.action_start_date = form.cleaned_data['action_datetime']
                 action.action_end_date = form.cleaned_data['action_datetime']
-                action.type = Action_type.objects.get(title='перемещение')
+                action.type = 'equipment,MOVE'
                 action.used_in_equipment = equipment
                 action.new_container = get_object_or_404(Container, pk=form.cleaned_data['in_container_id'])
                 action.save()
@@ -453,33 +453,30 @@ def action_new(request):
     # если вторая прогрузка формы - formtype передаётся из одноимённого поля
 
     # блок обработки действий над оборудованием
-    if 'formtype' in request.POST and 'object_pk' in request.POST:
+    if 'formtype' in request.POST and 'object_pk_from_user' in request.POST:
         # представлению должны быть переданы тип формы и оборудование над которым будет воздействие. иначе - отказ
+        object = Equipment.objects.get(pk=request.POST['object_pk_from_user'])
         formtype = request.POST['formtype']
-        allowable_formtypes = {
-                'equipment,repair,TO':"ТО",
-                'equipment,repair,TR':"ТР",
-                'equipment,repair,KR':"КР",
-                'equipment,repair,KTS':"КТС",
-                'equipment,repair,DEFF':"ремонт",
-                'equipment,INFO':"информация",
-                'equipment,FAILURE':"отказ",
-                'equipment,REPAIR_EXPORT':"вывоз в ремонт",
-                'equipment,REPAIR_IMPORT':"завоз с ремонта",
-                'equipment,MOUNT':"монтаж",
-                'equipment,UNMOUNT':"демонтаж",
-                'equipment,MOVE':"перемещение"
-                }
+
+        # составляем словарь допустимых значений
+        allowable_formtypes = {}
+        for i in Action.action_type_choices_equipment:
+            allowable_formtypes.update({i[0]:i[1]})
+
         if not formtype in allowable_formtypes:
             # выдаём 404 если с формтайпом что-то не то. возможно подмена запроса злобными хацкерами
+            print('ОПЯТЬ НЕВЕРНЫЙ ФОРМТАЙП')
             raise Http404
         # object может быть как оборудованием, так и spare_part (второе обрабатывается в следующем блоке)
-        object = get_object_or_404(Equipment, pk=request.POST['object_pk'])
+        # КОТОРОГО ТУТ ПОКА НЕТ ОЛОЛО
+
         # Проверка что объект принадлежит юзеру
         if not request.user==object.owner:
+            print('НЕВЕРНЫЙ ЮЗЕР')
             raise Http404
         # конец проверки
     else:
+        print('НЕТ ОБЪЕКТА ИЛИ ФОРМТАЙПА')
         raise Http404
 
     if 'form_completed' in request.POST:
@@ -489,7 +486,7 @@ def action_new(request):
             action.owner = request.user
             action.created_date = timezone.now()
 
-            action.type = Action_type.objects.get(title=allowable_formtypes[formtype])
+            action.type = formtype
 
             if 'action_start_date' in form.fields:
                 action.action_start_date = form.cleaned_data['action_start_date']
@@ -519,6 +516,7 @@ def action_new(request):
             return redirect('equipment_detail', pk=object.pk)
     else:
         form = ActionForm(user=request.user, formtype=formtype, object=object)
+
     page_title = 'Добавление ремонтного воздействия'
     return render(request, 'mechdb_core/action_edit.html', {
                                                             'current_user':request.user,
@@ -537,36 +535,23 @@ def action_edit(request, pk):
         raise Http404
     # конец проверки
 
-    # =====================Начало формирования formtype
-    formtype=''
+    formtype=action.type
+    # составляем словарь допустимых значений
+    allowable_formtypes = {}
+    for i in Action.action_type_choices_equipment:
+        allowable_formtypes.update({i[0]:i[1]})
+    if not formtype in allowable_formtypes:
+        # выдаём 404 если с формтайпом что-то не то. возможно подмена запроса злобными хацкерами
+        raise Http404
+
     if action.used_in_equipment:
         object = action.used_in_equipment
-
-        allowable_formtypes = {
-                'equipment,repair,TO':"ТО",
-                'equipment,repair,TR':"ТР",
-                'equipment,repair,KR':"КР",
-                'equipment,repair,KTS':"КТС",
-                'equipment,repair,DEFF':"ремонт",
-                'equipment,INFO':"информация",
-                'equipment,FAILURE':"отказ",
-                'equipment,REPAIR_EXPORT':"вывоз в ремонт",
-                'equipment,REPAIR_IMPORT':"завоз с ремонта",
-                'equipment,MOUNT':"монтаж",
-                'equipment,UNMOUNT':"демонтаж",
-                'equipment,MOVE':"перемещение"
-                }
-        # меняем в словаре местами ключи и значения и составляем formtype на основе action_type нашего action
-        allowable_formtypes_reverse = {v:k for k, v in allowable_formtypes.items()}
-        if action.type.title in allowable_formtypes_reverse:
-            formtype = allowable_formtypes_reverse[action.type.title]
     elif action.used_in_action:
         object = action.used_in_action
     elif action.used_in_spare_part:
         object = action.used_in_spare_part
     else:
         raise Http404
-    # ==============конец формирования formtype
 
     instance=model_to_dict(action)
     if 'form_completed' in request.POST:

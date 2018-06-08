@@ -1,5 +1,5 @@
 from django import forms
-from .models import Container, Equipment, Equipment_sizename, Action, Action_type, Spare_part, Profile
+from .models import Container, Equipment, Equipment_sizename, Action, Spare_part, Profile
 from .my_defs import tree_parse
 from django.utils import timezone
 from django.contrib.auth.forms import UserCreationForm
@@ -107,7 +107,7 @@ class ActionForm(forms.Form):
 
     formtype = forms.CharField(max_length=50, widget=forms.HiddenInput())
     form_completed = forms.BooleanField(initial=True, widget=forms.HiddenInput())
-    object_pk = forms.IntegerField(required=True, widget=forms.HiddenInput())
+    object_pk_from_user = forms.IntegerField(required=True, widget=forms.HiddenInput())
 
     used_in_equipment = forms.ModelChoiceField(queryset=Equipment.objects.filter(owner=0), empty_label=None, required=False, label='Родительское борудование')
     used_in_action = forms.ModelChoiceField(queryset=Action.objects.filter(owner=0), empty_label=None, required=False, label='Родительское воздействие')
@@ -132,7 +132,7 @@ class ActionForm(forms.Form):
         self.fields['new_container'].choices=tree_parse(0, 'choice', user, False)
 
         self.fields['formtype'].initial=formtype
-        self.fields['object_pk'].initial=object.pk
+        self.fields['object_pk_from_user'].initial=object.pk
         # =====================
         # меняем форму в соответствии с formtype
         if 'MOVE' in formtype:
