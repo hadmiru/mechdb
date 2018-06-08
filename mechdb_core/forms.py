@@ -65,7 +65,7 @@ class ContainerForm(forms.Form):
 
 class EquipmentForm(forms.Form):
 
-    formtype = forms.CharField(max_length=50, widget=forms.HiddenInput())
+    formtype = forms.CharField(max_length=50, initial='new', widget=forms.HiddenInput())
     form_completed = forms.BooleanField(initial=True, widget=forms.HiddenInput())
 
     sizename = forms.ModelChoiceField(queryset=Equipment_sizename.objects.filter(owner=0), empty_label=None, required=True, label='Модель')

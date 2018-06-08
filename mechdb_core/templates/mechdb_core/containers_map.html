@@ -2,9 +2,13 @@
 
 {% block content %}
   <div class="col-md-7 col-centered">
-  <p><h3><center><a href="{% url 'container_new' %}">Создать новый контейнер</a></center></h3></p>
+    <center><h1>Карта</h1></center>
 
-
+  {% if not containers %}
+  <center><font color='red'><b>Вы пока не создали ни одного контейнера</b></font><br>
+  Для начала работы создайте хотя бы один,<br>
+  выбрав в меню "Создание, Контейнер"</p></center>
+  {% endif %}
   {% for i in containers %}
   {{ i|safe }}
   {% endfor %}
