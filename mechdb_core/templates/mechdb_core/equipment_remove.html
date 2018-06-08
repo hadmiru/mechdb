@@ -1,6 +1,7 @@
 {% extends 'mechdb_core/base.html' %}
 
 {% block content %}
+    <div class="col-md-8 col-centered">
       <center><h2><font color=red>ВНИМАНИЕ</font></h2></center>
       Вы собираетесь удалить оборудование <b class="equipmenthref">{{ equipment }}</b><br>
       При удалении оборудования вы <font color=red>НАВСЕГДА</font> потеряете:<br><br>
@@ -19,5 +20,6 @@
         <input type="hidden" name="confirmed" value="confirmed">
         <p align=center><input class="btn btn-info" type="submit" value="Я передумал" formaction="{% url 'equipment_detail' pk=equipment.pk %}">  <input class="btn btn-danger" type="submit" value="Я понимаю последствия. Продолжить"></p>
       </form>
+    </div>
 
 {% endblock %}

@@ -1,8 +1,9 @@
 {% extends 'mechdb_core/base.html' %}
 
 {% block content %}
-  <p><h3><center><a href="{% url 'action_new' %}">Добавить новое воздействие</a></center></h3></p>
-  <p><b>Последние воздействия:</b></p>
+  <div class="col-md-10 col-centered">
+  <center><h1>Последние ремонтные воздействия</h1></center>
+  <br>
   <ul>
     {% for i in actions %}
       <li>
@@ -10,4 +11,5 @@
       </li>
     {% endfor %}
   </ul>
+  </div>
 {% endblock %}

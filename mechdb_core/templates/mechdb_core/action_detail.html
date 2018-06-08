@@ -1,6 +1,8 @@
 {% extends 'mechdb_core/base.html' %}
 
 {% block content %}
+      <div class="col-md-8 col-centered">
+      <center><h2>Ремонтное воздействие</h2></center>
       <p>Воздействие: <b>{{action}}</b>
       <a href="{% url 'action_edit' pk=action.pk %}">ред.</a><br>
       Оборудование: {{action.used_in_equipment}}
@@ -13,4 +15,5 @@
         <li>Описание воздействия: {{action.description}}</li>
         <li>Плановое?: {{action.scheduled}}</li>
       </ul>
+      <div>
 {% endblock %}

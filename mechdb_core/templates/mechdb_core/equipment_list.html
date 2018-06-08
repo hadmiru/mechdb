@@ -1,7 +1,8 @@
 {% extends 'mechdb_core/base.html' %}
 
 {% block content %}
-  <p><h3><center><a href="{% url 'equipment_new' %}">Создать новое оборудование</a></center></h3></p>
+<div class="col-md-8 col-centered">
+  <center><h2>Список оборудования</h2></center>
   <ul>
     {% for i in equipments %}
       <li>
@@ -9,4 +10,5 @@
       </li>
     {% endfor %}
   </ul>
+</div>
 {% endblock %}

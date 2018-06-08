@@ -1,7 +1,9 @@
 {% extends 'mechdb_core/base.html' %}
 
 {% block content %}
-      <p><b>{{equipment.sizename.title}} № {{equipment.serial_number}}</b><br></p>
+<div class="col-md-8 col-centered">
+        <h4>Карточка оборудования<br>
+          {{equipment.sizename.title}} № {{equipment.serial_number}}</h4>
 
         <div class="btn-group">
           <button type="button" class="btn btn-warning">Действия</button>
@@ -151,5 +153,5 @@
         {{ i.type.title }} {{ i.new_container.title }}<br>
         </a>
       {% endfor %}
-
+</div>
 {% endblock %}

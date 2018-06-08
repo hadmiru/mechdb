@@ -1,7 +1,9 @@
 {% extends 'mechdb_core/base.html' %}
 
 {% block content %}
-      <h2>Контейнер: {{container.title}}</h2><a href="{% url 'container_edit' pk=container.pk %}">редактировать</a><br><br>
+      <div class="col-md-8 col-centered">
+      <center><h2>Контейнер: {{container.title}}</h2>
+      <a href="{% url 'container_edit' pk=container.pk %}">редактировать</a><br><br></center>
       <ul>
         <li>Создатель контейнера: {{container.owner}}</li>
         <li>Время создания контейнера: {{container.created_date}}</li>
@@ -16,4 +18,5 @@
       {{ i|safe }}
       {% endfor %}
       </UL>
+    </div>
 {% endblock %}
