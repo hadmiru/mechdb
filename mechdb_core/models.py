@@ -45,22 +45,22 @@ class Equipment(models.Model):
     in_container = models.ForeignKey(Container, on_delete=models.CASCADE, blank=False, null=False)
     def __str__(self):
         return str(self.sizename.title)+" № "+str(self.serial_number)+'  ['+self.in_container.title+']'
-    def get_place_on_date(self,date):
-        last_move_action = Action.objects.filter(used_in_equipment=self, new_container__isnull=False, action_start_date__lt=date).order_by("action_end_date").last()
-        if last_move_action:
-            return last_move_action.new_container
-        else:
-            return False
 
-    def set_current_container(self):
-        # функция расчитывает и записывает текущее местоположение
-        last_move_action = Action.objects.filter(used_in_equipment=self, new_container__isnull=False).order_by("-action_end_date")
-        if last_move_action:
-            self.in_container=last_move_action[0].new_container
+    def set_correct_places(self):
+        # функция корректной проставки used_in_container
+        # НЕ ЗАБЫТЬ  - расход может применяться на оборудование. при этом не очень понятно что будет делать данная функция с такими расходами
+        actions = Action.objects.filter(used_in_equipment=self).order_by("action_start_date")
+        new_container = None
+        for action in actions:
+            action.used_in_container.clear()
+            if new_container:
+                action.used_in_container.add(new_container)
+            if action.new_container:
+                new_container = action.new_container
+                action.used_in_container.add(new_container)
+        if new_container:
+            self.in_container = new_container
             self.save()
-        else:
-            return False
-
 
 class Spare_part(models.Model):
     owner = models.ForeignKey('auth.User', on_delete=models.CASCADE)

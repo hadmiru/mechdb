@@ -250,8 +250,8 @@ def equipment_new(request):
             action.used_in_equipment = equipment
             action.new_container = get_object_or_404(Container, pk=form.cleaned_data['in_container_id'])
             action.save()
-            # добавляем used_in_container без всяких оговорок
-            action.used_in_container.add(action.new_container)
+            equipment.set_correct_places()
+
             return redirect('equipment_detail', pk=equipment.pk)
     else:
         form = EquipmentForm(user=request.user, formtype='new')
@@ -491,14 +491,7 @@ def action_new(request):
             if 'new_container' in form.fields:
                 action.new_container = Container.objects.get(pk=form.cleaned_data['new_container'])
             action.save()
-            object.set_current_container()
-            # заполняем used_in_container
-            if action.new_container:
-                action.used_in_container.add(action.new_container)
-            place_on_date = object.get_place_on_date(action.action_start_date)
-            if place_on_date:
-                action.used_in_container.add(place_on_date)
-            # ============
+            object.set_correct_places()
 
             return redirect('equipment_detail', pk=object.pk)
     else:
@@ -566,15 +559,7 @@ def action_edit(request, pk):
             if 'new_container' in form.fields:
                 action.new_container = Container.objects.get(pk=form.cleaned_data['new_container'])
             action.save()
-            object.set_current_container()
-            # заполняем used_in_container
-            action.used_in_container.clear()
-            if action.new_container:
-                action.used_in_container.add(action.new_container)
-            place_on_date = object.get_place_on_date(action.action_start_date)
-            if place_on_date:
-                action.used_in_container.add(place_on_date)
-            # ============
+            object.set_correct_places()
 
             return redirect('action_detail', pk=action.pk)
     else:
