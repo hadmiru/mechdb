@@ -2,6 +2,6 @@
 *~
 __pycache__
 mvenv
-db.sqlite3
+/mechdb/settings.py
 /static
 .DS_Store
