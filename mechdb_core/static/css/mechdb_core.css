@@ -11,12 +11,16 @@
 #id_password2{
   width:100%;
 }
+
+.href-red, .href-red:hover, .href-red:visited{
+  color: #992100;
+}
+
 /* ФОРМА РЕГИСТРАЦИИ*/
 
 .page-header {
     background-color: #ff9400;
     width: 1140px;
-    height: 138px;
     margin-top: 0;
     padding: 20px 20px 20px 40px;
 }
@@ -147,17 +151,30 @@
     margin: 0 auto;
 }
 
+.col-right{
+    float: none;
+    margin-right: 0px;
+}
+
 .content{
     padding: 20px;
     padding-bottom: 70px;
     background-color: #FFFFFF;
   }
 
+.card_page{
+  background-color: #D4D4D4;
+  border-radius: 5px;
+  padding:10px;
+  margin-bottom: 30px;
+}
 
-
+#sitetitle{
+  font-family: 'Bowlby One SC', cursive;
+}
 
 h1, h2, h3, h4 {
-    font-family: 'Bowlby One SC', cursive;
+    font-family: 'Yeseva One', cursive;
 }
 
 .date {
@@ -228,4 +245,26 @@ h1, h2, h3, h4 {
   font-size:8pt;
   padding:10px;
   text-align: center;
+}
+
+table {
+  border-collapse: collapse;
+  border: 2px solid grey;
+}
+
+th {
+  border: 1px solid grey;
+  font-family: 'Yeseva One', cursive;
+  text-align: center;
+  background-color: #ff9400;
+}
+
+td {
+  border: 1px solid grey;
+  text-align: center;
+}
+
+.actionlist {
+  width: 100%;
+  margin-top:20px;
 }
