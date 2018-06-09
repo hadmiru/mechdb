@@ -68,7 +68,7 @@ def containers_map(request):
     if request.POST:
         containers_output=tree_parse(0, request.POST, request.user)
     else:
-        containers_output=tree_parse(0, 'li', request.user)
+        containers_output=tree_parse(0, 'li equipment', request.user)
     page_title = 'Карта'
     return render(request, 'mechdb_core/containers_map.html', {'current_user':request.user, 'page_title':page_title, 'containers': containers_output})
 
@@ -333,10 +333,10 @@ def sizename_detail(request, pk):
         raise Http404
     # конец проверки
 
-    slave_equipments = Equipment.objects.filter(owner=request.user, sizename=sizename).order_by('serial_number')
-    slaves_list=[]
-    for slave in slave_equipments:
-        slaves_list.append((slave.pk, slave.serial_number,get_container_place(slave.in_container.pk)))
+    slaves_list = Equipment.objects.filter(owner=request.user, sizename=sizename).order_by('serial_number')
+#    slaves_list=[]
+#    for slave in slave_equipments:
+#        slaves_list.append((slave.pk, slave.serial_number,get_container_place(slave.in_container.pk)))
     page_title = 'Карточка модели '+sizename.title
     return render(request, 'mechdb_core/sizename_detail.html', {
                                                             'current_user':request.user,

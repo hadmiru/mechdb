@@ -255,6 +255,7 @@ table {
 th {
   border: 1px solid grey;
   font-family: 'Yeseva One', cursive;
+  font-size:9pt;
   text-align: center;
   background-color: #ff9400;
 }
@@ -262,6 +263,7 @@ th {
 td {
   border: 1px solid grey;
   text-align: center;
+  font-size:10pt;
 }
 
 .actionlist {
