@@ -16,9 +16,9 @@
           <UL>
               <LI>
                 <b>Тип воздействия:</b> {{action.get_type_display}}
-                {% if action.scheduled %}
+                {% if action.scheduled is True %}
                 <font color='green'>(плановое)</font>
-                {% else %}
+                {% elif action.scheduled is False %}
                 <font color='red'>(внеплановое)</font>
                 {% endif %}
 
