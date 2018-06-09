@@ -1,22 +1,44 @@
 {% extends 'mechdb_core/base.html' %}
 
 {% block content %}
-      <div class="col-md-8 col-centered">
-      <center><h2>Контейнер: {{container.title}}</h2>
-      <a href="{% url 'container_edit' pk=container.pk %}">редактировать</a><br><br></center>
-      <ul>
-        <li>Создатель контейнера: {{container.owner}}</li>
-        <li>Время создания контейнера: {{container.created_date}}</li>
-        <li>Описание контейнера: {{container.description}}</li>
-        <li>Ремонтная организация: {{container.is_repair_organization}}</li>
-      </ul>
-      <h2>Содержимое</h2>
-
-      <UL>
-      <b class="containerhref">{{container.title}}</b>
-      {% for i in content %}
-      {{ i|safe }}
-      {% endfor %}
-      </UL>
+<h1><center>Карточка контейнера</center></h1>
+<div class='card_page col-md-7 col-centered'>
+    <div class="btn-group pull-right">
+            <button type="button" class="btn btn-warning">Действия</button>
+            <button type="button" class="btn btn-warning dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <div class="dropdown-menu dropdown-menu-right">
+                  <a class="dropdown-item" href="{% url 'container_edit' pk=container.pk %}">Редактировать</a>
+                  <a class="dropdown-item" href="#">Удалить</a>
+            </div>
     </div>
+    <UL>
+        <LI>
+          <b>Наименование контейнера:</b><br>
+          <FONT class="containerhref">{{container.title}}</FONT>
+        </LI>
+        <LI>
+          <b>Описание:</b>
+          {% if container.description%}
+              <br>
+              {{container.description|linebreaks}}
+          {% endif %}
+        </LI>
+        <LI>
+          <b>Дата создания:</b> {{container.created_date|date:"d.m.Y H:i"}}
+        </LI>
+    </UL>
+</div>
+
+<CENTER><h2>Содержимое</h2></CENTER>
+<div class="col-md-7 col-centered">
+
+    <UL>
+    <b class="containerhref">{{container.title}}</b>
+    {% for i in content %}
+    {{ i|safe }}
+    {% endfor %}
+    </UL>
+</div>
 {% endblock %}
