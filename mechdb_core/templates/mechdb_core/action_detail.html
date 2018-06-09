@@ -3,29 +3,60 @@
 {% block content %}
       <h1><center>Карточка воздействия</center></h1>
       <div class='card_page col-md-7 col-centered'>
-        <div class="btn-group pull-right">
-                <button type="button" class="btn btn-warning">Действия</button>
-                <button type="button" class="btn btn-warning dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="sr-only">Toggle Dropdown</span>
-                </button>
-                <div class="dropdown-menu dropdown-menu-right">
-                      <a class="dropdown-item" href="{% url 'action_edit' pk=action.pk%}">Редактировать</a>
-                      <a class="dropdown-item" href="#">Удалить</a>
-                </div>
-        </div>
+          <div class="btn-group pull-right">
+                  <button type="button" class="btn btn-warning">Действия</button>
+                  <button type="button" class="btn btn-warning dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <span class="sr-only">Toggle Dropdown</span>
+                  </button>
+                  <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" href="{% url 'action_edit' pk=action.pk%}">Редактировать</a>
+                        <a class="dropdown-item" href="#">Удалить</a>
+                  </div>
+          </div>
+          <UL>
+              <LI>
+                <b>Тип воздействия:</b> {{action.get_type_display}}
+                {% if action.scheduled %}
+                <font color='green'>(плановое)</font>
+                {% else %}
+                <font color='red'>(внеплановое)</font>
+                {% endif %}
+
+              </LI>
+              <LI>
+                <b>Дата воздействия:</b> {{ action.action_start_date|date:"d.m.Y H:i" }}
+              </LI>
+              {% if action.action_end_date and action.action_end_date != action.action_start_date%}
+              <LI>
+                <b>Дата окончания:  </b> {{ action.action_end_date|date:"d.m.Y H:i" }}
+              </LI>
+              {% endif %}
+              <LI>
+                <b>Оборудование:</b>
+                <a class="href-red" href="{% url 'equipment_detail' pk=action.used_in_equipment.pk %}">{{ action.used_in_equipment.sizename.title }} № {{ action.used_in_equipment.serial_number }}</a>
+              </LI>
+              <LI>
+                <b>Проводилось в контейнере:</b>
+                    <UL>
+                        {% for i in action.used_in_container.all %}
+                        <LI>
+                          {% if i.in_container %}
+                              <a class="containerhref" href="{% url 'container_detail' pk=i.in_container.pk %}">
+                              {{ i.in_container.title }}
+                              </a>
+                              <i class="fa fa-angle-left"></i>
+                          {% endif %}
+                          <b><a class="containerhref" href="{% url 'container_detail' pk=i.pk %}">
+                          {{ i.title }}
+                          </a></b>
+                        </LI>
+                        {% endfor %}
+                    </UL>
+              </LI>
+              <LI>
+                <b>Описание:</b><br>
+                {{action.description|linebreaks}}
+              </LI>
+          </UL>
       </div>
-
-
-      <p><b>{{action}}</b>
-      <a href="{% url 'action_edit' pk=action.pk %}">ред.</a><br>
-      Оборудование: {{action.used_in_equipment}}
-      </p>
-      <ul>
-        <li>Создатель контейнера: {{action.owner}}</li>
-        <li>Время создания: {{action.created_date}}</li>
-        <li>Время начала: {{action.action_start_date}}</li>
-        <li>Время окончания: {{action.action_end_date}}</li>
-        <li>Описание воздействия: {{action.description|linebreaks}}</li>
-        <li>Плановое?: {{action.scheduled}}</li>
-      </ul>
 {% endblock %}

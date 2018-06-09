@@ -174,8 +174,6 @@
                 {% endif %}
             </TD>
             <TD>
-
-
                 {% if i.new_container %}
                         {% if i.used_in_container.all.0.pk == i.new_container.pk %}
                             <a class="containerhref" href="{% url 'container_detail' pk=i.used_in_container.last.pk %}">
