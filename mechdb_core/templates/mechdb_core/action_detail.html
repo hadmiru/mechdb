@@ -1,8 +1,21 @@
 {% extends 'mechdb_core/base.html' %}
 
 {% block content %}
-      <div class="col-md-8 col-centered">
-      <center><h2>Ремонтное воздействие</h2></center>
+      <h1><center>Карточка воздействия</center></h1>
+      <div class='card_page col-md-7 col-centered'>
+        <div class="btn-group pull-right">
+                <button type="button" class="btn btn-warning">Действия</button>
+                <button type="button" class="btn btn-warning dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <div class="dropdown-menu dropdown-menu-right">
+                      <a class="dropdown-item" href="{% url 'action_edit' pk=action.pk%}">Редактировать</a>
+                      <a class="dropdown-item" href="#">Удалить</a>
+                </div>
+        </div>
+      </div>
+
+
       <p><b>{{action}}</b>
       <a href="{% url 'action_edit' pk=action.pk %}">ред.</a><br>
       Оборудование: {{action.used_in_equipment}}
@@ -15,5 +28,4 @@
         <li>Описание воздействия: {{action.description|linebreaks}}</li>
         <li>Плановое?: {{action.scheduled}}</li>
       </ul>
-      <div>
 {% endblock %}
