@@ -30,9 +30,28 @@ class Container(models.Model):
 class Equipment_sizename(models.Model):
     owner = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     created_date = models.DateTimeField(default=timezone.now, blank=False, null=False)
-    title = models.CharField(max_length=200, blank=False, null=False)
-    manufacturer = models.CharField(max_length=100, blank=False, null=False, default='н/д')
-    supply_provider = models.CharField(max_length=100, blank=False, null=False, default='н/д')
+    title = models.CharField(max_length=200, blank=False, null=False, verbose_name="Наименование")
+
+    sizename_type_choices = (
+                ('pump', "Насос"),
+                ('compressor', "Компрессор"),
+                ('bench', "Станок"),
+                ('e-engine', "Электродвигатель"),
+                ('engine', "ДВС"),
+                ('turbine', "Турбина"),
+                ('crane', "ГПМ"),
+                ('air-handling-unit', "Вент. установка"),
+                ('air-cooling-unit', "АВО"),
+                ('heat-exchanger', "Теплообменник"),
+                ('furnace', "Печь"),
+                ('safe-valve', "Клапан предохр."),
+                ('check-valve', "Клапан обратный"),
+                ('control-valve', "Задвижка, клапан реглирующий"),
+                ('other', "Прочее оборудование"),
+                )
+    type = models.CharField(max_length=25,choices=sizename_type_choices,default='other', verbose_name="Тип оборудования")
+    manufacturer = models.CharField(max_length=100, blank=False, null=False, default='н/д', verbose_name="Производитель")
+    supply_provider = models.CharField(max_length=100, blank=False, null=False, default='н/д', verbose_name="Поставщик")
     def __str__(self):
         return self.title
 

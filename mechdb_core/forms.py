@@ -101,7 +101,7 @@ class EquipmentForm(forms.Form):
 class SizenameForm(forms.ModelForm):
     class Meta:
         model = Equipment_sizename
-        fields = ('title', 'manufacturer', 'supply_provider')
+        fields = ('title', 'type', 'manufacturer', 'supply_provider')
 
 class ActionForm(forms.Form):
 
