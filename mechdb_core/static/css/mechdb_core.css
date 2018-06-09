@@ -268,3 +268,12 @@ td {
   width: 100%;
   margin-top:20px;
 }
+
+/* ===== START tooltip */
+
+.tooltip-inner {
+    white-space:pre-wrap;
+    max-width: 400px;
+}
+
+/* ===== END tooltip */

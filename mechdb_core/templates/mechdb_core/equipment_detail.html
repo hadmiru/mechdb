@@ -190,7 +190,7 @@
             </TD>
             <TD>
                 {% if i.description %}
-                <i class="fa fa-info-circle"></i>
+                <i rel="tooltip" data-placement="left" data-original-title="{{i.description}}" class="fa fa-info-circle"></i>
                 {% else %}
                 <i class="fa fa-times text-danger"></i>
                 {% endif %}
