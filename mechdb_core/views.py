@@ -85,12 +85,21 @@ def container_detail(request, pk):
     # конец проверки
 
     content=tree_parse(pk,'li equipment',request.user)
+
+    # Получаем список действий в контейнере и в его потомках 1го уровня
+    containers = []
+    containers.append(container)
+    child_containers = Container.objects.filter(in_container=container)
+    for i in child_containers:
+        containers.append(i)
+    actions_list = Action.objects.filter(used_in_container__in=containers).order_by("-action_start_date")
     page_title = 'Карточка контейнера '+str(container.title)
     return render(request, 'mechdb_core/container_detail.html', {
                                                                 'current_user':request.user,
                                                                 'page_title':page_title,
                                                                 'container':container,
-                                                                'content':content
+                                                                'content':content,
+                                                                'actions_list':actions_list
                                                                 })
 
 def container_new(request):
