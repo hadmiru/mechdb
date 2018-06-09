@@ -36,22 +36,33 @@
                 <a class="href-red" href="{% url 'equipment_detail' pk=action.used_in_equipment.pk %}">{{ action.used_in_equipment.sizename.title }} № {{ action.used_in_equipment.serial_number }}</a>
               </LI>
               <LI>
-                <b>Проводилось в контейнере:</b>
-                    <UL>
-                        {% for i in action.used_in_container.all %}
-                        <LI>
-                          {% if i.in_container %}
-                              <a class="containerhref" href="{% url 'container_detail' pk=i.in_container.pk %}">
-                              {{ i.in_container.title }}
-                              </a>
-                              <i class="fa fa-angle-left"></i>
-                          {% endif %}
-                          <b><a class="containerhref" href="{% url 'container_detail' pk=i.pk %}">
-                          {{ i.title }}
-                          </a></b>
-                        </LI>
-                        {% endfor %}
-                    </UL>
+                <b>Проводилось в контейнере:</b><br>
+                        <!-- аналогичный код в equipment_detail -->
+                        {% if action.new_container %}
+                                {% if action.used_in_container.all.0.pk == action.new_container.pk %}
+                                    <a class="containerhref" href="{% url 'container_detail' pk=action.used_in_container.last.pk %}">
+                                    {{action.used_in_container.all.1.title}}
+                                    </a>
+                                {% else %}
+                                    <a class="containerhref" href="{% url 'container_detail' pk=action.used_in_container.all.0.pk %}">
+                                    {{action.used_in_container.all.0.title}}
+                                    </a>
+                                {% endif %}
+                            <i class="fa fa-long-arrow-right"></i>
+                            <b><a class="containerhref" href="{% url 'container_detail' pk=action.new_container.pk %}">
+                            {{action.new_container.title}}
+                            </a></b>
+                        {% else %}
+                            {% if action.used_in_container.last.in_container %}
+                                <a class="containerhref" href="{% url 'container_detail' pk=action.used_in_container.last.in_container.pk %}">
+                                {{ action.used_in_container.last.in_container.title }}
+                                </a>
+                                <i class="fa fa-angle-left"></i>
+                            {% endif %}
+                            <b><a class="containerhref" href="{% url 'container_detail' pk=action.used_in_container.last.pk %}">
+                            {{ action.used_in_container.last.title }}
+                            </a></b>
+                        {% endif %}
               </LI>
               <LI>
                 <b>Описание:</b><br>
