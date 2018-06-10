@@ -9,7 +9,17 @@
                   <span class="sr-only">Toggle Dropdown</span>
                   </button>
                   <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="#">Добавить оборудование</a>
+
+                        <!-- СТАРТ добавить оборудование-->
+                        <form id="new_equipment" method="get" action="{% url 'equipment_new' %}">
+                          {% csrf_token %}
+                          <input type="hidden" name="sizename_id" value="{{sizename.pk}}" />
+                          <input class="dropdown-item" type="submit" value="Добавить оборудование">
+                        </form>
+                        <!-- СТОП добавить оборудование-->
+
+                        <div class="dropdown-divider"></div>
+
                         <a class="dropdown-item" href="{% url 'sizename_edit' pk=sizename.pk %}">Редактировать</a>
                         <a class="dropdown-item" href="#">Удалить</a>
                   </div>

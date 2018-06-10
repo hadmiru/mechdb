@@ -247,6 +247,9 @@ def equipment_new(request):
     instance={}
     if 'in_container_id' in request.GET:
         instance['in_container_id'] = request.GET['in_container_id']
+    if 'sizename_id' in request.GET:
+        sizename_id = escape(request.GET['sizename_id'])
+        instance['sizename'] = get_object_or_404(Equipment_sizename, pk=sizename_id)
 
     if request.method == "POST":
         form = EquipmentForm(request.POST ,user=request.user, formtype="new", initial=instance)

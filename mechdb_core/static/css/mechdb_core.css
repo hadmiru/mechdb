@@ -286,6 +286,20 @@ input[type=checkbox] {
     margin-left: 20px;
 }
 
+#wrapper {
+  position: relative;
+  left: 50%;
+  float: left;
+}
+
+#ul-map {
+  position: relative;
+  left: -50%;
+  float: left;
+  background-color: #E0E0E0;
+  padding-right: 35px;
+}
+
 /* ===== START tooltip */
 
 .tooltip-inner {
