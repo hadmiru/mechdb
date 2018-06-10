@@ -418,6 +418,35 @@ def sizename_edit(request, pk):
                                                             'form': form
                                                             })
 
+
+def sizename_remove(request, pk):
+    timezone.now
+    if not request.user.is_authenticated:
+        return redirect('index_page')
+
+    sizename = get_object_or_404(Equipment_sizename, pk=pk)
+
+    # Проверка что объект принадлежит юзеру
+    if not request.user==sizename.owner:
+        raise Http404
+    # конец проверки
+
+    child_equipments = Equipment.objects.filter(sizename=sizename).order_by("serial_number")
+
+    if 'confirmed' in request.POST:
+        if sizename.owner == request.user:
+            sizename.delete()
+        return redirect('sizename_list')
+    page_title = 'Удаление модели '+str(sizename.title)
+    return render(request, 'mechdb_core/sizename_remove.html', {
+                                                                'current_user':request.user,
+                                                                'sizename':sizename,
+                                                                'child_equipments':child_equipments,
+                                                                'page_title':page_title,
+                                                                })
+
+
+
 def action_list(request):
     timezone.now
     if not request.user.is_authenticated:

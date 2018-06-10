@@ -1,0 +1,36 @@
+{% extends 'mechdb_core/base.html' %}
+
+{% block content %}
+    <div class="card_page col-md-8 col-centered">
+      {% if child_equipments %}
+      <center><h3>Удаление невозможно</h3></center>
+      Обнаружено оборудование, привязанное к удаляемой модели <a class="href-red" href="{% url 'sizename_detail' pk=sizename.pk %}"><b>{{sizename.title}}</b></a>.<br>
+      Для того, чтобы удалить модель, сначала удалите или отредактируйте следующее оборудование:
+      <UL>
+        {% for i in child_equipments %}
+        <LI>
+          <a class='equipmenthref' href='{% url 'equipment_detail' pk=i.pk %}'>
+          {{i.sizename.title}} № {{i.serial_number}}
+          </a>
+          [ {{i.in_container.title }} ]
+        </LI>
+        {% endfor %}
+      </UL>
+      <center><a class="btn btn-info" href="{% url 'sizename_detail' pk=sizename.pk %}">Вернуться к карточке модели</a></center>
+
+
+      {% else %}
+      <center><h2><font color=red>ВНИМАНИЕ</font></h2></center>
+      <center>Вы собираетесь удалить модель <b class="equipmenthref">{{ sizename.title }}</b><br>
+      После удаления восстановление информации невозможно</center><br>
+      <center><b>Вы уверены, что хотите продолжить?</b></center>
+      <form method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="confirmed" value="confirmed">
+        <p align=center><input class="btn btn-info" type="submit" value="Я передумал" formaction="{% url 'sizename_detail' pk=sizename.pk %}">  <input class="btn btn-danger" type="submit" value="Я понимаю последствия. Продолжить"></p>
+      </form>
+      {% endif %}
+
+    </div>
+
+{% endblock %}

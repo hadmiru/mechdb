@@ -21,7 +21,7 @@
                         <div class="dropdown-divider"></div>
 
                         <a class="dropdown-item" href="{% url 'sizename_edit' pk=sizename.pk %}">Редактировать</a>
-                        <a class="dropdown-item" href="#">Удалить</a>
+                        <a class="dropdown-item" href="{% url 'sizename_remove' pk=sizename.pk%}">Удалить</a>
                   </div>
           </div>
           <UL>
