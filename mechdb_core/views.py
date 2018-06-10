@@ -13,6 +13,13 @@ from django.contrib.auth.models import User
 
 # Create your views here.
 
+def guide(request):
+    page_title = 'Инструкция по использованию базы данных MechDB'
+    return render(request, 'mechdb_core/guide.html', {
+                                                            'current_user':request.user,
+                                                            'page_title':page_title,
+                                                            })
+
 def signin(request):
     if request.method == 'POST':
         if 'name' in request.POST and 'password' in request.POST:

@@ -5,6 +5,7 @@ urlpatterns = [
     url(r'^login/$', views.signin, name='signin'),
     url(r'^logout/$', views.logout_view, name='logout_view'),
     url(r'^signup/$', views.signup, name='signup'),
+    url(r'^guide/$', views.guide, name='guide'),
     url(r'^$', views.index_page, name='index_page'),
     # === контейнеры ===
     url(r'^map/', views.containers_map, name='containers_map'),

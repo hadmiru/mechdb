@@ -4,14 +4,16 @@
 
     <center><h1>Карта</h1></center>
 
-  <div id="wrapper"><div id="ul-map">
-  {% if not containers %}
-  <center><font color='red'><b>Вы пока не создали ни одного контейнера</b></font><br>
-  Для начала работы создайте хотя бы один,<br>
-  выбрав в меню "Создание, Контейнер"</p></center>
-  {% endif %}
-  {% for i in containers %}
-  {{ i|safe }}
-  {% endfor %}
-</div></div>
+    {% if not containers %}
+    <center><font color='red'><b>Вы пока не создали ни одного контейнера</b></font><br>
+    Для начала работы создайте хотя бы один,<br>
+    выбрав в меню "Создание, Контейнер"</p></center>
+    {% else %}
+
+    <div id="wrapper"><div id="ul-map">
+      {% for i in containers %}
+      {{ i|safe }}
+      {% endfor %}
+    </div></div>
+    {% endif %}
 {% endblock %}
