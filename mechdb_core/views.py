@@ -55,7 +55,7 @@ def index_page(request):
     timezone.now
     if not request.user.is_authenticated:
         # Если не пользователь не авторизован - отправляем на главную страницу
-        return render(request, 'mechdb_core/under_construction.html', {'current_user':request.user})
+        return render(request, 'mechdb_core/index_page.html', {'current_user':request.user})
     else:
         # Если пользователь авторизован - перенаправляем на containers_map
         return redirect('containers_map')
