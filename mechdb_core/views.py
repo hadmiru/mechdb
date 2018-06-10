@@ -199,7 +199,15 @@ def container_remove(request, pk):
         childs = True
     if 'confirmed' in request.POST:
         if container.owner == request.user and not childs:
+            # проверяем оборудование, которое изменится в результате воздействий
+            child_actions = Action.objects.filter(new_container=container)
+            changed_equipments=[]
+            for i in child_actions:
+                if i.used_in_equipment not in changed_equipments:
+                    changed_equipments.append(i.used_in_equipment)
             container.delete()
+            for y in changed_equipments:
+                y.set_correct_places()
         return redirect('containers_map')
     page_title = 'Удаление контейнера '+str(container.title)
     return render(request, 'mechdb_core/container_remove.html', {
