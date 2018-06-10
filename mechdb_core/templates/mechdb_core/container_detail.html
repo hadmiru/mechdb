@@ -9,10 +9,37 @@
             <span class="sr-only">Toggle Dropdown</span>
             </button>
             <div class="dropdown-menu dropdown-menu-right">
+                  <h6 class="dropdown-header">Добавить содержимое</h6>
+                  <!-- СТАРТ добавить оборудование-->
+                  <form id="new_equipment" method="get" action="{% url 'equipment_new' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="in_container_id" value="{{container.pk}}" />
+                    <input class="dropdown-item" type="submit" value="Оборудование">
+                  </form>
+                  <!-- СТОП добавить оборудование-->
+
+                  <!-- СТАРТ добавить контейнер-->
+                  <form id="new_container" method="get" action="{% url 'container_new' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="in_container_id" value="{{container.pk}}" />
+                    <input class="dropdown-item" type="submit" value="Контейнер">
+                  </form>
+                  <!-- СТОП добавить контейнер-->
+
+                  <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="{% url 'container_edit' pk=container.pk %}">Редактировать</a>
                   <a class="dropdown-item" href="#">Удалить</a>
             </div>
     </div>
+
+    <p>
+      <b>Месторасположение:</b><br>
+      {% for i in place %}
+        {% if not forloop.first %} <i class="fa fa-angle-left"></i> {% endif %}
+        <a class="containerhref" href="{% url 'container_detail' pk=i.0 %}">{{ i.1 }}</a>
+      {% endfor %}
+    </p>
+
     <UL>
         <LI>
           <b>Наименование контейнера:</b><br>

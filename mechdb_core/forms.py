@@ -50,7 +50,7 @@ class In_container_choicefield(forms.ChoiceField):
                     checked_pk = checked_container.in_container.pk
 
 class ContainerForm(forms.Form):
-
+    label="Создание контейнера"
     title = forms.CharField(max_length=200, required=True, label='Название')
     description = forms.CharField(max_length=2000, required=False, widget=forms.Textarea, label='Описание')
     is_repair_organization = forms.BooleanField(required=False, label='Ремонтная организация?')
@@ -60,6 +60,8 @@ class ContainerForm(forms.Form):
         user=kwargs.pop('user',None)
         self_pk=kwargs.pop('self_pk',None)
         super(ContainerForm, self).__init__(*args, **kwargs)
+        if 'title' in self.initial:
+            self.label="Редактирование контейнера"
         self.fields['in_container_id'].choices=tree_parse(0, 'choice', user)
         self.fields['in_container_id'].self_pk=self_pk
 

@@ -184,6 +184,8 @@ h1, h2, h3, h4 {
 
 .save {
     float: right;
+    position: relative;
+    bottom: 40px;
     background:#FF6B00;
 }
 
@@ -221,7 +223,7 @@ h1, h2, h3, h4 {
   color: #B35E00;
 }
 .dropdown-menu {
-  background-color: #FFEBAD;
+  background-color: #E0E0E0;
 }
 
 .formhelptext {
@@ -270,6 +272,18 @@ td {
 .actionlist {
   width: 100%;
   margin-top:20px;
+}
+
+.dropdown-divider {
+  background-color: #545454;
+}
+
+input[type=checkbox] {
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    vertical-align: -3px;
+    margin-left: 20px;
 }
 
 /* ===== START tooltip */

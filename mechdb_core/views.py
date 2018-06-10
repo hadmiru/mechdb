@@ -93,12 +93,15 @@ def container_detail(request, pk):
     for i in child_containers:
         containers.append(i)
     actions_list = Action.objects.filter(used_in_container__in=containers).order_by("-action_start_date")
+
+    place = get_container_place(container.pk)
     page_title = 'Карточка контейнера '+str(container.title)
     return render(request, 'mechdb_core/container_detail.html', {
                                                                 'current_user':request.user,
                                                                 'page_title':page_title,
                                                                 'container':container,
                                                                 'content':content,
+                                                                'place':place,
                                                                 'actions_list':actions_list
                                                                 })
 
@@ -107,8 +110,12 @@ def container_new(request):
     if not request.user.is_authenticated:
         return redirect('index_page')
 
+    instance={}
+    if 'in_container_id' in request.GET:
+        instance['in_container_id'] = request.GET['in_container_id']
+
     if request.method == "POST":
-        form = ContainerForm(request.POST, user=request.user, self_pk=0)
+        form = ContainerForm(request.POST, user=request.user, self_pk=0, initial=instance)
         if form.is_valid():
             print('form valid')
             container = Container()
@@ -126,7 +133,7 @@ def container_new(request):
             container.save()
             return redirect('container_detail', pk=container.pk)
     else:
-        form = ContainerForm(user=request.user, self_pk=0)
+        form = ContainerForm(user=request.user, self_pk=0, initial=instance)
     page_title = 'Создание контейнера'
     return render(request, 'mechdb_core/container_edit.html', {
                                                             'current_user':request.user,
@@ -237,8 +244,12 @@ def equipment_new(request):
     if not request.user.is_authenticated:
         return redirect('index_page')
 
+    instance={}
+    if 'in_container_id' in request.GET:
+        instance['in_container_id'] = request.GET['in_container_id']
+
     if request.method == "POST":
-        form = EquipmentForm(request.POST ,user=request.user, formtype="new")
+        form = EquipmentForm(request.POST ,user=request.user, formtype="new", initial=instance)
         if form.is_valid():
             equipment = Equipment()
             equipment.owner = request.user
@@ -263,7 +274,7 @@ def equipment_new(request):
 
             return redirect('equipment_detail', pk=equipment.pk)
     else:
-        form = EquipmentForm(user=request.user, formtype='new')
+        form = EquipmentForm(user=request.user, formtype='new', initial=instance)
     page_title = 'Создание оборудования'
     return render(request, 'mechdb_core/equipment_edit.html', {
                                                             'current_user':request.user,
