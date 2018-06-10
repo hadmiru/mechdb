@@ -66,7 +66,9 @@
           {{ i.get_type_display }}
       </TD>
       <TD>
+        <a class="href-red" href="{% url 'equipment_detail' pk=i.used_in_equipment.pk%}">
         {{ i.used_in_equipment.sizename.title }} № {{ i.used_in_equipment.serial_number }}
+        </a>
       </TD>
       <TD>
           {% if i.new_container %}

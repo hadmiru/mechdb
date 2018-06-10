@@ -38,7 +38,8 @@
               <div class="col-md-4 login-window">
                 {% if current_user.username %}
                     <!-- Пользователь не авторизован -->
-                    <p id="greetings">Привет, <b>{{ current_user.username }}</b><br>
+                    <p id="greetings">Привет, <FONT color="blue">{{ current_user.username }}</FONT> <i class="fa fa-user"></i><br>
+                    Уведомления: 0<br>
                     <a class="logout-href" href="{% url 'logout_view' %}">Выход</a></p>
                 {% else %}
                     <!-- Пользователь авторизован -->

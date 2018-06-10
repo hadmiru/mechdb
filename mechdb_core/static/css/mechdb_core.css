@@ -133,7 +133,8 @@
 }
 
 #greetings{
-  font-size:14pt;
+  font-family: 'Yeseva One', cursive;
+  font-size:12pt;
   text-align: center;
   margin-top:25px;
   line-height: 1.3;
