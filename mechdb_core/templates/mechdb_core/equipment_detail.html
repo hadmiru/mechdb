@@ -195,9 +195,11 @@
                         </a>
                         <i class="fa fa-angle-left"></i>
                     {% endif %}
-                    <b><a class="containerhref" href="{% url 'container_detail' pk=i.used_in_container.last.pk %}">
-                    {{ i.used_in_container.last.title }}
-                    </a></b>
+                    {% if i.used_in_container.last %}
+                        <b><a class="containerhref" href="{% url 'container_detail' pk=i.used_in_container.last.pk %}">
+                        {{ i.used_in_container.last.title }}
+                        </a></b>
+                    {% endif %}
                 {% endif %}
             </TD>
             <TD>
