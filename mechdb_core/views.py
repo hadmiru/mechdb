@@ -597,6 +597,33 @@ def action_new(request):
                                                             'form': form
                                                             })
 
+def action_remove(request, pk):
+    timezone.now
+    if not request.user.is_authenticated:
+        return redirect('index_page')
+
+    action = get_object_or_404(Action, pk=pk)
+
+    # Проверка что объект принадлежит юзеру
+    if not request.user==action.owner:
+        raise Http404
+    # конец проверки
+
+    if 'confirmed' in request.POST:
+        if action.owner == request.user:
+            # проверяем оборудование, которое изменится в результате воздействий
+            action.delete()
+            if action.new_container:
+                if action.used_in_equipment:
+                    action.used_in_equipment.set_correct_places()
+        return redirect('action_list')
+    page_title = 'Удаление воздействия '+str(action)
+    return render(request, 'mechdb_core/action_remove.html', {
+                                                                'current_user':request.user,
+                                                                'action':action,
+                                                                'page_title':page_title,
+                                                                })
+
 def action_edit(request, pk):
     timezone.now
     if not request.user.is_authenticated:

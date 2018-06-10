@@ -132,4 +132,4 @@ class Action(models.Model):
     new_container = models.ForeignKey(Container, on_delete=models.CASCADE, blank=True, null=True, related_name='new_container')
 
     def __str__(self):
-        return self.action_start_date.strftime("%d.%m.%Y %H:%M")+' '+self.get_type_display()+' '+ str(self.used_in_equipment)
+        return self.get_type_display()+' '+ str(self.used_in_equipment)

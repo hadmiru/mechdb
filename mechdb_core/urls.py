@@ -29,4 +29,5 @@ urlpatterns = [
     url(r'^action/(?P<pk>\d+)/$', views.action_detail, name='action_detail'),
     url(r'^action/new/$', views.action_new, name='action_new'),
     url(r'^action/(?P<pk>\d+)/edit/$', views.action_edit, name='action_edit'),
+    url(r'^action/(?P<pk>\d+)/remove/$', views.action_remove, name='action_remove'),
 ]
