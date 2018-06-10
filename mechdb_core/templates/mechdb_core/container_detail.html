@@ -28,7 +28,7 @@
 
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="{% url 'container_edit' pk=container.pk %}">Редактировать</a>
-                  <a class="dropdown-item" href="#">Удалить</a>
+                  <a class="dropdown-item" href="{% url 'container_remove' pk=container.pk %}">Удалить</a>
             </div>
     </div>
 

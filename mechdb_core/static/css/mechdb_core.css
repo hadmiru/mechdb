@@ -286,6 +286,10 @@ input[type=checkbox] {
     margin-left: 20px;
 }
 
+textarea {
+    height: 100px;
+}
+
 #wrapper {
   position: relative;
   left: 50%;

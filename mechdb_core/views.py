@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Container, Equipment, Equipment_sizename, Action, Profile
+from .models import Container, Equipment, Equipment_sizename, Action, Profile, Spare_part
 from django.utils import timezone
 from django.utils.html import escape
 from django.forms.models import model_to_dict
@@ -178,6 +178,39 @@ def container_edit(request, pk):
                                                             'page_title':page_title,
                                                             'form': form
                                                             })
+
+def container_remove(request, pk):
+    timezone.now
+    if not request.user.is_authenticated:
+        return redirect('index_page')
+
+    container = get_object_or_404(Container, pk=pk)
+
+    # Проверка что объект принадлежит юзеру
+    if not request.user==container.owner:
+        raise Http404
+    # конец проверки
+
+    child_equipments = Equipment.objects.filter(in_container=container).order_by("serial_number")
+    child_spare_parts = Spare_part.objects.filter(in_container=container).order_by("title")
+    child_containers = Container.objects.filter(in_container=container).order_by("title")
+    childs = False
+    if child_equipments or child_spare_parts or child_containers:
+        childs = True
+    if 'confirmed' in request.POST:
+        if container.owner == request.user and not childs:
+            container.delete()
+        return redirect('containers_map')
+    page_title = 'Удаление контейнера '+str(container.title)
+    return render(request, 'mechdb_core/container_remove.html', {
+                                                                'current_user':request.user,
+                                                                'container':container,
+                                                                'child_equipments':child_equipments,
+                                                                'child_spare_parts':child_spare_parts,
+                                                                'child_containers':child_containers,
+                                                                'childs':childs,
+                                                                'page_title':page_title,
+                                                                })
 
 def equipment_list(request):
     timezone.now
@@ -434,7 +467,7 @@ def sizename_remove(request, pk):
     child_equipments = Equipment.objects.filter(sizename=sizename).order_by("serial_number")
 
     if 'confirmed' in request.POST:
-        if sizename.owner == request.user:
+        if sizename.owner == request.user and not child_equipments:
             sizename.delete()
         return redirect('sizename_list')
     page_title = 'Удаление модели '+str(sizename.title)

@@ -2,7 +2,7 @@ from django.db import models
 from django.utils import timezone
 from datetime import datetime, date, time
 from django.contrib.auth.models import User
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 
 
@@ -80,6 +80,7 @@ class Equipment(models.Model):
         if new_container:
             self.in_container = new_container
             self.save()
+
 
 class Spare_part(models.Model):
     owner = models.ForeignKey('auth.User', on_delete=models.CASCADE)
