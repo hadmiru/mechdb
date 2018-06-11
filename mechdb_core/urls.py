@@ -13,7 +13,7 @@ urlpatterns = [
         password_reset_complete),
     url(r'^user/password/reset/(?P<uidb36>[0-9A-Za-z]+)-(?P<token>.+)/$',
         password_reset_confirm,
-        {'post_reset_redirect' : '/user/password/done/'}),
+        {'post_reset_redirect' : '/user/password/done/'}, name="password_reset_confirm"),
     url(r'^login/$', views.signin, name='signin'),
     url(r'^logout/$', views.logout_view, name='logout_view'),
     url(r'^signup/$', views.signup, name='signup'),

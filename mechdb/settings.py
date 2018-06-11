@@ -129,3 +129,11 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 NORECAPTCHA_SITE_KEY  = '6Le7zl0UAAAAAJxRExiAjeSZSMxgqs2_g4-dNMl0'
 NORECAPTCHA_SECRET_KEY = '6Le7zl0UAAAAAHK1sbNKq6LgXEKbfuCFqHJxrvQG'
 NORECAPTCHA_VERIFY_URL = 'https://www.google.com/recaptcha/api/siteverify'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = 25
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_USE_TLS = False
+DEFAULT_FROM_EMAIL = 'MechDB.info <support@mechdb.info>'
