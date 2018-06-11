@@ -12,7 +12,7 @@ urlpatterns = [
     url(r'^user/password/done/$',
         password_reset_complete),
     url(r'^reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
-        'django.contrib.auth.views.password_reset_confirm',
+        password_reset_confirm,
         name='password_reset_confirm'),
     url(r'^login/$', views.signin, name='signin'),
     url(r'^logout/$', views.logout_view, name='logout_view'),
