@@ -48,7 +48,7 @@
                         <div id="loginformblock">
                           <label class="login-label" for="name"><i class="login-icon fa fa-user fa-lg"></i></label><input class="login-input" type="text" name="name" id="name" placeholder="Логин" required/>
                           <label class="login-label" for="name"><i class="login-icon fa fa-lock fa-lg"></i></label><input class="password-input" type="password" name="password" id="password" placeholder="Пароль" required /><button class="login-submit" type="submit" /><i class="login-icon fa fa-arrow-right fa-lg"></i></button>
-                          <p id="login-forgotpass"><a id="login-forgotpass-href" href="#">Забыли пароль?</a></p>
+                          <p id="login-forgotpass"><a id="login-forgotpass-href" href="{% url 'password_reset' %}">Забыли пароль?</a></p>
                         </div>
                     </form>
                 {% endif %}

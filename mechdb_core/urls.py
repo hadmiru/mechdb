@@ -1,7 +1,19 @@
 from django.conf.urls import url
 from . import views
+from django.contrib.auth.views import password_reset, password_reset_done, password_reset_complete, password_reset_confirm
 
 urlpatterns = [
+
+    url(r'^user/password/reset/$', password_reset,
+        {'post_reset_redirect' : '/user/password/reset/done/'},
+        name="password_reset"),
+    url(r'^user/password/reset/done/$',
+        password_reset_done),
+    url(r'^user/password/done/$',
+        password_reset_complete),
+    url(r'^user/password/reset/(?P<uidb36>[0-9A-Za-z]+)-(?P<token>.+)/$',
+        password_reset_confirm,
+        {'post_reset_redirect' : '/user/password/done/'}),
     url(r'^login/$', views.signin, name='signin'),
     url(r'^logout/$', views.logout_view, name='logout_view'),
     url(r'^signup/$', views.signup, name='signup'),
