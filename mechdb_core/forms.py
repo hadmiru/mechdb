@@ -7,6 +7,8 @@ from django.contrib.auth.models import User
 from nocaptcha_recaptcha.fields import NoReCaptchaField
 
 class SignUpForm(UserCreationForm):
+    privacy_policy = forms.BooleanField(required=True, label='')
+    terms_of_use = forms.BooleanField(required=True, label='')
     captcha = NoReCaptchaField(label='')
     class Meta:
         model = User

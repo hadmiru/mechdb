@@ -13,6 +13,20 @@ from django.contrib.auth.models import User
 
 # Create your views here.
 
+def terms_of_use(request):
+    page_title = 'Пользовательское соглашение'
+    return render(request, 'static_pages/terms_of_use.html', {
+                                                            'current_user':request.user,
+                                                            'page_title':page_title,
+                                                            })
+
+def privacy_policy(request):
+    page_title = 'Политика конфиденциальности'
+    return render(request, 'static_pages/privacy_policy.html', {
+                                                            'current_user':request.user,
+                                                            'page_title':page_title,
+                                                            })
+
 def guide(request):
     page_title = 'Инструкция по использованию базы данных MechDB'
     return render(request, 'mechdb_core/guide.html', {
