@@ -90,7 +90,7 @@ class EquipmentForm(forms.Form):
         if formtype=="new":
             self.label="Создание оборудования"
             self.fields['in_container_id'].required=True
-            del self.fields['action_datetime']
+            self.fields['action_datetime'].label='Дата создания'
         if formtype=="edit":
             self.label="Редактирование оборудования"
             del self.fields['in_container_id']
