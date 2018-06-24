@@ -329,8 +329,8 @@ def equipment_new(request):
             action = Action()
             action.owner = request.user
             action.created_date = timezone.now()
-            action.action_start_date = timezone.now()
-            action.action_end_date = timezone.now()
+            action.action_start_date = form.cleaned_data['action_datetime']
+            action.action_end_date = form.cleaned_data['action_datetime']
             action.type = 'equipment,MOVE'
             action.used_in_equipment = equipment
             action.new_container = get_object_or_404(Container, pk=form.cleaned_data['in_container_id'])
