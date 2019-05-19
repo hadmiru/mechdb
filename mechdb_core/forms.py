@@ -177,7 +177,7 @@ class ActionForm(forms.Form):
                 self.fields['action_start_date'].label="Дата"
                 del self.fields['action_end_date']
                 del self.fields['scheduled']
-                # del self.fields['new_container']
+                del self.fields['new_container']
             if 'FAILURE' in formtype:
                 self.label="Добавить информацию об отказе"
                 self.object=object
