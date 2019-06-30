@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c4298cb4-d706-4006-bdb9-6292c9bcad07" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mechdb_core/templates/mechdb_core/action_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/mechdb_core/templates/mechdb_core/action_detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,11 +15,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mechdb_core/templates/mechdb_core/action_detail.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="387">
+            <state relative-caret-position="523">
               <caret line="72" column="57" selection-start-line="72" selection-start-column="57" selection-end-line="72" selection-end-column="57" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="7" column="5" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -44,6 +52,7 @@
       <list>
         <option value="$PROJECT_DIR$/mechdb_core/urls.py" />
         <option value="$PROJECT_DIR$/mechdb_core/templates/mechdb_core/action_detail.html" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -65,29 +74,6 @@
             <path>
               <item name="mechdb" type="b2602c69:ProjectViewProjectNode" />
               <item name="mechdb" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mechdb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mechdb" type="462c0819:PsiDirectoryNode" />
-              <item name="mechdb" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mechdb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mechdb" type="462c0819:PsiDirectoryNode" />
-              <item name="mechdb_core" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mechdb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mechdb" type="462c0819:PsiDirectoryNode" />
-              <item name="mechdb_core" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mechdb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mechdb" type="462c0819:PsiDirectoryNode" />
-              <item name="mechdb_core" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="mechdb_core" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="mechdb" type="b2602c69:ProjectViewProjectNode" />
@@ -164,7 +150,7 @@
       <workItem from="1561898458252" duration="193000" />
       <workItem from="1561898727219" duration="2332000" />
       <workItem from="1561903182181" duration="1255000" />
-      <workItem from="1561904461006" duration="3073000" />
+      <workItem from="1561904461006" duration="3234000" />
     </task>
     <task id="LOCAL-00001" summary="Переход на windows, django 2.2.2. Добавление файла requirements.txt с целью поддержания виртуального окружения на сервере в актуальном состоянии">
       <created>1561905313256</created>
@@ -180,11 +166,18 @@
       <option name="project" value="LOCAL" />
       <updated>1561906011478</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Проверка работоспособности коммитов2">
+      <created>1561908353253</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1561908353253</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6853000" />
+    <option name="totallyTimeSpent" value="7014000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -220,7 +213,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Переход на windows, django 2.2.2. Добавление файла requirements.txt с целью поддержания виртуального окружения на сервере в актуальном состоянии" />
     <MESSAGE value="Проверка работоспособности коммитов" />
-    <option name="LAST_COMMIT_MESSAGE" value="Проверка работоспособности коммитов" />
+    <MESSAGE value="Проверка работоспособности коммитов2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Проверка работоспособности коммитов2" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/mechdb_core/views.py">
@@ -249,13 +243,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" selection-start-line="7" selection-end-line="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mechdb/settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1241">
@@ -272,8 +259,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mechdb_core/templates/mechdb_core/action_detail.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="387">
+        <state relative-caret-position="523">
           <caret line="72" column="57" selection-start-line="72" selection-start-column="57" selection-end-line="72" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="5" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
         </state>
       </provider>
     </entry>
