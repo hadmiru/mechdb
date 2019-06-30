@@ -2,6 +2,42 @@ from .models import Container, Equipment
 from django.shortcuts import get_object_or_404
 from django.utils.html import escape
 
+def parse_objects_tree_to_turple(input_pk, params, user):
+    if input_pk==0:
+        daughters = Container.objects.filter(owner=user, in_container__isnull=True).order_by('title')
+        equipments = Equipment.objects.filter(owner=user, in_container__isnull=True).order_by('sizename')
+    else:
+        daughters = Container.objects.filter(owner=user, in_container=input_pk).order_by('title')
+        equipments = Equipment.objects.filter(owner=user, in_container=input_pk).order_by('sizename')
+
+    def_response={}
+    def_response['pk'] = input_pk
+    if input_pk==0:
+        def_response['title'] = 'Верхний уровень'
+    else:
+        def_response['title'] = get_object_or_404(Container, pk=input_pk).title
+
+    def_response['equipments'] = []
+    if equipments:
+        for z in equipments:
+            def_response['equipments'].append({
+                'pk': z.pk,
+                'title': z.sizename.title,
+                'serial_number': z.serial_number
+                })
+
+    def_response['daughters'] = []
+    if daughters:
+        for y in daughters:
+            def_response['daughters'].append(parse_objects_tree_to_turple(y.pk, params, user))
+
+    return def_response
+
+
+
+
+
+
 def tree_parse(input_pk, tree_format, user, need_zero_level=True, tree_level=-1):
     # функция парсинга древа контейнеров в заданном формате
     # формат "li" - выводит в виде html - списка
@@ -52,8 +88,6 @@ def tree_parse(input_pk, tree_format, user, need_zero_level=True, tree_level=-1)
 
         if tree_format in ('li','li equipment'):
             def_output.append('</UL>')
-
-
 
     return def_output
 

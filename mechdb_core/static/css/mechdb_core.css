@@ -301,7 +301,10 @@ textarea {
   left: -50%;
   float: left;
   background-color: #E0E0E0;
-  padding-right: 35px;
+  padding-left: 35px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 35px;
 }
 
 /* ===== START tooltip */
@@ -312,3 +315,28 @@ textarea {
 }
 
 /* ===== END tooltip */
+
+/* ===== CSS new gen  start*/
+
+.mdb_container,  .mdb_container:hover, .mdb_container:visited {
+    color: #B35E00;
+}
+
+.mdb_equipment,  .mdb_equipment:hover, .mdb_equipment:visited {
+  color: #05851F;
+  font-size: 11pt;
+  margin-top:0px;
+  margin-bottom:0px;
+  line-height: 1.0;
+}
+
+.mdb_tree_element {
+    margin: 0;
+    padding: 0;
+    line-height: 1.2;
+}
+
+li.mdb_tree_element {
+    margin-left: 40px;
+}
+

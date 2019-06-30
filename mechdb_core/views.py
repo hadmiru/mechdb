@@ -5,11 +5,12 @@ from django.utils.html import escape
 from django.forms.models import model_to_dict
 from .forms import ContainerForm, EquipmentForm, SizenameForm, ActionForm
 from django.shortcuts import redirect
-from .my_defs import tree_parse, get_container_place
+from .my_defs import tree_parse, get_container_place, parse_objects_tree_to_turple
 from django.http import Http404
 from .forms import SignUpForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
+import json
 
 # Create your views here.
 
@@ -89,9 +90,13 @@ def containers_map(request):
     if request.POST:
         containers_output=tree_parse(0, request.POST, request.user)
     else:
-        containers_output=tree_parse(0, 'li equipment', request.user)
+        #старая функция генерации дерева:
+        #containers_output=tree_parse(0, 'li equipment', request.user)
+
+        objects_map_turple = parse_objects_tree_to_turple(0,None,request.user)
+
     page_title = 'Карта'
-    return render(request, 'mechdb_core/containers_map.html', {'current_user':request.user, 'page_title':page_title, 'containers': containers_output})
+    return render(request, 'mechdb_core/containers_map.html', {'current_user':request.user, 'page_title':page_title, 'objects_map_turple':objects_map_turple})
 
 def container_detail(request, pk):
     timezone.now

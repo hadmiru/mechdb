@@ -2,18 +2,53 @@
 
 {% block content %}
 
+    <script>
+        $(document).ready(function() {
+            // функция возвращает карту объектов в виде строки с html кодом
+            function draw_tree(input_container) {
+                var function_response = '';
+                function_response+='<UL class="mdb_tree_element">';
+
+                if (input_container.equipments) {
+                    for (var i = 0; i < input_container.equipments.length; i++) {
+                        function_response += '<a class="mdb_equipment mdb_tree_element" href = "/equipment/' + input_container.equipments[i].pk + '">';
+                        function_response += input_container.equipments[i].title + ' № ' + input_container.equipments[i].serial_number;
+                        function_response += '</a>';
+                        function_response += '<BR>';
+                    };
+                };
+
+                if (input_container.daughters) {
+                    for (var z = 0; z < input_container.daughters.length; z++) {
+                        function_response+='<LI class="mdb_tree_element">';
+                        function_response += '<a class="mdb_container mdb_tree_element" href = "/place/' + input_container.daughters[z].pk + '">';
+                        function_response+=input_container.daughters[z].title;
+                        function_response += '</a>';
+                        function_response+=draw_tree(input_container.daughters[z]);
+                        function_response+='</LI>';
+                    };
+                };
+
+                function_response+=('</UL>');
+                return function_response;
+            };
+
+            var objects_map_turple = {{ objects_map_turple|safe }};
+            $('#ul-map').append(draw_tree(objects_map_turple));
+
+        }); // document ready end
+    </script>
+
     <center><h1>Карта</h1></center>
 
-    {% if not containers %}
+    {% if not objects_map_turple.daughters %}
     <center><font color='red'><b>Вы пока не создали ни одного контейнера</b></font><br>
     Для начала работы создайте хотя бы один,<br>
     выбрав в меню "Создание, Контейнер"</p></center>
     {% else %}
 
     <div id="wrapper"><div id="ul-map">
-      {% for i in containers %}
-      {{ i|safe }}
-      {% endfor %}
+
     </div></div>
     {% endif %}
 {% endblock %}

@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'mechdb.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'mechdb_core',
+        'NAME': 'mechdb_core_exist',
         'USER': 'django',
         'PASSWORD': 'DjangoMSUYWNSK',
         'HOST': '',
