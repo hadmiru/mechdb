@@ -2,7 +2,7 @@
 *~
 __pycache__
 mvenv
-/mechdb/settings.py
-/static
+mechdb/settings.py
+static
 .DS_Store
 .idea
