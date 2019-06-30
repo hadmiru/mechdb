@@ -1,20 +1,20 @@
 from django.conf.urls import url
 from . import views
-from django.contrib.auth.views import password_reset, password_reset_done, password_reset_complete, password_reset_confirm
+from django.contrib.auth.views import PasswordResetView, PasswordResetDoneView, PasswordResetCompleteView, PasswordResetConfirmView
 
 urlpatterns = [
 
-    url(r'^user/password/reset/$', password_reset,
-        {'post_reset_redirect' : '/user/password/reset/done/'},
+    url(r'^user/password/reset/$', PasswordResetView.as_view(),
+        {'post_reset_redirect': '/user/password/reset/done/'},
         name="password_reset"),
     url(r'^user/password/reset/done/$',
-        password_reset_done,
+        PasswordResetDoneView.as_view(),
         name='password_reset_done'),
     url(r'^user/password/done/$',
-        password_reset_complete,
+        PasswordResetCompleteView.as_view(),
         name='password_reset_complete'),
     url(r'^reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
-        password_reset_confirm,
+        PasswordResetConfirmView.as_view(),
         name='password_reset_confirm'),
     url(r'^terms_of_use/$', views.terms_of_use, name='terms_of_use'),
     url(r'^privacy_policy/$', views.privacy_policy, name='privacy_policy'),
