@@ -5,4 +5,3 @@ mvenv
 /mechdb/settings.py
 /static
 .DS_Store
-.idea
