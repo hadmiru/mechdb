@@ -1,0 +1,32 @@
+
+{% if current_user.username %}
+<a class="btn btn-primary" href="{% url 'containers_map' %}" role="button">Карта</a>
+<div class="btn-group">
+  <button type="button" class="btn btn-danger">Просмотр</button>
+  <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <span class="sr-only">Toggle Dropdown</span>
+  </button>
+  <div class="dropdown-menu">
+    <a class="dropdown-item" href="{% url 'action_list' %}">Последние ремонтные воздействия</a>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item" href="{% url 'equipment_list' %}">Список оборудования</a>
+    <a class="dropdown-item" href="{% url 'sizename_list' %}">Список моделей оборудования</a>
+  </div>
+</div>
+
+<div class="btn-group">
+  <button type="button" class="btn btn-danger">Создание</button>
+  <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <span class="sr-only">Toggle Dropdown</span>
+  </button>
+  <div class="dropdown-menu">
+    <a class="dropdown-item" href="{% url 'container_new' %}">Новый контейнер</a>
+    <a class="dropdown-item" href="{% url 'equipment_new' %}">Новое оборудование</a>
+    <a class="dropdown-item" href="{% url 'sizename_new' %}">Новая модель оборудования</a>
+  </div>
+</div>
+{% else %}
+<a class="btn btn-primary" href="{% url 'index_page' %}" role="button">Главная</a>
+<a class="btn btn-danger" href="{% url 'signup' %}" role="button">Регистрация</a>
+{% endif %}
+<a class="btn btn-danger" href="{% url 'guide' %}" role="button">Инструкция</a>

@@ -1,0 +1,81 @@
+{% extends 'mechdb_core/base.html' %}
+
+{% block content %}
+<center><h1>Последние ремонтные воздействия</h1></center>
+<div class='col-md-10 col-centered'>
+    <TABLE class="actionlist">
+      <TR>
+        <TH width='100'>Дата</TH>
+        <TH width='300'>Оборудование</TH>
+        <TH width='110'>Тип</TH>
+        <TH width='80'>Вид</TH>
+        <TH>Контейнер</TH>
+        <TH width='70'>Описание</TH>
+      </TR>
+        {% for i in actions %}
+        <TR>
+          <TD>
+              <a class="href-red" href="{% url 'action_detail' pk=i.pk%}">
+              <b>{{ i.action_start_date|date:"d.m.y" }}</b>
+              {{ i.action_start_date|date:" H:i" }}
+              </a>
+          </TD>
+          <TD>
+            <a class="href-red" href="{% url 'equipment_detail' pk=i.used_in_equipment.pk%}">
+            {{ i.used_in_equipment.sizename.title }} № {{ i.used_in_equipment.serial_number }}
+            </a>
+          </TD>
+          <TD>
+              {{ i.get_type_display }}
+          </TD>
+          <TD>
+              {% if i.scheduled %}
+              плановое
+              {% elif  i.scheduled is False %}
+              внеплановое
+              {% else %}
+              -
+              {% endif %}
+          </TD>
+          <TD>
+              {% if i.new_container %}
+                      {% if i.used_in_container.all.0.pk == i.new_container.pk %}
+                          <a class="containerhref" href="{% url 'container_detail' pk=i.used_in_container.last.pk %}">
+                          {{i.used_in_container.all.1.title}}
+                          </a>
+                      {% else %}
+                          <a class="containerhref" href="{% url 'container_detail' pk=i.used_in_container.all.0.pk %}">
+                          {{i.used_in_container.all.0.title}}
+                          </a>
+                      {% endif %}
+                  <i class="fa fa-long-arrow-right"></i>
+                  <b><a class="containerhref" href="{% url 'container_detail' pk=i.new_container.pk %}">
+                  {{i.new_container.title}}
+                  </a></b>
+              {% else %}
+                  {% if i.used_in_container.last.in_container %}
+                      <a class="containerhref" href="{% url 'container_detail' pk=i.used_in_container.last.in_container.pk %}">
+                      {{ i.used_in_container.last.in_container.title }}
+                      </a>
+                      <i class="fa fa-angle-left"></i>
+                  {% endif %}
+                  {% if  i.used_in_container.last %}
+                  <b><a class="containerhref" href="{% url 'container_detail' pk=i.used_in_container.last.pk %}">
+                  {{ i.used_in_container.last.title }}
+                  </a></b>
+                  {% endif %}
+              {% endif %}
+          </TD>
+          <TD>
+              {% if i.description %}
+              <i rel="tooltip" data-placement="left" data-original-title="{{i.description}}" class="fa fa-info-circle"></i>
+              {% else %}
+              <i class="fa fa-times text-danger"></i>
+              {% endif %}
+          </TD>
+        </TR>
+        {% endfor %}
+    </TABLE>
+</div>
+
+{% endblock %}

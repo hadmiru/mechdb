@@ -1,0 +1,86 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+
+
+<HTML lang="ru">
+  <HEAD>
+    <link rel="shortcut icon" type="image/png" href="{{STATIC_URL}}/static/img/favicon.ico"/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <script type="text/javascript" src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css" integrity="2hfp1SzUoho7/TsGGGDaFdsuuDL0LX2hnUp6VkX3CUQ2K4K+xjboZdsXyp4oUHZj" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Lobster&subset=latin,cyrillic" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Bowlby+One+SC" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Yeseva+One" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lobster&subset=latin,cyrillic" rel="stylesheet" type="text/css">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/mechdb_core.css' %}">
+
+    {% include "./counters.html" %}
+    {% if page_title %}
+    <TITLE>{{page_title}} | MechDB.info</TITLE>
+    {% else %}
+    <TITLE>MechDB.info - сервис учёта проведения ремонтов динамического оборудования</TITLE>
+    {% endif %}
+    <meta name="keywords" content="оборудование,динамическое,учёт,ремонт,сервис,ЗИП">
+    <meta name="description" content="Сервис учёта провдения ремонтов и обслуживания динамического оборудования">
+
+  </HEAD>
+  <BODY style="background-color:#A6A6A6;">
+        <div class="page-header container">
+          <div class="title-block col-md-8">
+            <h1 id="sitetitle"><a href="/">MechDB.info</a></h1>
+            {% include "./dropdown_menu.html" %}
+          </div>
+          {% if not authorization_hide %}
+              <div class="col-md-4 login-window">
+                {% if current_user.username %}
+                    <!-- Пользователь не авторизован -->
+                    <p id="greetings">Привет, <FONT color="blue">{{ current_user.username }}</FONT> <i class="fa fa-user"></i><br>
+                    Уведомления: 0<br>
+                    <a class="logout-href" href="{% url 'logout_view' %}">Выход</a></p>
+                {% else %}
+                    <!-- Пользователь авторизован -->
+                    <form id="form" name="form" method="post" action="{% url 'signin' %}">
+                        {% csrf_token %}
+                        <div id="loginformblock">
+                          <label class="login-label" for="name"><i class="login-icon fa fa-user fa-lg"></i></label><input class="login-input" type="text" name="name" id="name" placeholder="Логин" required/>
+                          <label class="login-label" for="name"><i class="login-icon fa fa-lock fa-lg"></i></label><input class="password-input" type="password" name="password" id="password" placeholder="Пароль" required /><button class="login-submit" type="submit" /><i class="login-icon fa fa-arrow-right fa-lg"></i></button>
+                          <p id="login-forgotpass"><a id="login-forgotpass-href" href="{% url 'password_reset' %}">Забыли пароль?</a></p>
+                        </div>
+                    </form>
+                {% endif %}
+              </div>
+          {% endif %}
+
+        </div>
+
+      <div class="content container">
+          <div class="row">
+              {% block content %}
+              {% endblock %}
+          </div>
+      </div>
+
+      <div class="footer container">
+            <p id="footer-text">
+            <b>Copyright 2018 MechDB.info by Hadmi</b><br>
+            Все права защищены. Запрещено использование, модификация материалов или<br>
+            исходного кода ресурса без явного разрешения автора
+            </p>
+      </div>
+
+      <!-- СКРИПТ ОБРАБОТКИ ТУЛТИПОВ -->
+      <script type="text/javascript">
+      $(function () {
+          $("[rel='tooltip']").tooltip();
+      });
+      </script>
+      <!-- СКРИПТ ОБРАБОТКИ ТУЛТИПОВ -->
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.2.0/js/tether.min.js" integrity="sha384-Plbmg8JY28KFelvJVai01l8WyZzrYWG825m+cZ0eDDS1f7d/js6ikvy1+X+guPIB" crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/js/bootstrap.min.js" integrity="VjEeINv9OSwtWFLAtmc4JCtEJXXBub00gtSnszmspDLCtC0I4z4nqz7rEFbIZLLU" crossorigin="anonymous"></script>
+  </BODY>
+</HTML>

@@ -1,0 +1,46 @@
+{% extends 'mechdb_core/base.html' %}
+
+{% block content %}
+<h1><center>Полный список оборудования</center></h1>
+<div class="col-md-8 col-centered">
+
+  <TABLE class="actionlist">
+    <TR>
+      <TH width='300'>Модель</TH>
+      <TH width='100'>Заводской №</TH>
+      <TH width='100'>Регистр. №</TH>
+      <TH>Расположение</TH>
+    </TR>
+    {% for i in equipments %}
+    <TR>
+        <TD>
+          <a class="href-red" href="{% url 'equipment_detail' pk=i.pk %}">
+          {{i.sizename.title}}
+          </a>
+        </TD>
+        <TD>
+          <a class="equipmenthref" href="{% url 'equipment_detail' pk=i.pk %}">
+          {{ i.serial_number }}
+          </a>
+        </TD>
+        <TD>
+          <a class="equipmenthref" href="{% url 'equipment_detail' pk=i.pk %}">
+          {{ i.registration_number }}
+          </a>
+        </TD>
+        <TD>
+          {% if i.in_container.in_container %}
+            <a class="containerhref" href="{% url 'container_detail' pk=i.in_container.in_container.pk %}">
+            {{ i.in_container.in_container.title }}
+            </a>
+            <i class="fa fa-angle-left"></i>
+          {% endif %}
+          <b><a class="containerhref" href="{% url 'container_detail' pk=i.in_container.pk %}">
+          {{ i.in_container.title }}
+          </a></b>
+        </TD>
+    </TR>
+    {% endfor %}
+  </TABLE>
+</div>
+{% endblock %}

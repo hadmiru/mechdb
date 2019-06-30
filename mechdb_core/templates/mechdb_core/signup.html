@@ -1,0 +1,30 @@
+{% extends 'mechdb_core/base.html' %}
+
+{% block content %}
+
+<div class='card_page col-md-8 col-centered'>
+<center><h2>Регистрация</h2></center>
+<form method="post">
+  {% csrf_token %}
+  {% for field in form %}
+    <p>
+      {{ field.label_tag|safe }}
+      {{ field }}
+        {% if field.name == "privacy_policy" %}
+        Я ознакомлен с <a class="href-red" target="_blank" rel="nofollow" href="{% url 'privacy_policy' %}">Политикой конфиденциальности</a>
+        {% elif field.name == "terms_of_use" %}
+        Я принимаю правила <a class="href-red" target="_blank" rel="nofollow" href="{% url 'terms_of_use' %}">Пользовательского соглашения</a>
+        {% endif %}
+      <br>
+      {% if field.help_text %}
+        <p class="formhelptext">{{ field.help_text|safe }}</p>
+      {% endif %}
+      {% for error in field.errors %}
+        <p class="formerrortext">{{ error|safe }}</p>
+      {% endfor %}
+    </p>
+  {% endfor %}
+  <button type="submit" class="save">Отправить</button>
+</form>
+</div>
+{% endblock %}

@@ -1,0 +1,216 @@
+{% extends 'mechdb_core/base.html' %}
+
+{% block content %}
+  <h1><center>Карточка оборудования</center></h1>
+  <div class='card_page col-md-7 col-centered'>
+
+        <div class="btn-group pull-right">
+                <button type="button" class="btn btn-warning">Действия</button>
+                <button type="button" class="btn btn-warning dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <div class="dropdown-menu dropdown-menu-right">
+                      <h6 class="dropdown-header">Добавить воздействие</h6>
+
+                      <!-- ТО начало -->
+                      <form id="TO" method="post" action="{% url 'action_new' %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="formtype" value="equipment,repair,TO" />
+                        <input type="hidden" name=object_pk_from_user value="{{equipment.pk}}" />
+                        <input class="dropdown-item" type="submit" value="ТО">
+                      </form>
+                      <!-- ТО конец -->
+
+                      <!-- ТР начало -->
+                      <form id="TR" method="post" action="{% url 'action_new' %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="formtype" value="equipment,repair,TR" />
+                        <input type="hidden" name=object_pk_from_user value="{{equipment.pk}}" />
+                        <input class="dropdown-item" type="submit" value="ТР">
+                      </form>
+                      <!-- ТР конец -->
+
+                      <!-- КР начало -->
+                      <form id="KR" method="post" action="{% url 'action_new' %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="formtype" value="equipment,repair,KR" />
+                        <input type="hidden" name=object_pk_from_user value="{{equipment.pk}}" />
+                        <input class="dropdown-item" type="submit" value="КР">
+                      </form>
+                      <!-- КР конец -->
+
+                      <!-- КТС начало -->
+                      <form id="KTS" method="post" action="{% url 'action_new' %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="formtype" value="equipment,repair,KTS" />
+                        <input type="hidden" name=object_pk_from_user value="{{equipment.pk}}" />
+                        <input class="dropdown-item" type="submit" value="КТС">
+                      </form>
+                      <!-- КТС конец -->
+
+                      <!-- Ремонт начало -->
+                      <form id="DEFF" method="post" action="{% url 'action_new' %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="formtype" value="equipment,repair,DEFF" />
+                        <input type="hidden" name=object_pk_from_user value="{{equipment.pk}}" />
+                        <input class="dropdown-item" type="submit" value="Ремонт">
+                      </form>
+                      <!-- Ремонт конец -->
+
+                      <!-- Информация начало -->
+                      <form id="INFO" method="post" action="{% url 'action_new' %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="formtype" value="equipment,INFO" />
+                        <input type="hidden" name=object_pk_from_user value="{{equipment.pk}}" />
+                        <input class="dropdown-item" type="submit" value="Информация">
+                      </form>
+                      <!-- Информация конец -->
+
+                      <!--  Отказ начало -->
+                      <form id="FAILURE" method="post" action="{% url 'action_new' %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="formtype" value="equipment,FAILURE" />
+                        <input type="hidden" name=object_pk_from_user value="{{equipment.pk}}" />
+                        <input class="dropdown-item" type="submit" value="Отказ">
+                      </form>
+                      <!-- Отказ конец -->
+
+                      <!--  Вывоз в ремонт начало -->
+                      <form id="REPAIR_EXPORT" method="post" action="{% url 'action_new' %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="formtype" value="equipment,REPAIR_EXPORT" />
+                        <input type="hidden" name=object_pk_from_user value="{{equipment.pk}}" />
+                        <input class="dropdown-item" type="submit" value="Вывоз в ремонт">
+                      </form>
+                      <!-- Вывоз в ремонт конец -->
+
+                      <!--  Завоз с ремонта начало -->
+                      <form id="REPAIR_IMPORT" method="post" action="{% url 'action_new' %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="formtype" value="equipment,REPAIR_IMPORT" />
+                        <input type="hidden" name=object_pk_from_user value="{{equipment.pk}}" />
+                        <input class="dropdown-item" type="submit" value="Завоз с ремонта">
+                      </form>
+                      <!-- Завоз с ремонта конец -->
+
+                      <!--  Монтаж начало -->
+                      <form id="MOUNT" method="post" action="{% url 'action_new' %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="formtype" value="equipment,MOUNT" />
+                        <input type="hidden" name=object_pk_from_user value="{{equipment.pk}}" />
+                        <input class="dropdown-item" type="submit" value="Монтаж">
+                      </form>
+                      <!-- Монтаж конец -->
+
+                      <!--  Демонтаж начало -->
+                      <form id="UNMOUNT" method="post" action="{% url 'action_new' %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="formtype" value="equipment,UNMOUNT" />
+                        <input type="hidden" name=object_pk_from_user value="{{equipment.pk}}" />
+                        <input class="dropdown-item" type="submit" value="Демонтаж">
+                      </form>
+                      <!-- Демонтаж конец -->
+
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="{% url 'equipment_edit' pk=equipment.pk%}">Редактировать</a>
+
+                      <!--  Переместить начало -->
+                      <form id="MOVE" method="post" action="{% url 'action_new' %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="formtype" value="equipment,MOVE" />
+                        <input type="hidden" name=object_pk_from_user value="{{equipment.pk}}" />
+                        <input class="dropdown-item" type="submit" value="Переместить">
+                      </form>
+                      <!-- Переместить конец -->
+
+                      <a class="dropdown-item" href="{% url 'equipment_remove' pk=equipment.pk%}">Удалить</a>
+                </div>
+        </div>
+        <p>
+          <b>Месторасположение:</b><br>
+          {% for i in place %}
+            {% if not forloop.first %} <i class="fa fa-angle-left"></i> {% endif %}
+            <a class="containerhref" href="{% url 'container_detail' pk=i.0 %}">{{ i.1 }}</a>
+          {% endfor %}
+        </p>
+
+        <UL>
+          <LI><b>Модель:</b> <a class="href-red" href='{% url "sizename_detail" pk=equipment.sizename.pk %}'>{{equipment.sizename.title}}</a></LI>
+          <LI><b>Тип:</b> {{equipment.sizename.get_type_display}}</LI>
+          <LI><b>Заводской №</b> {{equipment.serial_number}}</LI>
+          <LI><b>Регистрационный №</b> {{equipment.registration_number}}</LI>
+          <LI><b>Дата создания: </b> {{equipment.created_date|date:"d.m.y H:i"}}</LI>
+        </UL>
+  </div>
+  <div class='col-md-10 col-centered'>
+      <CENTER><h2>Последние воздействия</h2></CENTER>
+
+      <TABLE class="actionlist">
+        <TR>
+          <TH width='120'>Дата</TH>
+          <TH width='130'>Тип</TH>
+          <TH width='120'>Вид</TH>
+          <TH>Контейнер</TH>
+          <TH width='150'>Описание</TH>
+        </TR>
+          {% for i in actions %}
+          <TR>
+            <TD>
+                <a class="href-red" href="{% url 'action_detail' pk=i.pk%}">
+                <b>{{ i.action_start_date|date:"d.m.y" }}</b>
+                {{ i.action_start_date|date:" H:i" }}
+                </a>
+            </TD>
+            <TD>
+                {{ i.get_type_display }}
+            </TD>
+            <TD>
+                {% if i.scheduled %}
+                плановое
+                {% elif  i.scheduled is False %}
+                внеплановое
+                {% else %}
+                -
+                {% endif %}
+            </TD>
+            <TD>
+                {% if i.new_container %}
+                        {% if i.used_in_container.all.0.pk == i.new_container.pk %}
+                            <a class="containerhref" href="{% url 'container_detail' pk=i.used_in_container.last.pk %}">
+                            {{i.used_in_container.all.1.title}}
+                            </a>
+                        {% else %}
+                            <a class="containerhref" href="{% url 'container_detail' pk=i.used_in_container.all.0.pk %}">
+                            {{i.used_in_container.all.0.title}}
+                            </a>
+                        {% endif %}
+                    <i class="fa fa-long-arrow-right"></i>
+                    <b><a class="containerhref" href="{% url 'container_detail' pk=i.new_container.pk %}">
+                    {{i.new_container.title}}
+                    </a></b>
+                {% else %}
+                    {% if i.used_in_container.last.in_container %}
+                        <a class="containerhref" href="{% url 'container_detail' pk=i.used_in_container.last.in_container.pk %}">
+                        {{ i.used_in_container.last.in_container.title }}
+                        </a>
+                        <i class="fa fa-angle-left"></i>
+                    {% endif %}
+                    {% if i.used_in_container.last %}
+                        <b><a class="containerhref" href="{% url 'container_detail' pk=i.used_in_container.last.pk %}">
+                        {{ i.used_in_container.last.title }}
+                        </a></b>
+                    {% endif %}
+                {% endif %}
+            </TD>
+            <TD>
+                {% if i.description %}
+                <i rel="tooltip" data-placement="left" data-original-title="{{i.description}}" class="fa fa-info-circle"></i>
+                {% else %}
+                <i class="fa fa-times text-danger"></i>
+                {% endif %}
+            </TD>
+          </TR>
+          {% endfor %}
+      </TABLE>
+  </div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'mechdb_core/base.html' %}
+
+{% block content %}
+    <div class="card_page col-md-8 col-centered">
+      <center><h2><font color=red>ВНИМАНИЕ</font></h2></center>
+      <center>Вы собираетесь удалить оборудование <b class="equipmenthref">{{ equipment }}</center></b><br>
+      При удалении оборудования вы <font color=red>НАВСЕГДА</font> потеряете:<br><br>
+
+      <ul>
+        <li>Всю информацию об этом оборудовании</li>
+        <li>Все файлы, прикреплённые к этому оборудованию</li>
+        <li>Наработку оборудования</li>
+        <li>Все воздействия, проводившиеся с этим оборудованием будут удалены</li>
+        <li>Все зап. части, израсходованные на это оборудование будут возвращены на склад</li>
+      </ul>
+      Восстановление информации невозможно.<br><br>
+      <center><b>Вы уверены, что хотите продолжить?</b></center>
+      <form method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="confirmed" value="confirmed">
+        <p align=center><input class="btn btn-info" type="submit" value="Я передумал" formaction="{% url 'equipment_detail' pk=equipment.pk %}">  <input class="btn btn-danger" type="submit" value="Я понимаю последствия. Продолжить"></p>
+      </form>
+    </div>
+
+{% endblock %}

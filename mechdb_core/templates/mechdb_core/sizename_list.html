@@ -1,0 +1,36 @@
+{% extends 'mechdb_core/base.html' %}
+
+{% block content %}
+
+<h1><center>Список моделей</center></h1>
+<div class="col-md-10 col-centered">
+
+  <TABLE class="actionlist">
+    <TR>
+      <TH>Модель</TH>
+      <TH width='200'>Производитель</TH>
+      <TH width='200'>Поставщик</TH>
+      <TH width='100'>Кол-во оборудования</TH>
+    </TR>
+    {% for i in sizenames %}
+    <TR>
+        <TD>
+          <a class="href-red" href="{% url 'sizename_detail' pk=i.pk %}">
+          {{i.title}}
+          </a>
+        </TD>
+        <TD>
+          {{ i.manufacturer }}
+        </TD>
+        <TD>
+          {{ i.supply_provider }}
+        </TD>
+        <TD>
+          {{ i.equipment_set.count }}
+        </TD>
+    </TR>
+    {% endfor %}
+  </TABLE>
+</div>
+
+{% endblock %}

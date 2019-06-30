@@ -1,0 +1,138 @@
+{% extends 'mechdb_core/base.html' %}
+
+{% block content %}
+<h1><center>Карточка контейнера</center></h1>
+<div class='card_page col-md-7 col-centered'>
+    <div class="btn-group pull-right">
+            <button type="button" class="btn btn-warning">Действия</button>
+            <button type="button" class="btn btn-warning dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <div class="dropdown-menu dropdown-menu-right">
+                  <h6 class="dropdown-header">Добавить содержимое</h6>
+                  <!-- СТАРТ добавить оборудование-->
+                  <form id="new_equipment" method="get" action="{% url 'equipment_new' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="in_container_id" value="{{container.pk}}" />
+                    <input class="dropdown-item" type="submit" value="Оборудование">
+                  </form>
+                  <!-- СТОП добавить оборудование-->
+
+                  <!-- СТАРТ добавить контейнер-->
+                  <form id="new_container" method="get" action="{% url 'container_new' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="in_container_id" value="{{container.pk}}" />
+                    <input class="dropdown-item" type="submit" value="Контейнер">
+                  </form>
+                  <!-- СТОП добавить контейнер-->
+
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="{% url 'container_edit' pk=container.pk %}">Редактировать</a>
+                  <a class="dropdown-item" href="{% url 'container_remove' pk=container.pk %}">Удалить</a>
+            </div>
+    </div>
+
+    <p>
+      <b>Месторасположение:</b><br>
+      {% for i in place %}
+        {% if not forloop.first %} <i class="fa fa-angle-left"></i> {% endif %}
+        <a class="containerhref" href="{% url 'container_detail' pk=i.0 %}">{{ i.1 }}</a>
+      {% endfor %}
+    </p>
+
+    <UL>
+        <LI>
+          <b>Наименование контейнера:</b><br>
+          <FONT class="containerhref">{{container.title}}</FONT>
+        </LI>
+        <LI>
+          <b>Описание:</b>
+          {% if container.description%}
+              <br>
+              {{container.description|linebreaks}}
+          {% endif %}
+        </LI>
+        <LI>
+          <b>Дата создания:</b> {{container.created_date|date:"d.m.Y H:i"}}
+        </LI>
+    </UL>
+</div>
+
+<CENTER><h2>Содержимое</h2></CENTER>
+<div class='card_page col-md-7 col-centered'>
+
+    <UL>
+    <b class="containerhref">{{container.title}}</b>
+    {% for i in content %}
+    {{ i|safe }}
+    {% endfor %}
+    </UL>
+</div>
+
+
+<div class='col-md-10 col-centered'>
+  <CENTER><h2>Воздействия</h2></CENTER>
+<TABLE class="actionlist">
+  <TR>
+    <TH width='100'>Дата</TH>
+    <TH width='110'>Тип</TH>
+    <TH width='350'>Оборудование</TH>
+    <TH>Контейнер</TH>
+    <TH width='50'>Описание</TH>
+  </TR>
+    {% for i in actions_list %}
+    <TR>
+      <TD>
+          <a class="href-red" href="{% url 'action_detail' pk=i.pk%}">
+          <b>{{ i.action_start_date|date:"d.m.y" }}</b>
+          {{ i.action_start_date|date:" H:i" }}
+          </a>
+      </TD>
+      <TD>
+          {{ i.get_type_display }}
+      </TD>
+      <TD>
+        <a class="href-red" href="{% url 'equipment_detail' pk=i.used_in_equipment.pk%}">
+        {{ i.used_in_equipment.sizename.title }} № {{ i.used_in_equipment.serial_number }}
+        </a>
+      </TD>
+      <TD>
+          {% if i.new_container %}
+                  {% if i.used_in_container.all.0.pk == i.new_container.pk %}
+                      <a class="containerhref" href="{% url 'container_detail' pk=i.used_in_container.last.pk %}">
+                      {{i.used_in_container.all.1.title}}
+                      </a>
+                  {% else %}
+                      <a class="containerhref" href="{% url 'container_detail' pk=i.used_in_container.all.0.pk %}">
+                      {{i.used_in_container.all.0.title}}
+                      </a>
+                  {% endif %}
+              <i class="fa fa-long-arrow-right"></i>
+              <b><a class="containerhref" href="{% url 'container_detail' pk=i.new_container.pk %}">
+              {{i.new_container.title}}
+              </a></b>
+          {% else %}
+              {% if i.used_in_container.last.in_container %}
+                  <a class="containerhref" href="{% url 'container_detail' pk=i.used_in_container.last.in_container.pk %}">
+                  {{ i.used_in_container.last.in_container.title }}
+                  </a>
+                  <i class="fa fa-angle-left"></i>
+              {% endif %}
+              <b><a class="containerhref" href="{% url 'container_detail' pk=i.used_in_container.last.pk %}">
+              {{ i.used_in_container.last.title }}
+              </a></b>
+          {% endif %}
+      </TD>
+      <TD>
+          {% if i.description %}
+          <i rel="tooltip" data-placement="left" data-original-title="{{i.description}}" class="fa fa-info-circle"></i>
+          {% else %}
+          <i class="fa fa-times text-danger"></i>
+          {% endif %}
+      </TD>
+    </TR>
+    {% endfor %}
+</TABLE>
+</div>
+
+{% endblock %}

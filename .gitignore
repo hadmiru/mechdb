@@ -1,0 +1,7 @@
+*.pyc
+*~
+__pycache__
+mvenv
+/mechdb/settings.py
+/static
+.DS_Store

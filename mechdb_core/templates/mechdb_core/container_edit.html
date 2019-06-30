@@ -1,0 +1,11 @@
+{% extends 'mechdb_core/base.html' %}
+
+{% block content %}
+      <center><h1>{{ form.label }}</h1></center>
+      <div class='card_page col-md-7 col-centered'>
+      <form method="POST" class="post-form">{% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit" class="save btn btn-default">Сохранить</button>
+      </form>
+      </div>
+{% endblock %}

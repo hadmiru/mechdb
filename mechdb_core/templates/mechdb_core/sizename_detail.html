@@ -1,0 +1,101 @@
+{% extends 'mechdb_core/base.html' %}
+
+{% block content %}
+      <h1><center>Карточка модели (типоразмера)</center></h1>
+      <div class='card_page col-md-7 col-centered'>
+          <div class="btn-group pull-right">
+                  <button type="button" class="btn btn-warning">Действия</button>
+                  <button type="button" class="btn btn-warning dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <span class="sr-only">Toggle Dropdown</span>
+                  </button>
+                  <div class="dropdown-menu dropdown-menu-right">
+
+                        <!-- СТАРТ добавить оборудование-->
+                        <form id="new_equipment" method="get" action="{% url 'equipment_new' %}">
+                          {% csrf_token %}
+                          <input type="hidden" name="sizename_id" value="{{sizename.pk}}" />
+                          <input class="dropdown-item" type="submit" value="Добавить оборудование">
+                        </form>
+                        <!-- СТОП добавить оборудование-->
+
+                        <div class="dropdown-divider"></div>
+
+                        <a class="dropdown-item" href="{% url 'sizename_edit' pk=sizename.pk %}">Редактировать</a>
+                        <a class="dropdown-item" href="{% url 'sizename_remove' pk=sizename.pk%}">Удалить</a>
+                  </div>
+          </div>
+          <UL>
+              <LI>
+                <b>Наименование:</b><br>
+                <FONT class='href-red'>{{sizename.title}}</FONT>
+              </LI>
+              <LI>
+                <b>Тип оборудования:</b> {{sizename.get_type_display}}
+              </LI>
+              <LI>
+                <b>Производитель:</b> {{sizename.manufacturer}}
+              </LI>
+              <LI>
+                <b>Поставщик:</b> {{sizename.supply_provider}}
+              </LI>
+              <LI>
+                <b>Дата создания:</b> {{sizename.created_date|date:"d.m.Y H:i"}}
+              </LI>
+          </UL>
+      </div>
+
+      <CENTER><h2>Зарегистрированное оборудование</h2></CENTER>
+
+        <div class='col-md-9 col-centered'>
+
+          {% if slaves_list %}
+          <TABLE class="actionlist">
+            <TR>
+              <TH width='300'>Модель</TH>
+              <TH width='100'>Заводской №</TH>
+              <TH width='100'>Регистр. №</TH>
+              <TH>Расположение</TH>
+            </TR>
+            {% for i in slaves_list %}
+            <TR>
+                <TD>
+                  <a class="href-red" href="{% url 'equipment_detail' pk=i.pk %}">
+                  {{sizename.title}}
+                  </a>
+                </TD>
+                <TD>
+                  <a class="equipmenthref" href="{% url 'equipment_detail' pk=i.pk %}">
+                  {{ i.serial_number }}
+                  </a>
+                </TD>
+                <TD>
+                  <a class="equipmenthref" href="{% url 'equipment_detail' pk=i.pk %}">
+                  {{ i.registration_number }}
+                  </a>
+                </TD>
+                <TD>
+                  {% if i.in_container.in_container %}
+                    <a class="containerhref" href="{% url 'container_detail' pk=i.in_container.in_container.pk %}">
+                    {{ i.in_container.in_container.title }}
+                    </a>
+                    <i class="fa fa-angle-left"></i>
+                  {% endif %}
+                  <b><a class="containerhref" href="{% url 'container_detail' pk=i.in_container.pk %}">
+                  {{ i.in_container.title }}
+                  </a></b>
+                </TD>
+            </TR>
+            {% endfor %}
+          </TABLE>
+          {% else %}
+            <p><center>Оборудование пока отсутствует. Для создания выберите в меню<br>
+            <b class='href-red'>"Действия" <i class="fa fa-long-arrow-right"></i> "Добавить оборудование"</b><center></p>
+          {% endif %}
+
+
+
+
+        </div>
+
+
+{% endblock %}

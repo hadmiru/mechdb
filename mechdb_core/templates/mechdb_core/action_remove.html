@@ -1,0 +1,18 @@
+{% extends 'mechdb_core/base.html' %}
+
+{% block content %}
+    <div class="card_page col-md-8 col-centered">
+      <center><h2><font color=red>ВНИМАНИЕ</font></h2></center>
+      <center>Вы собираетесь удалить воздействие<br>
+        <b class="href-red">{{ action.action_start_date|date:"d.m.y H:i" }} {{ action.get_type_display }} {{ action.used_in_equipment.sizename.title }} № {{ action.used_in_equipment.serial_number }}</center></b><br>
+      Удаление воздействия также повлечёт  удаление информации о расходных материалах, потраченных на это воздействие, материалы будут возвращены на склад.</center><br>
+      После удаления восстановление информации невозможно</center><br>
+      <center><b>Вы уверены, что хотите продолжить?</b></center>
+      <form method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="confirmed" value="confirmed">
+        <p align=center><input class="btn btn-info" type="submit" value="Я передумал" formaction="{% url 'action_detail' pk=action.pk %}">  <input class="btn btn-danger" type="submit" value="Я понимаю последствия. Продолжить"></p>
+      </form>
+    </div>
+
+{% endblock %}

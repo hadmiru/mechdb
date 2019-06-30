@@ -1,0 +1,70 @@
+{% extends 'mechdb_core/base.html' %}
+
+{% block content %}
+    <div class="card_page col-md-8 col-centered">
+      {% if childs %}
+      <center><h3>Удаление невозможно</h3></center>
+      Обнаружены объекты, содержащиеся в удаляемом контейнере <a class="href-red" href="{% url 'container_detail' pk=container.pk %}"><b>{{container.title}}</b></a>.<br>
+      Для того, чтобы удалить контейнер, сначала переместите или удалите следующие объекты:<br>
+      <br>
+
+      {% if child_containers %}
+      <b>Контейнеры</b>
+      <UL>
+        {% for i in child_containers %}
+        <LI>
+          <a class='containerhref' href='{% url 'container_detail' pk=i.pk %}'>
+          {{i.title}}
+          </a>
+        </LI>
+        {% endfor %}
+      </UL>
+      {% endif %}
+
+      {% if child_equipments %}
+      <b>Оборудование</b>
+      <UL>
+        {% for i in child_equipments %}
+        <LI>
+          <a class='equipmenthref' href='{% url 'equipment_detail' pk=i.pk %}'>
+          {{i.sizename.title}} № {{i.serial_number}}
+          </a>
+          [ {{i.in_container.title }} ]
+        </LI>
+        {% endfor %}
+      </UL>
+      {% endif %}
+
+      {% if child_spare_parts %}
+      <b>Расходные материалы</b>
+      <UL>
+        {% for i in child_spare_parts %}
+        <LI>
+          <a class='href-red' href='#'>
+          {{i.title}}
+          </a>
+        </LI>
+        {% endfor %}
+      </UL>
+      {% endif %}
+
+
+      <center><a class="btn btn-info" href="{% url 'container_detail' pk=container.pk %}">Вернуться к карточке контейнера</a></center>
+
+
+      {% else %}
+      <center><h2><font color=red>ВНИМАНИЕ</font></h2></center>
+      <center>Вы собираетесь удалить контейнер <b class="containerhref">{{ container.title }}</b><br>
+      Удаление контейнера также повлияет на все воздействия, связанные  эти контейнером.<br>
+      После удаления восстановление информации невозможно</center><br>
+      <center><b>Вы уверены, что хотите продолжить?</b></center>
+      <form method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="confirmed" value="confirmed">
+        <p align=center><input class="btn btn-info" type="submit" value="Я передумал" formaction="{% url 'container_detail' pk=container.pk %}">  <input class="btn btn-danger" type="submit" value="Я понимаю последствия. Продолжить"></p>
+      </form>
+      {% endif %}
+
+    </div>
+
+{% endblock %}

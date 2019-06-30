@@ -1,0 +1,75 @@
+{% extends 'mechdb_core/base.html' %}
+
+{% block content %}
+      <h1><center>Карточка воздействия</center></h1>
+      <div class='card_page col-md-7 col-centered'>
+          <div class="btn-group pull-right">
+                  <button type="button" class="btn btn-warning">Действия</button>
+                  <button type="button" class="btn btn-warning dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <span class="sr-only">Toggle Dropdown</span>
+                  </button>
+                  <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" href="{% url 'action_edit' pk=action.pk%}">Редактировать</a>
+                        <a class="dropdown-item" href="{% url 'action_remove' pk=action.pk%}">Удалить</a>
+                  </div>
+          </div>
+          <UL>
+              <LI>
+                <b>Тип воздействия:</b> {{action.get_type_display}}
+                {% if action.scheduled is True %}
+                <font color='green'>(плановое)</font>
+                {% elif action.scheduled is False %}
+                <font color='red'>(внеплановое)</font>
+                {% endif %}
+
+              </LI>
+              <LI>
+                <b>Дата воздействия:</b> {{ action.action_start_date|date:"d.m.Y H:i" }}
+              </LI>
+              {% if action.action_end_date and action.action_end_date != action.action_start_date%}
+              <LI>
+                <b>Дата окончания:  </b> {{ action.action_end_date|date:"d.m.Y H:i" }}
+              </LI>
+              {% endif %}
+              <LI>
+                <b>Оборудование:</b>
+                <a class="href-red" href="{% url 'equipment_detail' pk=action.used_in_equipment.pk %}">{{ action.used_in_equipment.sizename.title }} № {{ action.used_in_equipment.serial_number }}</a>
+              </LI>
+              <LI>
+                <b>Проводилось в контейнере:</b><br>
+                        <!-- аналогичный код в equipment_detail -->
+                        {% if action.new_container %}
+                                {% if action.used_in_container.all.0.pk == action.new_container.pk %}
+                                    <a class="containerhref" href="{% url 'container_detail' pk=action.used_in_container.last.pk %}">
+                                    {{action.used_in_container.all.1.title}}
+                                    </a>
+                                {% else %}
+                                    <a class="containerhref" href="{% url 'container_detail' pk=action.used_in_container.all.0.pk %}">
+                                    {{action.used_in_container.all.0.title}}
+                                    </a>
+                                {% endif %}
+                            <i class="fa fa-long-arrow-right"></i>
+                            <b><a class="containerhref" href="{% url 'container_detail' pk=action.new_container.pk %}">
+                            {{action.new_container.title}}
+                            </a></b>
+                        {% else %}
+                            {% if action.used_in_container.last.in_container %}
+                                <a class="containerhref" href="{% url 'container_detail' pk=action.used_in_container.last.in_container.pk %}">
+                                {{ action.used_in_container.last.in_container.title }}
+                                </a>
+                                <i class="fa fa-angle-left"></i>
+                            {% endif %}
+                            {% if action.used_in_container.last %}
+                                <b><a class="containerhref" href="{% url 'container_detail' pk=action.used_in_container.last.pk %}">
+                                {{ action.used_in_container.last.title }}
+                                </a></b>
+                            {% endif %}
+                        {% endif %}
+              </LI>
+              <LI>
+                <b>Описание:</b><br>
+                {{action.description|linebreaks}}
+              </LI>
+          </UL>
+      </div>
+{% endblock %}

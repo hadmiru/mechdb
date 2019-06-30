@@ -1,0 +1,15 @@
+{% extends 'mechdb_core/base.html' %}
+
+{% block content %}
+      <center><h1>{{ form.label }}</h1>
+        {% if equipment %}
+          <font class='equipmenthref'><h4>{{equipment.sizename.title}} № {{equipment.serial_number}}</h4></font>
+        {% endif %}
+      </center>
+      <div class='card_page col-md-7 col-centered'>
+      <form method="POST" class="post-form">{% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit" class="save btn btn-default">Сохранить</button>
+      </form>
+      </div>
+{% endblock %}
