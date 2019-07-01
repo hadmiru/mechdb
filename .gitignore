@@ -3,6 +3,6 @@
 __pycache__
 mvenv
 mechdb/settings.py
-static
+/static
 .DS_Store
 .idea
