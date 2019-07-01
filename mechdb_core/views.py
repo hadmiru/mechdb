@@ -110,7 +110,10 @@ def container_detail(request, pk):
         raise Http404
     # конец проверки
 
-    content=tree_parse(pk,'li equipment',request.user)
+    # старая функция получения древа:
+    #content=tree_parse(pk,'li equipment',request.user)
+
+    content = parse_objects_tree_to_turple(pk,None,request.user)
 
     # Получаем список действий в контейнере и в его потомках 1го уровня
     containers = []

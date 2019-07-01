@@ -1,4 +1,16 @@
 {% extends 'mechdb_core/base.html' %}
+{% load static from staticfiles %}
+
+{% block scripts %}
+    <script src={% static 'js/def_Draw_tree.js' %} type="text/javascript"></script>
+    <script>
+        $(document).ready(function() {
+            var objects_map_turple = {{ content|safe }};
+            $('#container_content').append(draw_tree(objects_map_turple));
+        }); // document ready end
+    </script>
+
+{% endblock %}
 
 {% block content %}
 <h1><center>Карточка контейнера</center></h1>
@@ -61,11 +73,9 @@
 <CENTER><h2>Содержимое</h2></CENTER>
 <div class='card_page col-md-7 col-centered'>
 
-    <UL>
+    <UL id="container_content">
     <b class="containerhref">{{container.title}}</b>
-    {% for i in content %}
-    {{ i|safe }}
-    {% endfor %}
+    <!-- содержимое контейнера из функции draw_tree -->
     </UL>
 </div>
 
