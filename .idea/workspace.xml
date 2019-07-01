@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c4298cb4-d706-4006-bdb9-6292c9bcad07" name="Default Changelist" comment="Перенос генерации дерева элементов на карте на javascript:&#10;в my_defs создана функция">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="c4298cb4-d706-4006-bdb9-6292c9bcad07" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mechdb_core/templates/mechdb_core/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/mechdb_core/templates/mechdb_core/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mechdb_core/templates/mechdb_core/containers_map.html" beforeDir="false" afterPath="$PROJECT_DIR$/mechdb_core/templates/mechdb_core/containers_map.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -30,20 +28,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mechdb_core/templates/mechdb_core/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="17" column="35" selection-start-line="17" selection-start-column="35" selection-end-line="17" selection-end-column="35" />
+            <state relative-caret-position="357">
+              <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+              <folding>
+                <element signature="n#style#0;n#BODY#0;n#HTML#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="7" lean-forward="true" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
+            <state relative-caret-position="119">
+              <caret line="7" column="5" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -51,8 +52,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mechdb_core/templates/mechdb_core/containers_map.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" column="14" selection-start-line="12" selection-start-column="14" selection-end-line="12" selection-end-column="14" />
+            <state relative-caret-position="493">
+              <caret line="29" selection-start-line="29" selection-end-line="29" />
             </state>
           </provider>
         </entry>
@@ -104,10 +105,10 @@
         <option value="$PROJECT_DIR$/mechdb_core/my_defs.py" />
         <option value="$PROJECT_DIR$/mechdb_core/static/css/mechdb_core.css" />
         <option value="$PROJECT_DIR$/mechdb_core/views.py" />
-        <option value="$PROJECT_DIR$/mechdb_core/templates/mechdb_core/base.html" />
         <option value="$PROJECT_DIR$/mechdb_core/templates/mechdb_core/containers_map.html" />
         <option value="$PROJECT_DIR$/mechdb_core/static/js/def_Draw_tree.js" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/mechdb_core/templates/mechdb_core/base.html" />
       </list>
     </option>
   </component>
@@ -134,11 +135,6 @@
               <item name="mechdb" type="b2602c69:ProjectViewProjectNode" />
               <item name="mechdb" type="462c0819:PsiDirectoryNode" />
               <item name="mechdb" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mechdb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mechdb" type="462c0819:PsiDirectoryNode" />
-              <item name="mechdb_core" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -207,7 +203,7 @@
       <workItem from="1561903182181" duration="1255000" />
       <workItem from="1561904461006" duration="5639000" />
       <workItem from="1561911101457" duration="28472000" />
-      <workItem from="1561968856214" duration="78000" />
+      <workItem from="1561968856214" duration="1159000" />
     </task>
     <task id="LOCAL-00001" summary="Переход на windows, django 2.2.2. Добавление файла requirements.txt с целью поддержания виртуального окружения на сервере в актуальном состоянии">
       <created>1561905313256</created>
@@ -265,11 +261,18 @@
       <option name="project" value="LOCAL" />
       <updated>1561936917329</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="В основной шаблон добавлен блок scripts для js-скриптов&#10;js функция daw_tree вынесена в отдельный файл">
+      <created>1561969055307</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1561969055307</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="37969000" />
+    <option name="totallyTimeSpent" value="39050000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -278,6 +281,7 @@
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26332623" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49946696" visible="true" weight="0.32936078" />
@@ -291,7 +295,7 @@
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50053304" side_tool="true" weight="0.32936078" />
       <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49946696" weight="0.32936078" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.32936078" />
-      <window_info active="true" anchor="bottom" id="manage.py@mechdb" order="13" visible="true" weight="0.32936078" />
+      <window_info anchor="bottom" id="manage.py@mechdb" order="13" visible="true" weight="0.32936078" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -311,7 +315,9 @@
     <MESSAGE value="Попытка перехода на django 2.2.2 №2" />
     <MESSAGE value="Перенос генерации дерева элементов на карте на javascript:&#10;в my_defs создана функция parse_objects_tree_to_turple, призванная в будущем заменить tree_parse. Создаёт и отправляет turple, представляющий древо элементов&#10;В шаблоне containers_map создана js функция для генерации html кода дерева.&#10;Немного оптимизированы css - стили" />
     <MESSAGE value="исправлен косяк с gitignore" />
-    <option name="LAST_COMMIT_MESSAGE" value="исправлен косяк с gitignore" />
+    <MESSAGE value="В основной шаблон добавлен блок scripts для js-скриптов&#10;js функция daw_tree вынесена в отдельный файл" />
+    <MESSAGE value="Сделана загрузка jQuery с облака.&#10;Попытка обновления бустрапа приводит к перекашиванию заголовка, пришлось отложить" />
+    <option name="LAST_COMMIT_MESSAGE" value="Сделана загрузка jQuery с облака.&#10;Попытка обновления бустрапа приводит к перекашиванию заголовка, пришлось отложить" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/mechdb/urls.py">
@@ -418,24 +424,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="5" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/mechdb_core/templates/mechdb_core/containers_map.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="14" selection-start-line="12" selection-start-column="14" selection-end-line="12" selection-end-column="14" />
+        <state relative-caret-position="493">
+          <caret line="29" selection-start-line="29" selection-end-line="29" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mechdb_core/templates/mechdb_core/base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="35" selection-start-line="17" selection-start-column="35" selection-end-line="17" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="7" lean-forward="true" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
+        <state relative-caret-position="357">
+          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+          <folding>
+            <element signature="n#style#0;n#BODY#0;n#HTML#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
