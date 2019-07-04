@@ -1,0 +1,66 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" type="image/png" href="{{STATIC_URL}}/static/img/favicon.ico"/>
+
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Lobster&subset=latin,cyrillic" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Bowlby+One+SC" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Yeseva+One" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lobster&subset=latin,cyrillic" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+
+    <!-- libs -->
+    <script src="http://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+    <!-- custom css -->
+    <link rel="stylesheet" href="{% static 'css/mechdb_app.css' %}">
+
+    {% include "./counters.html" %}
+
+    {% if page_params.title %}
+        <title>{{page_title}} | MechDB.info</title>
+    {% else %}
+        <TITLE>MechDB.info - сервис учёта проведения ремонтов динамического оборудования</TITLE>
+    {% endif %}
+
+    <title>MechDB.info - сервис учёта проведения ремонтов динамического оборудования</title>
+    <meta name="keywords" content="оборудование,динамическое,учёт,ремонт,сервис,ЗИП">
+    <meta name="description" content="Сервис учёта провдения ремонтов и обслуживания динамического оборудования">
+</head>
+<body>
+
+<div class="wrapper">
+    <div id="sidebar">
+        <div id="sidebarFixedMenu">
+            <h2>Левая панель</h2>
+        </div>
+
+	</div>
+    <div id="workspace">
+        <div id="header">
+            Header
+        </div>
+        <div class="wrapper">
+            <div id="content">
+                <script>
+                    for (var i=0; i<200; i++) {
+                        document.write('<p>Ыыыыы</p>');
+                    }
+                </script>
+            </div>
+            <div id="rightSidebar">
+
+            </div>
+        </div>
+	</div>
+
+</div>
+<div id="footer">
+<h2>footer (низ сайта)</h2>
+</div>
+</body>
+</html>

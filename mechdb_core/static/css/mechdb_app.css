@@ -1,0 +1,115 @@
+/* шаблон страницы */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.wrapper {
+    background: #FFD700;
+    text-align: center;
+    width: 100%;
+    min-height: 500px;
+    display: table;
+}
+
+
+
+body {
+    background: #FFF;
+    color: #000;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+
+
+#sidebar {
+    background: #40E0D0;
+    width: 200px;
+    display: table-cell;
+}
+
+#sidebarFixedMenu {
+    background: #FFD700;
+    width: 200px;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+#workspace {
+    background: #DCDCDC;
+    display: table-cell;
+}
+
+#header {
+    background: #F5DEB3;
+    height: 55px;
+    width: 100%;
+}
+
+#content {
+    background: #828282;
+    display: table-cell;
+}
+
+#rightSidebar {
+    background: #B2130A;
+    width: 150px;
+    display: table-cell;
+}
+
+#clear {
+     clear: both;
+}
+
+#footer {
+    text-align: center;
+    background: #00BFFF;
+	width: 100%;
+	height: 40px;
+    clear: both;
+}
+
+/* генерация древа объектов */
+
+.mdb_container,  .mdb_container:hover, .mdb_container:visited {
+    color: #B35E00;
+}
+
+.mdb_equipment,  .mdb_equipment:hover, .mdb_equipment:visited {
+  color: #05851F;
+  font-size: 11pt;
+  margin-top:0;
+  margin-bottom:0;
+  line-height: 1.0;
+}
+
+.mdb_tree_element {
+    margin: 0;
+    padding: 0;
+    line-height: 1.2;
+}
+
+li.mdb_tree_element {
+    margin-left: 40px;
+}
+
+/* генерация таблиц */
+table {
+  border-collapse: collapse;
+  border: 2px solid grey;
+}
+
+th {
+  border: 1px solid grey;
+  font-family: 'Yeseva One', cursive;
+  font-size:9pt;
+  text-align: center;
+  background-color: #ff9400;
+}
+
+td {
+  border: 1px solid grey;
+  text-align: center;
+  font-size:10pt;
+}

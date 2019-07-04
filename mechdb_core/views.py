@@ -740,3 +740,7 @@ def json_daemon(request):
         }),
         content_type="application/json"
     )
+
+def testview(request):
+
+    return render(request, 'mechdb_core/mechdb_app.html', {})
