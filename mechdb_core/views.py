@@ -1,3 +1,6 @@
+import json
+from django.http import HttpResponse
+
 from django.shortcuts import render, get_object_or_404
 from .models import Container, Equipment, Equipment_sizename, Action, Profile, Spare_part
 from django.utils import timezone
@@ -10,7 +13,7 @@ from django.http import Http404
 from .forms import SignUpForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
-import json
+
 
 # Create your views here.
 
@@ -718,3 +721,22 @@ def action_edit(request, pk):
                                                             'current_user':request.user,
                                                             'page_title':page_title,
                                                             'form': form})
+
+def json_daemon(request):
+    timezone.now
+    if not request.user.is_authenticated:
+        return HttpResponse(
+                json.dumps({
+                    "result": "error",
+                    "error_text": "Аутентификация не пройдена"
+                }),
+                content_type="application/json"
+            )
+
+    objects_map_turple = parse_objects_tree_to_turple(0, None, request.user)
+    return HttpResponse(
+        json.dumps({
+            "result": objects_map_turple,
+        }),
+        content_type="application/json"
+    )

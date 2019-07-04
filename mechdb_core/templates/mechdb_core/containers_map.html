@@ -5,8 +5,25 @@
     <script src={% static 'js/def_Draw_tree.js' %} type="text/javascript"></script>
     <script>
         $(document).ready(function() {
-            var objects_map_turple = {{ objects_map_turple|safe }};
-            $('#ul-map').append(draw_tree(objects_map_turple));
+
+            var csrftoken = $("[name=csrfmiddlewaretoken]").val();
+
+            $.ajax({
+                url: "/json_daemon/",
+                type: 'POST',
+                headers: {"X-CSRFToken": csrftoken},
+                data: {'userRequest': 'get_map'},
+
+                success: function (json) {
+                        $('#ul-map').append(draw_tree(json.result));
+                }, //end success
+
+                error: function () {
+                    $('#ul-map').append('<p>Извините, что-то пошло не так :(</p>');
+
+                } // end error
+            }); // end ajax
+
         }); // document ready end
     </script>
 
@@ -26,4 +43,6 @@
 
     </div></div>
     {% endif %}
+
+
 {% endblock %}

@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c4298cb4-d706-4006-bdb9-6292c9bcad07" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/mechdb.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/mechdb.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mechdb_core/templates/mechdb_core/container_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/mechdb_core/templates/mechdb_core/container_detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mechdb_core/templates/mechdb_core/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/mechdb_core/templates/mechdb_core/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mechdb_core/templates/mechdb_core/containers_map.html" beforeDir="false" afterPath="$PROJECT_DIR$/mechdb_core/templates/mechdb_core/containers_map.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mechdb_core/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/mechdb_core/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mechdb_core/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/mechdb_core/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,23 +20,41 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mechdb_core/views.py">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/mechdb_core/templates/mechdb_core/containers_map.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="115" column="47" lean-forward="true" selection-start-line="115" selection-start-column="47" selection-end-line="115" selection-end-column="47" />
-              <folding>
-                <element signature="e#0#54#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="367">
+              <caret line="42" lean-forward="true" selection-start-line="42" selection-end-line="42" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/mechdb_core/templates/mechdb_core/container_detail.html">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mechdb_core/templates/mechdb_core/action_edit.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="33" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="33" />
+            <state relative-caret-position="102">
+              <caret line="6" column="44" lean-forward="true" selection-start-line="6" selection-start-column="44" selection-end-line="6" selection-end-column="60" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mechdb_core/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="833">
+              <caret line="51" column="22" selection-start-line="51" selection-start-column="22" selection-end-line="51" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mechdb_core/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="418">
+              <caret line="738" column="40" selection-start-line="738" selection-start-column="40" selection-end-line="738" selection-end-column="40" />
+              <folding>
+                <element signature="e#0#11#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -41,29 +62,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mechdb_core/templates/mechdb_core/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
-              <folding>
-                <element signature="n#style#0;n#BODY#0;n#HTML#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mechdb_core/templates/mechdb_core/containers_map.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" selection-start-line="3" selection-end-line="12" selection-end-column="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mechdb_core/static/js/def_Draw_tree.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="20" column="49" selection-start-line="20" selection-start-column="49" selection-end-line="20" selection-end-column="49" />
+            <state relative-caret-position="612">
+              <caret line="36" column="24" selection-start-line="36" selection-start-column="24" selection-end-line="36" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -74,6 +74,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaScript File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -88,7 +89,11 @@
       <find>style</find>
       <find>class</find>
       <find>404</find>
+      <find>{% csrf_token %}</find>
     </findStrings>
+    <dirStrings>
+      <dir>C:\myProjects\mechdb\mechdb_core\templates\mechdb_core</dir>
+    </dirStrings>
   </component>
   <component name="Git.Settings">
     <option name="UPDATE_TYPE" value="MERGE" />
@@ -101,16 +106,17 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/mechdb_core/templates/mechdb_core/action_detail.html" />
-        <option value="$PROJECT_DIR$/mechdb_core/urls.py" />
-        <option value="$PROJECT_DIR$/mechdb/settings.py" />
         <option value="$PROJECT_DIR$/mechdb_core/my_defs.py" />
         <option value="$PROJECT_DIR$/mechdb_core/static/css/mechdb_core.css" />
-        <option value="$PROJECT_DIR$/mechdb_core/templates/mechdb_core/containers_map.html" />
         <option value="$PROJECT_DIR$/mechdb_core/static/js/def_Draw_tree.js" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/mechdb_core/templates/mechdb_core/container_detail.html" />
+        <option value="$PROJECT_DIR$/mechdb/settings.py" />
+        <option value="$PROJECT_DIR$/mechdb_core/urls.py" />
+        <option value="$PROJECT_DIR$/mechdb_core/templates/mechdb_core/container_edit.html" />
         <option value="$PROJECT_DIR$/mechdb_core/templates/mechdb_core/base.html" />
         <option value="$PROJECT_DIR$/mechdb_core/views.py" />
-        <option value="$PROJECT_DIR$/mechdb_core/templates/mechdb_core/container_detail.html" />
+        <option value="$PROJECT_DIR$/mechdb_core/templates/mechdb_core/containers_map.html" />
       </list>
     </option>
   </component>
@@ -165,10 +171,10 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../literature/html css js jq/js и jq исчерпывающее руководство примеры" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -223,7 +229,12 @@
       <workItem from="1561903182181" duration="1255000" />
       <workItem from="1561904461006" duration="5639000" />
       <workItem from="1561911101457" duration="28472000" />
-      <workItem from="1561968856214" duration="1504000" />
+      <workItem from="1561968856214" duration="3131000" />
+      <workItem from="1561973004344" duration="150000" />
+      <workItem from="1561973171447" duration="521000" />
+      <workItem from="1561973715900" duration="1176000" />
+      <workItem from="1561975185431" duration="983000" />
+      <workItem from="1562262500671" duration="4039000" />
     </task>
     <task id="LOCAL-00001" summary="Переход на windows, django 2.2.2. Добавление файла requirements.txt с целью поддержания виртуального окружения на сервере в актуальном состоянии">
       <created>1561905313256</created>
@@ -295,20 +306,26 @@
       <option name="project" value="LOCAL" />
       <updated>1561970020724</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Шаблон и вьюха container_detail переписаны с помощью js функции draw_tree">
+      <created>1561970560336</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1561970560336</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="39395000" />
+    <option name="totallyTimeSpent" value="47891000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26332623" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.28144988" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49946696" visible="true" weight="0.32936078" />
@@ -319,10 +336,11 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32936078" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50053304" side_tool="true" weight="0.32936078" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49946696" weight="0.32936078" />
-      <window_info anchor="bottom" id="Python Console" order="12" weight="0.32936078" />
-      <window_info anchor="bottom" id="manage.py@mechdb" order="13" visible="true" weight="0.32936078" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5013423" side_tool="true" weight="0.3286119" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.4986577" weight="0.32827735" />
+      <window_info anchor="bottom" id="Python Console" order="12" weight="0.3286119" />
+      <window_info anchor="bottom" id="manage.py@mechdb" order="13" weight="0.32827735" />
+      <window_info anchor="bottom" id="Messages" order="14" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -344,7 +362,8 @@
     <MESSAGE value="исправлен косяк с gitignore" />
     <MESSAGE value="В основной шаблон добавлен блок scripts для js-скриптов&#10;js функция daw_tree вынесена в отдельный файл" />
     <MESSAGE value="Сделана загрузка jQuery с облака.&#10;Попытка обновления бустрапа приводит к перекашиванию заголовка, пришлось отложить" />
-    <option name="LAST_COMMIT_MESSAGE" value="Сделана загрузка jQuery с облака.&#10;Попытка обновления бустрапа приводит к перекашиванию заголовка, пришлось отложить" />
+    <MESSAGE value="Шаблон и вьюха container_detail переписаны с помощью js функции draw_tree" />
+    <option name="LAST_COMMIT_MESSAGE" value="Шаблон и вьюха container_detail переписаны с помощью js функции draw_tree" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/mechdb/urls.py">
@@ -354,128 +373,66 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/requirements.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="8" lean-forward="true" selection-start-column="8" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mechdb_core/templates/mechdb_core/action_detail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="674">
-          <caret line="72" column="57" selection-start-line="72" selection-start-column="57" selection-end-line="72" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mechdb_core/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="28" column="67" selection-start-line="28" selection-start-column="67" selection-end-line="28" selection-end-column="67" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/requirements.txt" />
+    <entry file="file://$PROJECT_DIR$/mechdb_core/templates/mechdb_core/action_detail.html" />
+    <entry file="file://$PROJECT_DIR$/mvenv/Lib/site-packages/django/db/models/base.py" />
+    <entry file="file://$PROJECT_DIR$/mechdb_core/models.py" />
+    <entry file="file://$PROJECT_DIR$/mechdb_core/static/css/mechdb_core.css" />
+    <entry file="file://$PROJECT_DIR$/mechdb_core/my_defs.py" />
+    <entry file="file://$PROJECT_DIR$/mechdb_core/my.cnf" />
+    <entry file="file://$PROJECT_DIR$/mechdb_core/static/js/jquery-3.3.1.min.js" />
+    <entry file="file://$PROJECT_DIR$/.gitignore" />
     <entry file="file://$PROJECT_DIR$/mechdb/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="89" column="21" lean-forward="true" selection-start-line="89" selection-start-column="21" selection-end-line="89" selection-end-column="21" />
+        <state relative-caret-position="814">
+          <caret line="135" column="56" selection-start-line="135" selection-start-column="56" selection-end-line="135" selection-end-column="56" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mvenv/Lib/site-packages/django/db/models/base.py">
+    <entry file="file://$PROJECT_DIR$/mechdb_core/static/js/def_Draw_tree.js" />
+    <entry file="file://$PROJECT_DIR$/mechdb_core/templates/mechdb_core/container_detail.html" />
+    <entry file="file://$PROJECT_DIR$/mechdb_core/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="402">
-          <caret line="520" column="8" selection-start-line="520" selection-start-column="8" selection-end-line="520" selection-end-column="8" />
+        <state relative-caret-position="833">
+          <caret line="51" column="22" selection-start-line="51" selection-start-column="22" selection-end-line="51" selection-end-column="22" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mechdb_core/models.py">
+    <entry file="file://$PROJECT_DIR$/mechdb_core/templates/mechdb_core/action_edit.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="34" column="29" selection-start-line="34" selection-start-column="29" selection-end-line="34" selection-end-column="29" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="102">
+          <caret line="6" column="44" lean-forward="true" selection-start-line="6" selection-start-column="44" selection-end-line="6" selection-end-column="60" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mechdb_core/static/css/mechdb_core.css">
+    <entry file="file://$PROJECT_DIR$/mechdb_core/templates/mechdb_core/container_edit.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="622">
-          <caret line="306" column="17" selection-start-line="306" selection-start-column="17" selection-end-line="306" selection-end-column="17" />
+        <state relative-caret-position="85">
+          <caret line="5" column="60" lean-forward="true" selection-start-line="5" selection-start-column="44" selection-end-line="5" selection-end-column="60" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mechdb_core/my_defs.py">
+    <entry file="file://$PROJECT_DIR$/mechdb_core/templates/mechdb_core/base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-187">
-          <caret line="4" column="32" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="32" />
-          <folding>
-            <element signature="e#0#40#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mechdb_core/my.cnf">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mechdb_core/static/js/jquery-3.3.1.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mechdb_core/static/js/def_Draw_tree.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="49" selection-start-line="20" selection-start-column="49" selection-end-line="20" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="5" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
+        <state relative-caret-position="612">
+          <caret line="36" column="24" selection-start-line="36" selection-start-column="24" selection-end-line="36" selection-end-column="24" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mechdb_core/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="115" column="47" lean-forward="true" selection-start-line="115" selection-start-column="47" selection-end-line="115" selection-end-column="47" />
+        <state relative-caret-position="418">
+          <caret line="738" column="40" selection-start-line="738" selection-start-column="40" selection-end-line="738" selection-end-column="40" />
           <folding>
-            <element signature="e#0#54#0" expanded="true" />
+            <element signature="e#0#11#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mechdb_core/templates/mechdb_core/containers_map.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" selection-start-line="3" selection-end-line="12" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mechdb_core/templates/mechdb_core/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
-          <folding>
-            <element signature="n#style#0;n#BODY#0;n#HTML#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mechdb_core/templates/mechdb_core/container_detail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="33" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="33" />
+        <state relative-caret-position="367">
+          <caret line="42" lean-forward="true" selection-start-line="42" selection-end-line="42" />
         </state>
       </provider>
     </entry>

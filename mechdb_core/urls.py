@@ -48,4 +48,6 @@ urlpatterns = [
     url(r'^action/new/$', views.action_new, name='action_new'),
     url(r'^action/(?P<pk>\d+)/edit/$', views.action_edit, name='action_edit'),
     url(r'^action/(?P<pk>\d+)/remove/$', views.action_remove, name='action_remove'),
+    # === ajax ===
+    url(r'^json_daemon/$', views.json_daemon, name='json_daemon'),
 ]
