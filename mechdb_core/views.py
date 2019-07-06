@@ -722,6 +722,14 @@ def action_edit(request, pk):
                                                             'page_title':page_title,
                                                             'form': form})
 
+
+
+def testview(request):
+    if not request.user.is_authenticated:
+        return redirect('index_page')
+
+    return render(request, 'mechdb_core/mechdb_app.html', {'current_user':request.user})
+
 def json_daemon(request):
     timezone.now
     if not request.user.is_authenticated:
@@ -741,6 +749,22 @@ def json_daemon(request):
         content_type="application/json"
     )
 
-def testview(request):
+def get_objects_tree(request):
+    timezone.now
+    if not request.user.is_authenticated:
+        return HttpResponse(
+                json.dumps({
+                    "result": "error",
+                    "error_text": "Аутентификация не пройдена"
+                }),
+                content_type="application/json"
+            )
+    initiate_pk = int(request.POST['initiate_pk'])
+    objects_map_turple = parse_objects_tree_to_turple(initiate_pk, None, request.user)
 
-    return render(request, 'mechdb_core/mechdb_app.html', {})
+    return HttpResponse(
+        json.dumps({
+            "result": objects_map_turple,
+        }),
+        content_type="application/json"
+    )
