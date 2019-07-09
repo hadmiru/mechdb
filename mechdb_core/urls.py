@@ -50,7 +50,7 @@ urlpatterns = [
     url(r'^action/(?P<pk>\d+)/edit/$', views.action_edit, name='action_edit'),
     url(r'^action/(?P<pk>\d+)/remove/$', views.action_remove, name='action_remove'),
     # === ajax ===
-    url(r'^json_daemon/$', views.json_daemon, name='json_daemon'),
     url(r'^testurl/$', views.testview, name='testview'),
     url(r'^get_objects_tree/$', login_required(views.get_objects_tree), name='get_objects_tree'),
+    url(r'^get_actions_list/$', login_required(views.get_actions_list), name='get_actions_list'),
 ]

@@ -2,7 +2,7 @@ from .models import Container, Equipment
 from django.shortcuts import get_object_or_404
 from django.utils.html import escape
 
-def parse_objects_tree_to_turple(input_pk, params, user):
+def parse_objects_tree_to_dict(input_pk, params, user):
     if input_pk==0:
         daughters = Container.objects.filter(owner=user, in_container__isnull=True).order_by('title')
         equipments = Equipment.objects.filter(owner=user, in_container__isnull=True).order_by('sizename')
@@ -29,7 +29,7 @@ def parse_objects_tree_to_turple(input_pk, params, user):
     def_response['daughters'] = []
     if daughters:
         for y in daughters:
-            def_response['daughters'].append(parse_objects_tree_to_turple(y.pk, params, user))
+            def_response['daughters'].append(parse_objects_tree_to_dict(y.pk, params, user))
 
     return def_response
 

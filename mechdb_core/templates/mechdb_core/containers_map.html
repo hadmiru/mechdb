@@ -9,10 +9,14 @@
             var csrftoken = $("[name=csrfmiddlewaretoken]").val();
 
             $.ajax({
-                url: "/json_daemon/",
+                url: "/get_objects_tree/",
                 type: 'POST',
                 headers: {"X-CSRFToken": csrftoken},
-                data: {'userRequest': 'get_map'},
+                data: {
+                    'initiate_pk': 0,
+                    'equipment': true,
+                    'spare_parts': true
+                },
 
                 success: function (json) {
                         $('#ul-map').append(draw_tree(json.result));
@@ -33,7 +37,7 @@
 
     <center><h1>Карта</h1></center>
 
-    {% if not objects_map_turple.daughters %}
+    {% if not objects_map_dict.daughters %}
     <center><font color='red'><b>Вы пока не создали ни одного контейнера</b></font><br>
     Для начала работы создайте хотя бы один,<br>
     выбрав в меню "Создание, Контейнер"</p></center>

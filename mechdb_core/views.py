@@ -8,7 +8,7 @@ from django.utils.html import escape
 from django.forms.models import model_to_dict
 from .forms import ContainerForm, EquipmentForm, SizenameForm, ActionForm
 from django.shortcuts import redirect
-from .my_defs import tree_parse, get_container_place, parse_objects_tree_to_turple
+from .my_defs import tree_parse, get_container_place, parse_objects_tree_to_dict
 from django.http import Http404
 from .forms import SignUpForm
 from django.contrib.auth import authenticate, login, logout
@@ -96,10 +96,10 @@ def containers_map(request):
         #старая функция генерации дерева:
         #containers_output=tree_parse(0, 'li equipment', request.user)
 
-        objects_map_turple = parse_objects_tree_to_turple(0,None,request.user)
+        objects_map_dict = parse_objects_tree_to_dict(0,None,request.user)
 
     page_title = 'Карта'
-    return render(request, 'mechdb_core/containers_map.html', {'current_user':request.user, 'page_title':page_title, 'objects_map_turple':objects_map_turple})
+    return render(request, 'mechdb_core/containers_map.html', {'current_user':request.user, 'page_title':page_title, 'objects_map_dict':objects_map_dict})
 
 def container_detail(request, pk):
     timezone.now
@@ -116,7 +116,7 @@ def container_detail(request, pk):
     # старая функция получения древа:
     #content=tree_parse(pk,'li equipment',request.user)
 
-    content = parse_objects_tree_to_turple(pk,None,request.user)
+    content = parse_objects_tree_to_dict(pk,None,request.user)
 
     # Получаем список действий в контейнере и в его потомках 1го уровня
     containers = []
@@ -730,25 +730,6 @@ def testview(request):
 
     return render(request, 'mechdb_core/mechdb_app.html', {'current_user':request.user})
 
-def json_daemon(request):
-    timezone.now
-    if not request.user.is_authenticated:
-        return HttpResponse(
-                json.dumps({
-                    "result": "error",
-                    "error_text": "Аутентификация не пройдена"
-                }),
-                content_type="application/json"
-            )
-
-    objects_map_turple = parse_objects_tree_to_turple(0, None, request.user)
-    return HttpResponse(
-        json.dumps({
-            "result": objects_map_turple,
-        }),
-        content_type="application/json"
-    )
-
 def get_objects_tree(request):
     timezone.now
     if not request.user.is_authenticated:
@@ -759,12 +740,106 @@ def get_objects_tree(request):
                 }),
                 content_type="application/json"
             )
-    initiate_pk = int(request.POST['initiate_pk'])
-    objects_map_turple = parse_objects_tree_to_turple(initiate_pk, None, request.user)
+    if 'initiate_pk' in request.POST:
+        initiate_pk = int(request.POST['initiate_pk'])
+    else:
+        initiate_pk = 0
+
+    objects_map_dict = parse_objects_tree_to_dict(initiate_pk, None, request.user)
 
     return HttpResponse(
         json.dumps({
-            "result": objects_map_turple,
+            "result": objects_map_dict,
+        }),
+        content_type="application/json"
+    )
+
+def get_actions_list(request):
+    timezone.now
+    if not request.user.is_authenticated:
+        return HttpResponse(
+                json.dumps({
+                    "result": "error",
+                    "error_text": "Аутентификация не пройдена"
+                }),
+                content_type="application/json"
+            )
+
+    if 'quantity_for_page' in request.POST:
+        quantity_for_page = int(request.POST['quantity_for_page'])
+    else:
+        quantity_for_page = 20
+
+
+
+
+    actions_list_tuple = []
+    # в нулевую строку добавляем информацию о заголовке и для генерации таблицы:
+    actions_list_tuple.append({
+        'header': [
+            {'title': 'Дата', 'anchor': 'start_date'},
+            {'title': 'Оборудование', 'anchor': 'equipment'},
+            {'title': 'Тип', 'anchor': 'type'},
+            {'title': 'Вид', 'anchor': 'scheduled'},
+            {'title': 'Контейнер', 'anchor': 'old_container'},
+            {'title': 'Описание', 'anchor': 'description', 'tooltiped': True}
+        ],
+
+    })
+
+    # выгружаем записи согласно запрошенного количества:
+    if 'page' in request.POST:
+        page = int(request.POST['page'])
+    else:
+        page = 0
+    actions_list = Action.objects.filter(owner=request.user).order_by('-action_start_date')[page*quantity_for_page:page*quantity_for_page+quantity_for_page]
+
+
+    for action in actions_list:
+        if action.new_container:
+            new_container = {
+                'title': action.new_container.title,
+                'pk': action.new_container.pk
+            }
+        else:
+            new_container = False
+
+        actions_list_tuple.append({
+            'html_id': action.pk,
+            'html_class': 'action',
+
+            'start_date': {
+                'title': str(action.action_start_date)
+            },
+            'type': {
+                'title': action.get_type_display(),
+            },
+            'equipment': {
+                'title': action.used_in_equipment.sizename.title + ' № ' + action.used_in_equipment.serial_number,
+                'id': action.used_in_equipment.pk
+            },
+            'old_container': {
+                'title': action.used_in_container.last().title,
+                'id': action.used_in_container.last().pk
+            },
+            'old_container_parent': {
+                'title': action.used_in_container.last().in_container.title,
+                'id': action.used_in_container.last().in_container.pk
+            },
+            'new_container': {
+                'title': new_container
+            },
+            'scheduled': {
+                'title': action.scheduled
+            },
+            'description': {
+                'title': action.description
+            }
+        })
+
+    return HttpResponse(
+        json.dumps({
+            "result": actions_list_tuple,
         }),
         content_type="application/json"
     )

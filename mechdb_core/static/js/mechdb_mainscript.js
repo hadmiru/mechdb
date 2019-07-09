@@ -32,6 +32,48 @@ function draw_tree(input_container) {
     return function_response;
 };
 
+// функция генерирует таблицы на основе данных с сервера
+function make_table (table) {
+    var function_response = '';
+    var anchor = '';
+
+    // Генерация шапки таблицы
+
+    function_response += '<TABLE>';
+    function_response += '<TR class = "table_header">';
+
+    for (var i = 0; i < table[0].header.length; i++) {
+        function_response += '<TD>';
+            function_response += '<p>' + table[0].header[i].title + '</p>';
+        function_response += '</TD>';
+    }
+    function_response += '</TR>';
+
+    // Генерация контента таблицы
+    // Счётчик y начинаем с 1 т.к. в 0 - информация header
+
+    for (var y = 1; y < table.length; y++) {
+        function_response += '<TR class ="' + table[y].html_class + '" id="' + table[y].html_id + '">';
+
+        for (var x = 0; x < table[0].header.length; x++) {
+            function_response += '<TD>';
+            anchor = table[0].header[x].anchor;
+            function_response += '<p>' + table[y][anchor].title + '</p>';
+            function_response += '</TD>';
+        }; // end for x
+
+        function_response += '</TR>';
+
+    } // end for y
+
+
+
+
+    function_response += '</TABLE>';
+
+    return function_response;
+}
+
 //функция создаёт html-наполнение для content_container
 function generate_content (data) {
     var function_response = '';
@@ -56,7 +98,7 @@ function generate_content (data) {
             break;
 
         case 'actions_list':
-            function_response += 'Здесь будет информация';
+            function_response += make_table(data.server_response);
             break;
 
         case 'equipment_list':
@@ -104,13 +146,16 @@ function load_page(data) {
             'main': {
                 'url': '/get_objects_tree/',
                 'data': {
-                    'initiate_pk': 0
+                    'initiate_pk': 0,
+                    'equipment': true,
+                    'spare_parts': true
                 }},
 
             'actions_list': {
-                'url': '',
+                'url': '/get_actions_list/',
                 'data': {
-
+                    'quantity_for_page': 20,
+                    'page': 0
                 }
             },
 

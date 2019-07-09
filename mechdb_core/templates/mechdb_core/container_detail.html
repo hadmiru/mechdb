@@ -5,8 +5,8 @@
     <script src={% static 'js/def_Draw_tree.js' %} type="text/javascript"></script>
     <script>
         $(document).ready(function() {
-            var objects_map_turple = {{ content|safe }};
-            $('#container_content').append(draw_tree(objects_map_turple));
+            var objects_map_dict = {{ content|safe }};
+            $('#container_content').append(draw_tree(objects_map_dict));
         }); // document ready end
     </script>
 
