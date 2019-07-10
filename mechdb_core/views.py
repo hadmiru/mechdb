@@ -765,27 +765,30 @@ def get_actions_list(request):
                 content_type="application/json"
             )
 
+
     if 'quantity_for_page' in request.POST:
         quantity_for_page = int(request.POST['quantity_for_page'])
     else:
         quantity_for_page = 20
 
-
-
-
-    actions_list_tuple = []
-    # в нулевую строку добавляем информацию о заголовке и для генерации таблицы:
-    actions_list_tuple.append({
-        'header': [
+    # создаём словарь для таблицы с заготовкой под строки
+    actions_list_dict = {
+        'table_header': [
             {'title': 'Дата', 'anchor': 'start_date'},
             {'title': 'Оборудование', 'anchor': 'equipment'},
             {'title': 'Тип', 'anchor': 'type'},
             {'title': 'Вид', 'anchor': 'scheduled'},
-            {'title': 'Контейнер', 'anchor': 'old_container'},
+            {'title': 'Контейнер', 'anchor': 'container'},
             {'title': 'Описание', 'anchor': 'description', 'tooltiped': True}
         ],
 
-    })
+        'table_params': {
+            'html_id': 'actions_table',
+            'html_class': 'content_table'
+        },
+
+        'lines': []
+    }
 
     # выгружаем записи согласно запрошенного количества:
     if 'page' in request.POST:
@@ -794,52 +797,122 @@ def get_actions_list(request):
         page = 0
     actions_list = Action.objects.filter(owner=request.user).order_by('-action_start_date')[page*quantity_for_page:page*quantity_for_page+quantity_for_page]
 
-
     for action in actions_list:
-        if action.new_container:
-            new_container = {
-                'title': action.new_container.title,
-                'pk': action.new_container.pk
-            }
-        else:
-            new_container = False
 
-        actions_list_tuple.append({
+        # заполняем уровень строки с заготовками ячеек:
+        actions_list_dict['lines'].append({
+            # параметры строки:
             'html_id': action.pk,
             'html_class': 'action',
-
-            'start_date': {
-                'title': str(action.action_start_date)
-            },
-            'type': {
-                'title': action.get_type_display(),
-            },
-            'equipment': {
-                'title': action.used_in_equipment.sizename.title + ' № ' + action.used_in_equipment.serial_number,
-                'id': action.used_in_equipment.pk
-            },
-            'old_container': {
-                'title': action.used_in_container.last().title,
-                'id': action.used_in_container.last().pk
-            },
-            'old_container_parent': {
-                'title': action.used_in_container.last().in_container.title,
-                'id': action.used_in_container.last().in_container.pk
-            },
-            'new_container': {
-                'title': new_container
-            },
-            'scheduled': {
-                'title': action.scheduled
-            },
-            'description': {
-                'title': action.description
-            }
+            # ниже заготовки для ячеек:
+            'start_date': [],
+            'equipment': [],
+            'type': [],
+            'scheduled': [],
+            'container': [],
+            'description': []
         })
+
+        # заполняем сами ячейки
+        # для этого ищем последний элемент в lines и добавляем данные по соответствующим ключам
+        # если в ячейке несколько элементов <p> параметры ячейки (class, id и т.п.) передаём в
+        # нулевом элементе чтобы была проще структура данных
+
+        # start_date
+        actions_list_dict['lines'][-1]['start_date'].append(
+            {
+                'title': str(action.action_start_date),
+                'html_class_td': 'action'
+             })
+
+        # equipment
+        actions_list_dict['lines'][-1]['equipment'].append(
+            {
+                'title': action.used_in_equipment.sizename.title + ' № ' + action.used_in_equipment.serial_number,
+                'html_class_td': 'equipment'
+             })
+
+        # type
+        actions_list_dict['lines'][-1]['type'].append(
+            {
+                'title': action.get_type_display(),
+                'html_class_td': 'action'
+             })
+
+        # scheduled
+        cell_title = ''
+        if action.scheduled == True:
+            cell_title = 'плановое'
+        elif action.scheduled == False:
+            cell_title = 'внеплановое'
+        else:
+            cell_title = '-'
+
+        actions_list_dict['lines'][-1]['scheduled'].append(
+            {
+                'title': cell_title,
+                'html_class_td': 'action'
+             })
+
+        # container
+        container1 = {}
+        container2 = {}
+
+        if action.new_container:
+            container2.update({
+                'title': action.new_container.title,
+                'html_id_p': action.new_container.pk,
+            })
+            container1.update({
+                'separator': '<i class="fa fa-long-arrow-right"></i>'
+            })
+
+            # на случай если вдруг это первая запись, проверяем длину used in container:
+            if len(action.used_in_container.all()) == 1:
+                container1.update({
+                    'title': ''
+                })
+
+            # так как в action.used_in_container контейнеры не упорядочены, пришлось добавить условие, сверяющее
+            # значение контейнеров с new container и выводить тот что остался:
+
+            elif action.used_in_container.last().pk == action.new_container.pk:
+                container1.update({
+                    'title': action.used_in_container.first().title,
+                    'html_id_p': action.used_in_container.first().pk
+                })
+            else:
+                container1.update({
+                    'title': action.used_in_container.last().title,
+                    'html_id_p': action.used_in_container.last().pk
+                })
+        else:
+            if action.used_in_container.last().in_container:
+                container1.update({
+                    'title': action.used_in_container.last().in_container.title,
+                    'html_id_p': action.used_in_container.last().in_container.pk,
+                    'separator': '<i class="fa fa-angle-left"></i>'
+                })
+                container2.update({
+                    'title': action.used_in_container.last().title,
+                    'html_id_p': action.used_in_container.last().pk,
+                })
+
+        actions_list_dict['lines'][-1]['container'].append(container1)
+        actions_list_dict['lines'][-1]['container'].append(container2)
+
+        # description
+        actions_list_dict['lines'][-1]['description'].append(
+            {
+                'title': action.description,
+                'html_class': 'action'
+             })
+
+
 
     return HttpResponse(
         json.dumps({
-            "result": actions_list_tuple,
+            "result": actions_list_dict,
         }),
         content_type="application/json"
     )

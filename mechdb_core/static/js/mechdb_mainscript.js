@@ -33,39 +33,48 @@ function draw_tree(input_container) {
 };
 
 // функция генерирует таблицы на основе данных с сервера
+// html_class и html_id могут быть переданы в трёх местах
+// в header (нулевой элемент) - для самой таблицы
+// как параметр для каждого TR
+// как параметр для каждого TD
 function make_table (table) {
     var function_response = '';
     var anchor = '';
 
     // Генерация шапки таблицы
-
     function_response += '<TABLE>';
     function_response += '<TR class = "table_header">';
-
-    for (var i = 0; i < table[0].header.length; i++) {
+    for (var i = 0; i < table.table_header.length; i++) {
         function_response += '<TD>';
-            function_response += '<p>' + table[0].header[i].title + '</p>';
+            function_response += '<p>' + table.table_header[i].title + '</p>';
         function_response += '</TD>';
     }
     function_response += '</TR>';
 
     // Генерация контента таблицы
-    // Счётчик y начинаем с 1 т.к. в 0 - информация header
+    // y - цикл по строкам
+    for (var y = 0; y < table.lines.length; y++) {
+        function_response += '<TR class ="' + table.lines[y].html_class + '" id="' + table.lines[y].html_id + '">';
 
-    for (var y = 1; y < table.length; y++) {
-        function_response += '<TR class ="' + table[y].html_class + '" id="' + table[y].html_id + '">';
-
-        for (var x = 0; x < table[0].header.length; x++) {
+        // x -цикл по столбцам
+        for (var x = 0; x < table.table_header.length; x++) {
             function_response += '<TD>';
-            anchor = table[0].header[x].anchor;
-            function_response += '<p>' + table[y][anchor].title + '</p>';
+            anchor = table.table_header[x].anchor;
+
+            // z - цикл по <p>, если их больше одного то в конце будут разделены separator
+            for (var z = 0; z < table.lines[y][anchor].length; z++) {
+                function_response += '<p>' + table.lines[y][anchor][z].title + '</p>';
+                if (table.lines[y][anchor][z].separator) {
+                    function_response += '<p>' + table.lines[y][anchor][z].separator + '</p>';
+                };
+            } // end for z
+
             function_response += '</TD>';
         }; // end for x
 
         function_response += '</TR>';
 
-    } // end for y
-
+    } // end for y -->
 
 
 
@@ -132,7 +141,8 @@ function generate_content (data) {
     return function_response
 }
 
-// функция загружает одну из главных страниц
+// функция оформляет перезагрузку главных страниц и отправляет ajax запросы на сервер
+// для генерации контента используется функция generate_content
 // принимает параметры:
 // pagetype: тип страницы main - главная страница
 
@@ -154,7 +164,7 @@ function load_page(data) {
             'actions_list': {
                 'url': '/get_actions_list/',
                 'data': {
-                    'quantity_for_page': 20,
+                    'quantity_for_page': 30,
                     'page': 0
                 }
             },
